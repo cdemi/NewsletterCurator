@@ -17,6 +17,8 @@ namespace NewsletterCurator.Data
         public string ImageURL { get; set; }
         [Required]
         public string Summary { get; set; }
+        [Required]
+        public bool IsAlreadySent { get; set; }
 
     }
 }
