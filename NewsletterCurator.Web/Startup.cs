@@ -39,6 +39,14 @@ namespace NewsletterCurator.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<NewsletterCuratorContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

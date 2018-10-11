@@ -6,8 +6,9 @@ namespace NewsletterCurator.Data
 {
     public class Category
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
         public Guid ID { get; set; }
+        [Required]
         public string Name { get; set; }
     }
 }

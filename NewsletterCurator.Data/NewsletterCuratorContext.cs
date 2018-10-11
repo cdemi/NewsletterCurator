@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace NewsletterCurator.Data
 {
@@ -6,6 +7,23 @@ namespace NewsletterCurator.Data
     {
         public NewsletterCuratorContext(DbContextOptions options) : base(options)
         {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Category>(options =>
+            {
+                options.HasData(
+                    new Category { ID = Guid.NewGuid(), Name = "DevOps" },
+                    new Category { ID = Guid.NewGuid(), Name = "Front End" },
+                    new Category { ID = Guid.NewGuid(), Name = "Security" },
+                    new Category { ID = Guid.NewGuid(), Name = "iGaming" },
+                    new Category { ID = Guid.NewGuid(), Name = ".NET" }
+                        );
+            });
         }
 
         public DbSet<Recepient> Recepients { get; set; }
