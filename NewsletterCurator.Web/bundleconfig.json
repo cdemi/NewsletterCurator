@@ -1,0 +1,19 @@
+[
+  {
+    "outputFileName": "wwwroot/js/bundle.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/jquery.js",
+      "wwwroot/lib/popper.js/umd/popper.js",
+      "wwwroot/lib/twitter-bootstrap/js/bootstrap.js",
+      "js/site.js"
+    ],
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/css/bundle.min.css",
+    "inputFiles": [
+      "lib/twitter-bootstrap/css/bootstrap.css",
+      "wwwroot/css/site.css"
+    ]
+  }
+]
