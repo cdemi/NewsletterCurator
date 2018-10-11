@@ -10,8 +10,8 @@ using NewsletterCurator.Data;
 namespace NewsletterCurator.Data.Migrations
 {
     [DbContext(typeof(NewsletterCuratorContext))]
-    [Migration("20181011203820_Added Required Fields")]
-    partial class AddedRequiredFields
+    [Migration("20181011204922_Database Create with Seeding")]
+    partial class DatabaseCreatewithSeeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,14 @@ namespace NewsletterCurator.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new { ID = new Guid("bbf3205e-578b-4568-9d86-7c15fceb6a4f"), Name = "DevOps" },
+                        new { ID = new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), Name = "Front End" },
+                        new { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Name = "Security" },
+                        new { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Name = "iGaming" },
+                        new { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Name = ".NET" }
+                    );
                 });
 
             modelBuilder.Entity("NewsletterCurator.Data.Newsitem", b =>

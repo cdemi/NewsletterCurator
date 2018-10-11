@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NewsletterCurator.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class DatabaseCreatewithSeeding : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace NewsletterCurator.Data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,7 +24,7 @@ namespace NewsletterCurator.Data.Migrations
                 columns: table => new
                 {
                     Email = table.Column<string>(nullable: false),
-                    DisplayName = table.Column<string>(nullable: true)
+                    DisplayName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,10 +37,10 @@ namespace NewsletterCurator.Data.Migrations
                 {
                     ID = table.Column<Guid>(nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),
-                    CategoryID = table.Column<Guid>(nullable: true),
-                    URL = table.Column<string>(nullable: true),
+                    CategoryID = table.Column<Guid>(nullable: false),
+                    URL = table.Column<string>(nullable: false),
                     ImageURL = table.Column<string>(nullable: true),
-                    Summary = table.Column<string>(nullable: true)
+                    Summary = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,7 +50,19 @@ namespace NewsletterCurator.Data.Migrations
                         column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "ID", "Name" },
+                values: new object[,]
+                {
+                    { new Guid("bbf3205e-578b-4568-9d86-7c15fceb6a4f"), "DevOps" },
+                    { new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), "Front End" },
+                    { new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), "Security" },
+                    { new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), "iGaming" },
+                    { new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), ".NET" }
                 });
 
             migrationBuilder.CreateIndex(
