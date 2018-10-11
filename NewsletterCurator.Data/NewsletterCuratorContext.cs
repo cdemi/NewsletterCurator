@@ -26,7 +26,7 @@ namespace NewsletterCurator.Data
             });
         }
 
-        public DbSet<Recepient> Recepients { get; set; }
+        public DbSet<Recipient> Recipients { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Newsitem> Newsitems { get; set; }
     }

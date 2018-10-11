@@ -2,7 +2,7 @@
 
 namespace NewsletterCurator.Data
 {
-    public class Recepient
+    public class Recipient
     {
         [Key, Required]
         public string Email { get; set; }
