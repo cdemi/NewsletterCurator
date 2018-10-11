@@ -1,3 +1,11 @@
-﻿<div class="container">
+﻿@model List<Category>
+
+<div class="container">
     <h1>Newsletter Curator</h1>
+    <ul>
+        @foreach (var category in Model)
+        {
+            <li>@category.Name</li>
+        }
+    </ul>
 </div>
