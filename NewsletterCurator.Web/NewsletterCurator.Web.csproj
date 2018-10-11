@@ -2,16 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/69aa7db1-7827-422c-b44e-d830d07d61d7/resourcegroups/NewsletterCurator/providers/microsoft.insights/components/NewsletterCurator</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/69aa7db1-7827-422c-b44e-d830d07d61d7/resourcegroups/NewsletterCurator/providers/microsoft.insights/components/NewsletterCurator</ApplicationInsightsAnnotationResourceId>
+    <UserSecretsId>dd191c59-771f-43f9-8837-863c62b1d128</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.163" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>

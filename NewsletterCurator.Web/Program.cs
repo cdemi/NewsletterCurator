@@ -13,6 +13,7 @@ namespace NewsletterCurator.Web
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
+                .UseApplicationInsights()
 .UseStartup<Startup>();
         }
     }
