@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NewsletterCurator.Data;
+using NewsletterCurator.HTMLParser;
 
 namespace NewsletterCurator.Web
 {
@@ -22,6 +23,7 @@ namespace NewsletterCurator.Web
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
+            services.AddTransient<HTMLParserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,20 @@
+﻿@model AddNewsitemViewModel
+
+<div class="container">
+    <h1>Add a Newsitem</h1>
+    <form>
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="url" class="form-control" id="url" placeholder="URL" value="@Model.URL">
+        </div>
+        <div class="form-group">
+            <label for="categories">Category</label>
+            <select asp-for="Category" asp-items="Model.Categories" class="custom-select"></select>
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Title" value="@Model.Title">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
