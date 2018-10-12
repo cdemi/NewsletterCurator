@@ -22,11 +22,11 @@ namespace NewsletterCurator.HTMLParser
             htmlDoc.LoadHtml(responseString);
             var urlMetadata = new URLMetadata
             {
-                Title = htmlDoc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:title']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("/html/head/title")?.InnerText,
-                Summary = htmlDoc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:description']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("/html/head/meta[@name='description']")?.GetAttributeValue("content", null)
+                Title = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:title']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("/html/head/title")?.InnerText,
+                Summary = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:description']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='description']")?.GetAttributeValue("content", null)
             };
 
-            var ogImage = htmlDoc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:image']")?.GetAttributeValue("content", null);
+            var ogImage = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:image' or @name='twitter:image']")?.GetAttributeValue("content", null);
             if (!string.IsNullOrEmpty(ogImage))
             {
                 urlMetadata.Images.Add(ogImage);
