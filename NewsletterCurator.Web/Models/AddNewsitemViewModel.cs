@@ -10,5 +10,7 @@ namespace NewsletterCurator.Web.Models
         public Category Category { get; set; }
         public List<SelectListItem> Categories { get; set; }
         public string Title { get; internal set; }
+        public List<string> Images { get; internal set; }
+        public string Summary { get; internal set; }
     }
 }

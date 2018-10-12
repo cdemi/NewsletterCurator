@@ -26,7 +26,9 @@ namespace NewsletterCurator.Web.Controllers
             {
                 URL = url,
                 Categories = newsletterCuratorContext.Categories.Select(s => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Value = s.ID.ToString(), Text = s.Name }).ToList(),
-                Title = urlMetaData.Title
+                Title = urlMetaData.Title,
+                Images = urlMetaData.Images,
+                Summary = urlMetaData.Summary
             });
         }
     }
