@@ -20,9 +20,17 @@ namespace NewsletterCurator.HTMLParser
         {
             var responseString = await httpClient.GetStringAsync(url);
             htmlDoc.LoadHtml(responseString);
+
+            var canonicalUrl = htmlDoc.DocumentNode.SelectSingleNode("//link[@rel='canonical']")?.GetAttributeValue("href", null);
+            if (canonicalUrl != null && !canonicalUrl.Equals(url, StringComparison.InvariantCultureIgnoreCase))
+            {
+                responseString = await httpClient.GetStringAsync(canonicalUrl);
+                htmlDoc.LoadHtml(responseString);
+            }
+
             var urlMetadata = new URLMetadata
             {
-                CanonicalURL = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:url']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//link[@rel='canonical']")?.GetAttributeValue("href", null) ?? url,
+                CanonicalURL = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:url']")?.GetAttributeValue("content", null) ?? canonicalUrl ?? url,
                 Title = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:title']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//title")?.InnerText,
                 Summary = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:description']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='description']")?.GetAttributeValue("content", null)
             };
@@ -36,7 +44,7 @@ namespace NewsletterCurator.HTMLParser
             urlMetadata.Images.AddRange(htmlDoc.DocumentNode.SelectNodes("//img[not(@src='') and @src and not(starts-with(@src,'data:'))]").Select(n =>
             {
                 var imageSrc = n.GetAttributeValue("src", null);
-                if (!imageSrc.StartsWith("http", System.StringComparison.InvariantCultureIgnoreCase))
+                if (!imageSrc.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
                 {
                     imageSrc = new Uri(new Uri(url), imageSrc).ToString();
                 }
