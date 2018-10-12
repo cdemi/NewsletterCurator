@@ -20,6 +20,9 @@
     <environment exclude="Development">
         <link href="~/css/bundle.min.css" rel="stylesheet" asp-append-version="true" />
     </environment>
+
+    <script src="~/js/pwa-serviceworker/pwabuilder-sw-register.js"></script>
+
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
