@@ -34,6 +34,9 @@ namespace NewsletterCurator.HTMLParser
                 return imageSrc;
             }));
 
+            urlMetadata.Title = HtmlEntity.DeEntitize(urlMetadata.Title);
+            urlMetadata.Summary = HtmlEntity.DeEntitize(urlMetadata.Summary);
+
             return urlMetadata;
         }
     }
