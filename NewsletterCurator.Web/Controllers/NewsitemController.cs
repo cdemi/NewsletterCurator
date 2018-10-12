@@ -24,11 +24,11 @@ namespace NewsletterCurator.Web.Controllers
 
             return View(new AddNewsitemViewModel
             {
-                URL = url,
+                URL = urlMetaData.CanonicalURL,
                 Categories = newsletterCuratorContext.Categories.Select(s => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Value = s.ID.ToString(), Text = s.Name }).ToList(),
                 Title = urlMetaData.Title,
                 Images = urlMetaData.Images,
-                Summary = urlMetaData.Summary
+                Summary = urlMetaData.Summary,
             });
         }
     }
