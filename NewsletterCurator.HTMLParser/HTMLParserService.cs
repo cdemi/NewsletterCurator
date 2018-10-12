@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
@@ -7,23 +8,31 @@ namespace NewsletterCurator.HTMLParser
 {
     public class HTMLParserService
     {
-        private readonly HtmlWeb htmlWeb = new HtmlWeb();
+        private readonly HtmlDocument htmlDoc = new HtmlDocument();
+        private readonly HttpClient httpClient;
+
+        public HTMLParserService(HttpClient httpClient)
+        {
+            this.httpClient = httpClient;
+        }
+
         public async Task<URLMetadata> Parse(string url)
         {
-            var doc = await htmlWeb.LoadFromWebAsync(url);
+            var responseString = await httpClient.GetStringAsync(url);
+            htmlDoc.LoadHtml(responseString);
             var urlMetadata = new URLMetadata
             {
-                Title = doc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:title']")?.GetAttributeValue("content", null) ?? doc.DocumentNode.SelectSingleNode("/html/head/title")?.InnerText,
-                Summary = doc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:description']")?.GetAttributeValue("content", null) ?? doc.DocumentNode.SelectSingleNode("/html/head/meta[@name='description']")?.GetAttributeValue("content", null)
+                Title = htmlDoc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:title']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("/html/head/title")?.InnerText,
+                Summary = htmlDoc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:description']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("/html/head/meta[@name='description']")?.GetAttributeValue("content", null)
             };
 
-            var ogImage = doc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:image']")?.GetAttributeValue("content", null);
+            var ogImage = htmlDoc.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:image']")?.GetAttributeValue("content", null);
             if (!string.IsNullOrEmpty(ogImage))
             {
                 urlMetadata.Images.Add(ogImage);
             }
 
-            urlMetadata.Images.AddRange(doc.DocumentNode.SelectNodes("//img[not(@src='')]").Select(n =>
+            urlMetadata.Images.AddRange(htmlDoc.DocumentNode.SelectNodes("//img[not(@src='')]").Select(n =>
             {
                 var imageSrc = n.GetAttributeValue("src", null);
                 if (!imageSrc.StartsWith("http", System.StringComparison.InvariantCultureIgnoreCase))
