@@ -15,6 +15,7 @@
   ],
   "theme_color": "#f3c40f",
   "share_target": {
+    "url_template": "Newsitem/Add?url={url}",
     "action": "Newsitem/Add",
     "params": {
       "url": "url"
