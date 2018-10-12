@@ -1,7 +1,5 @@
 ﻿{
   "name": "cdemi's Newsletter Curator",
-  "display": "standalone",
-  "start_url": "https://newslettercurator.azurewebsites.net/",
   "short_name": "News Curator",
   "icons": [
     {
