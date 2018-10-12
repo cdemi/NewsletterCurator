@@ -15,10 +15,12 @@
   ],
   "theme_color": "#f3c40f",
   "share_target": {
-    "url_template": "Newsitem/Add?url={url}",
+    "url_template": "Newsitem/Add?url={url}&title={title}&text={text}",
     "action": "Newsitem/Add",
     "params": {
-      "url": "url"
+      "url": "url",
+      "title": "title",
+      "text": "text"
     }
   },
   "background_color": "#f3c40f"
