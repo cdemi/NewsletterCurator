@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NewsletterCurator.Data.SqlServer\NewsletterCurator.Data.SqlServer.csproj" />
     <ProjectReference Include="..\NewsletterCurator.Data\NewsletterCurator.Data.csproj" />
   </ItemGroup>
 

@@ -56,6 +56,9 @@ namespace NewsletterCurator.Data.Migrations
                     b.Property<string>("Summary")
                         .IsRequired();
 
+                    b.Property<string>("Title")
+                        .IsRequired();
+
                     b.Property<string>("URL")
                         .IsRequired();
 
