@@ -2,7 +2,11 @@
 
 var CACHE = 'pwabuilder-precache';
 var precacheFiles = [
-    "/"
+    "/",
+    "/css/bundle.min.css",
+    "/js/bundle.min.js",
+    "/pwabuilder-sw.js",
+    "/pwabuilder-sw-register.js"
 ];
 
 //Install stage sets up the cache-array to configure pre-cache content
