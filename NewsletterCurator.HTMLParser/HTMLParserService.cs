@@ -32,7 +32,7 @@ namespace NewsletterCurator.HTMLParser
                 urlMetadata.Images.Add(ogImage);
             }
 
-            urlMetadata.Images.AddRange(htmlDoc.DocumentNode.SelectNodes("//img[not(@src='')]").Select(n =>
+            urlMetadata.Images.AddRange(htmlDoc.DocumentNode.SelectNodes("//img[not(@src='') and @src and not(starts-with(@src,'data:'))]").Select(n =>
             {
                 var imageSrc = n.GetAttributeValue("src", null);
                 if (!imageSrc.StartsWith("http", System.StringComparison.InvariantCultureIgnoreCase))
