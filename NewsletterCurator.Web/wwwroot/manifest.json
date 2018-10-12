@@ -1,7 +1,8 @@
 ﻿{
   "name": "cdemi's Newsletter Curator",
   "display": "standalone",
-  "short_name": "cdemi's Newsletter Curator",
+  "start_url": "https://newslettercurator.azurewebsites.net/",
+  "short_name": "News Curator",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
