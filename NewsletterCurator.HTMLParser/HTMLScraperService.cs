@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
@@ -41,6 +42,16 @@ namespace NewsletterCurator.HTMLScraper
                 Title = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:title']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//title")?.InnerText,
                 Summary = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:description']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='description']")?.GetAttributeValue("content", null)
             };
+
+            if (string.IsNullOrEmpty(urlMetadata.Summary))
+            {
+                var paragraphs = htmlDoc.DocumentNode.SelectNodes("//p");
+                if (paragraphs != null)
+                {
+                    var longSummary = Regex.Replace(string.Join(' ', paragraphs.Select(p => p.InnerText)), @"\s+", " ");
+                    urlMetadata.Summary = new string(longSummary.Take(300).ToArray());
+                }
+            }
 
             var ogImage = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:image' or @name='twitter:image']")?.GetAttributeValue("content", null);
             if (!string.IsNullOrEmpty(ogImage))
