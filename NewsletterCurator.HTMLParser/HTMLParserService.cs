@@ -21,16 +21,23 @@ namespace NewsletterCurator.HTMLParser
             var responseString = await httpClient.GetStringAsync(url);
             htmlDoc.LoadHtml(responseString);
 
-            var canonicalUrl = htmlDoc.DocumentNode.SelectSingleNode("//link[@rel='canonical']")?.GetAttributeValue("href", null);
-            if (canonicalUrl != null && !canonicalUrl.Equals(url, StringComparison.InvariantCultureIgnoreCase))
+            var canonicalUrl = htmlDoc.DocumentNode.SelectSingleNode("//link[@rel='canonical']")?.GetAttributeValue("href", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:url']")?.GetAttributeValue("content", null);
+            try
             {
-                responseString = await httpClient.GetStringAsync(canonicalUrl);
-                htmlDoc.LoadHtml(responseString);
+                if (canonicalUrl != null && !canonicalUrl.Equals(url, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    responseString = await httpClient.GetStringAsync(canonicalUrl);
+                    htmlDoc.LoadHtml(responseString);
+                }
+            }
+            catch (HttpRequestException)
+            {
+                canonicalUrl = null;
             }
 
             var urlMetadata = new URLMetadata
             {
-                CanonicalURL = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:url']")?.GetAttributeValue("content", null) ?? canonicalUrl ?? url,
+                CanonicalURL = canonicalUrl ?? url,
                 Title = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:title']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//title")?.InnerText,
                 Summary = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:description']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='description']")?.GetAttributeValue("content", null)
             };
