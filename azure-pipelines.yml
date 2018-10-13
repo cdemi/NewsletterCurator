@@ -1,22 +1,24 @@
 ﻿variables:
   buildConfiguration: 'Release'
+  dockerImageName: $(dockerUsername)/newslettercurator
 trigger:
 - master
 jobs:
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
+  env:
+    pswd: $(dockerPassword)
   steps:
-  - script: dotnet build --configuration $(buildConfiguration)
-    displayName: dotnet build
-  - script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx
-    displayName: dotnet test
-  - script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
-    displayName: dotnet publish
-  - task: PublishTestResults@2
-    inputs:
-      testRunner: VSTest
-      testResultsFiles: '**/*.trx'
+  - script: docker build -t $(dockerImageName):$(Build.BuildId) -f NewsletterCurator.Web/Dockerfile .
+    displayName: docker build
+  - script: docker tag $(dockerImageName):$(Build.BuildId) $(dockerImageName):latest
+    displayName: docker tag
+  - script: docker login -u $(dockerUsername) -p $(pswd)
+    displayName: docker login
+  - script: |
+       docker push $(dockerImageName):$(Build.BuildId)
+       docker push $(dockerImageName):latest
 - job: Windows
   pool:
     vmImage: 'vs2017-win2016'
