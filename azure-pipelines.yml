@@ -1,5 +1,7 @@
 ﻿variables:
   buildConfiguration: 'Release'
+trigger:
+- master
 jobs:
 - job: Linux
   pool:
