@@ -14,7 +14,7 @@ namespace NewsletterCurator.Web
         {
             return WebHost.CreateDefaultBuilder(args)
                 .UseApplicationInsights()
-.UseStartup<Startup>();
+                .UseStartup<Startup>();
         }
     }
 }
