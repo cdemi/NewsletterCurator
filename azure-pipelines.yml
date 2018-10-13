@@ -31,7 +31,7 @@ jobs:
     displayName: docker build
   - script: docker tag $(dockerImageName):$(Build.BuildNumber)-windows $(dockerImageName):latest
     displayName: docker tag
-  - script: docker login -u $(dockerUsername) -p $pswd
+  - script: docker login -u $(dockerUsername) -p $env:pswd
     displayName: docker login
     env:
       pswd: $(dockerPassword)
