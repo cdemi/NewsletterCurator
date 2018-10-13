@@ -9,11 +9,11 @@ steps:
   displayName: dotnet build
 - script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
   displayName: dotnet test
-- script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
-  displayName: dotnet publish
-- task: PublishTestResults@2
+  - task: PublishTestResults@2
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
+- script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+  displayName: dotnet publish
 - task: PublishBuildArtifacts@1
   displayName: Publishing Artifacts
