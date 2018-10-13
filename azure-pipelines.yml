@@ -13,8 +13,8 @@ jobs:
     displayName: dotnet publish
   - task: PublishTestResults@2
     inputs:
-    testRunner: VSTest
-    testResultsFiles: '**/*.trx'
+      testRunner: VSTest
+      testResultsFiles: '**/*.trx'
   - task: PublishBuildArtifacts@1
     displayName: Publishing Artifacts
 - job: Windows
