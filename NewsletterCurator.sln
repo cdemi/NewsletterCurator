@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsletterCurator.Data", "N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsletterCurator.Data.SqlServer", "NewsletterCurator.Data.SqlServer\NewsletterCurator.Data.SqlServer.csproj", "{7EEEAA97-6CE1-4C6E-A1E0-836872EEB22B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsletterCurator.HTMLParser", "NewsletterCurator.HTMLParser\NewsletterCurator.HTMLParser.csproj", "{B2B7C984-D8DE-4B66-A127-F7223381135C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsletterCurator.HTMLScraper", "NewsletterCurator.HTMLParser\NewsletterCurator.HTMLScraper.csproj", "{B2B7C984-D8DE-4B66-A127-F7223381135C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

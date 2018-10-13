@@ -20,7 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NewsletterCurator.Data.SqlServer\NewsletterCurator.Data.SqlServer.csproj" />
     <ProjectReference Include="..\NewsletterCurator.Data\NewsletterCurator.Data.csproj" />
-    <ProjectReference Include="..\NewsletterCurator.HTMLParser\NewsletterCurator.HTMLParser.csproj" />
+    <ProjectReference Include="..\NewsletterCurator.HTMLParser\NewsletterCurator.HTMLScraper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

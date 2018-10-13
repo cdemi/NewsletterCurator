@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NewsletterCurator.Data;
-using NewsletterCurator.HTMLParser;
+using NewsletterCurator.HTMLScraper;
 using NewsletterCurator.Web.Models;
 
 namespace NewsletterCurator.Web.Controllers
@@ -10,17 +10,17 @@ namespace NewsletterCurator.Web.Controllers
     public class NewsitemController : Controller
     {
         private readonly NewsletterCuratorContext newsletterCuratorContext;
-        private readonly HTMLParserService htmlParserService;
+        private readonly HTMLScraperService htmlScraperService;
 
-        public NewsitemController(NewsletterCuratorContext newsletterCuratorContext, HTMLParserService htmlParserService)
+        public NewsitemController(NewsletterCuratorContext newsletterCuratorContext, HTMLScraperService htmlParserService)
         {
             this.newsletterCuratorContext = newsletterCuratorContext;
-            this.htmlParserService = htmlParserService;
+            this.htmlScraperService = htmlParserService;
         }
 
         public async Task<IActionResult> Add(string url)
         {
-            var urlMetaData = await htmlParserService.Parse(url);
+            var urlMetaData = await htmlScraperService.Scrape(url);
 
             return View(new AddNewsitemViewModel
             {

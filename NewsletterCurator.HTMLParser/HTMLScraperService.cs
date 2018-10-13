@@ -4,19 +4,19 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace NewsletterCurator.HTMLParser
+namespace NewsletterCurator.HTMLScraper
 {
-    public class HTMLParserService
+    public class HTMLScraperService
     {
         private readonly HtmlDocument htmlDoc = new HtmlDocument();
         private readonly HttpClient httpClient;
 
-        public HTMLParserService(HttpClient httpClient)
+        public HTMLScraperService(HttpClient httpClient)
         {
             this.httpClient = httpClient;
         }
 
-        public async Task<URLMetadata> Parse(string url)
+        public async Task<URLMetadata> Scrape(string url)
         {
             var responseString = await httpClient.GetStringAsync(url);
             htmlDoc.LoadHtml(responseString);

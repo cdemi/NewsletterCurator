@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NewsletterCurator.HTMLParser
+namespace NewsletterCurator.HTMLScraper
 {
     public class URLMetadata
     {

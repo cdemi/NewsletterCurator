@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NewsletterCurator.Data;
-using NewsletterCurator.HTMLParser;
+using NewsletterCurator.HTMLScraper;
 using Polly;
 
 namespace NewsletterCurator.Web
@@ -27,8 +27,8 @@ namespace NewsletterCurator.Web
             services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
-            services.AddTransient<HTMLParserService>();
-            services.AddHttpClient<HTMLParserService>("scraper", (client) =>
+            services.AddTransient<HTMLScraperService>();
+            services.AddHttpClient<HTMLScraperService>("scraper", (client) =>
             {
                 client.DefaultRequestHeaders.Add("User-Agent", Configuration.GetValue<string>("HttpClient:UserAgent"));
                 client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
