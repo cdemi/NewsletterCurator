@@ -9,7 +9,7 @@ steps:
   displayName: dotnet build
 - script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
   displayName: dotnet test
-  - task: PublishTestResults@2
+- task: PublishTestResults@2
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
