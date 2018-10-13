@@ -8,17 +8,36 @@ jobs:
   pool:
     vmImage: 'ubuntu-16.04'
   steps:
-  - script: docker build -t $(dockerImageName):$(Build.BuildId) -f NewsletterCurator.Web/Dockerfile .
+  - script: docker build -t $(dockerImageName):$(Build.BuildNumber)-linux -f NewsletterCurator.Web/Dockerfile .
     displayName: docker build
-  - script: docker tag $(dockerImageName):$(Build.BuildId) $(dockerImageName):latest
+  - script: |
+      docker tag $(dockerImageName):$(Build.BuildNumber)-linux $(dockerImageName):latest
+      docker tag $(dockerImageName):$(Build.BuildNumber)-linux $(dockerImageName):latest-linux
     displayName: docker tag
   - script: docker login -u $(dockerUsername) -p $pswd
     displayName: docker login
     env:
       pswd: $(dockerPassword)
   - script: |
-      docker push $(dockerImageName):$(Build.BuildId)
+      docker push $(dockerImageName):$(Build.BuildNumber)-linux
       docker push $(dockerImageName):latest
+      docker push $(dockerImageName):latest-linux
+    displayName: docker push
+- job: DockerWindows
+  pool:
+    vmImage: 'win1803'
+  steps:
+  - script: docker build -t $(dockerImageName):$(Build.BuildNumber)-windows -f NewsletterCurator.Web/Dockerfile .
+    displayName: docker build
+  - script: docker tag $(dockerImageName):$(Build.BuildNumber)-windows $(dockerImageName):latest
+    displayName: docker tag
+  - script: docker login -u $(dockerUsername) -p $pswd
+    displayName: docker login
+    env:
+      pswd: $(dockerPassword)
+  - script: |
+      docker push $(dockerImageName):$(Build.BuildNumber)-windows
+      docker push $(dockerImageName):latest-windows
     displayName: docker push
 - job: Windows
   pool:
