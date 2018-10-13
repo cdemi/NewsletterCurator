@@ -39,7 +39,7 @@ namespace NewsletterCurator.HTMLScraper
             var urlMetadata = new URLMetadata
             {
                 CanonicalURL = canonicalUrl ?? url,
-                Title = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:title']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//title")?.InnerText,
+                Title = "",
                 Summary = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:description']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='description']")?.GetAttributeValue("content", null)
             };
 
