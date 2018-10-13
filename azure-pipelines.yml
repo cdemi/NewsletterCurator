@@ -1,19 +1,35 @@
-﻿pool:
-  vmImage: 'ubuntu-16.04'
-
-variables:
+﻿variables:
   buildConfiguration: 'Release'
-
-steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: dotnet build
-- script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx
-  displayName: dotnet test
-- script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
-  displayName: dotnet publish
-- task: PublishTestResults@2
-  inputs:
-    testRunner: VSTest
-    testResultsFiles: '**/*.trx'
-- task: PublishBuildArtifacts@1
-  displayName: Publishing Artifacts
+jobs:
+- job: Linux
+  pool:
+      vmImage: 'ubuntu-16.04'
+  steps:
+  - script: dotnet build --configuration $(buildConfiguration)
+      displayName: dotnet build
+  - script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx
+      displayName: dotnet test
+  - script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+      displayName: dotnet publish
+  - task: PublishTestResults@2
+      inputs:
+      testRunner: VSTest
+      testResultsFiles: '**/*.trx'
+  - task: PublishBuildArtifacts@1
+      displayName: Publishing Artifacts
+- job: Windows
+  pool:
+      vmImage: 'vs2017-win2016'
+  steps:
+  - script: dotnet build --configuration $(buildConfiguration)
+      displayName: dotnet build
+  - script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx
+      displayName: dotnet test
+  - script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+      displayName: dotnet publish
+  - task: PublishTestResults@2
+      inputs:
+      testRunner: VSTest
+      testResultsFiles: '**/*.trx'
+  - task: PublishBuildArtifacts@1
+      displayName: Publishing Artifacts
