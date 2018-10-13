@@ -5,6 +5,7 @@
     <ApplicationInsightsResourceId>/subscriptions/69aa7db1-7827-422c-b44e-d830d07d61d7/resourcegroups/NewsletterCurator/providers/microsoft.insights/components/NewsletterCurator</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/69aa7db1-7827-422c-b44e-d830d07d61d7/resourcegroups/NewsletterCurator/providers/microsoft.insights/components/NewsletterCurator</ApplicationInsightsAnnotationResourceId>
     <UserSecretsId>dd191c59-771f-43f9-8837-863c62b1d128</UserSecretsId>
+    <DockerTargetOS>Linux</DockerTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.163" />
   </ItemGroup>
