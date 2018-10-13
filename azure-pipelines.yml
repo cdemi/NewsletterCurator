@@ -1,57 +1,19 @@
 ﻿variables:
   buildConfiguration: 'Release'
-  dockerImageName: $(dockerUsername)/newslettercurator
 trigger:
 - master
-jobs:
-- job: DockerLinux
-  pool:
-    vmImage: 'ubuntu-16.04'
-  steps:
-  - script: docker build -t $(dockerImageName):$(Build.BuildNumber)-linux -f NewsletterCurator.Web/Dockerfile .
-    displayName: docker build
-  - script: |
-      docker tag $(dockerImageName):$(Build.BuildNumber)-linux $(dockerImageName):latest
-      docker tag $(dockerImageName):$(Build.BuildNumber)-linux $(dockerImageName):latest-linux
-    displayName: docker tag
-  - script: docker login -u $(dockerUsername) -p $pswd
-    displayName: docker login
-    env:
-      pswd: $(dockerPassword)
-  - script: |
-      docker push $(dockerImageName):$(Build.BuildNumber)-linux
-      docker push $(dockerImageName):latest
-      docker push $(dockerImageName):latest-linux
-    displayName: docker push
-- job: DockerWindows
-  pool:
-    vmImage: 'win1803'
-  steps:
-  - script: docker build -t $(dockerImageName):$(Build.BuildNumber)-windows -f NewsletterCurator.Web/Dockerfile .
-    displayName: docker build
-  - script: docker tag $(dockerImageName):$(Build.BuildNumber)-windows $(dockerImageName):latest
-    displayName: docker tag
-  - script: docker login -u $(dockerUsername) -p $env:pswd
-    displayName: docker login
-    env:
-      pswd: $(dockerPassword)
-  - script: |
-      docker push $(dockerImageName):$(Build.BuildNumber)-windows
-      docker push $(dockerImageName):latest-windows
-    displayName: docker push
-- job: Windows
-  pool:
-    vmImage: 'vs2017-win2016'
-  steps:
-  - script: dotnet build --configuration $(buildConfiguration)
-    displayName: dotnet build
-  - script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx
-    displayName: dotnet test
-  - script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
-    displayName: dotnet publish
-  - task: PublishTestResults@2
-    inputs:
-      testRunner: VSTest
-      testResultsFiles: '**/*.trx'
-  - task: PublishBuildArtifacts@1
-    displayName: Publishing Artifacts
+pool:
+  vmImage: 'vs2017-win2016'
+steps:
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: dotnet build
+- script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx
+  displayName: dotnet test
+- script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+  displayName: dotnet publish
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+- task: PublishBuildArtifacts@1
+  displayName: Publishing Artifacts
