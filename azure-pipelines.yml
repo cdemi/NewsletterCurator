@@ -7,7 +7,13 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: dotnet build
+- script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx
+  displayName: dotnet test
 - script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
   displayName: dotnet publish
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
 - task: PublishBuildArtifacts@1
   displayName: Publishing Artifacts
