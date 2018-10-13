@@ -41,16 +41,20 @@ namespace NewsletterCurator.HTMLParser
                 urlMetadata.Images.Add(ogImage);
             }
 
-            urlMetadata.Images.AddRange(htmlDoc.DocumentNode.SelectNodes("//img[not(@src='') and @src and not(starts-with(@src,'data:'))]").Select(n =>
+            var articleImages = htmlDoc.DocumentNode.SelectNodes("//img[not(@src='') and @src and not(starts-with(@src,'data:'))]");
+            if (articleImages != null)
             {
-                var imageSrc = n.GetAttributeValue("src", null);
-                if (!imageSrc.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                urlMetadata.Images.AddRange(articleImages.Select(n =>
                 {
-                    imageSrc = new Uri(new Uri(url), imageSrc).ToString();
-                }
+                    var imageSrc = n.GetAttributeValue("src", null);
+                    if (!imageSrc.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        imageSrc = new Uri(new Uri(url), imageSrc).ToString();
+                    }
 
-                return imageSrc;
-            }));
+                    return imageSrc;
+                }));
+            }
 
             urlMetadata.Title = HtmlEntity.DeEntitize(urlMetadata.Title);
             urlMetadata.Summary = HtmlEntity.DeEntitize(urlMetadata.Summary);
