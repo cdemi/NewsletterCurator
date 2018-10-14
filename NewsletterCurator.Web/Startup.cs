@@ -24,7 +24,8 @@ namespace NewsletterCurator.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
+            services.AddHttpsRe
+                direction(options => { options.HttpsPort = 443; });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
             services.AddTransient<HTMLScraperService>();
