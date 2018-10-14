@@ -10,6 +10,7 @@ steps:
 - script: dotnet test NewsletterCurator.HTMLScraper.Tests --no-build --no-restore --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
   displayName: dotnet test
 - task: PublishTestResults@2
+  condition: succeededOrFailed()
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
