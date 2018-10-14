@@ -7,13 +7,13 @@ pool:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: dotnet build
-- script: dotnet test NewsletterCurator.HTMLScraper.Tests --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
+- script: dotnet test NewsletterCurator.HTMLScraper.Tests --no-build --no-restore --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
   displayName: dotnet test
 - task: PublishTestResults@2
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
-- script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+- script: dotnet publish --no-build --no-restore --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
   displayName: dotnet publish
 - task: PublishBuildArtifacts@1
   displayName: Publishing Artifacts
