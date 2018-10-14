@@ -14,6 +14,8 @@ namespace NewsletterCurator.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Newsitem>().HasAlternateKey(n => n.URL);
+
             modelBuilder.Entity<Category>(options =>
             {
                 options.HasData(
