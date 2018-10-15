@@ -11,17 +11,17 @@ namespace NewsletterCurator.Web.Controllers
     public class NewsitemController : Controller
     {
         private readonly NewsletterCuratorContext newsletterCuratorContext;
-        private readonly HTMLScraperService htmlParserService;
+        private readonly HTMLScraperService htmlScraperService;
 
-        public NewsitemController(NewsletterCuratorContext newsletterCuratorContext, HTMLScraperService htmlParserService)
+        public NewsitemController(NewsletterCuratorContext newsletterCuratorContext, HTMLScraperService htmlScraperService)
         {
             this.newsletterCuratorContext = newsletterCuratorContext;
-            this.htmlParserService = htmlParserService;
+            this.htmlScraperService = htmlScraperService;
         }
 
         public async Task<IActionResult> Add(string url)
         {
-            var urlMetaData = await htmlParserService.Scrape(url);
+            var urlMetaData = await htmlScraperService.ScrapeMetadata(url);
 
             return View(new AddNewsitemViewModel
             {

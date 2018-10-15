@@ -26,7 +26,7 @@ namespace NewsletterCurator.HTMLScraper.Tests
         public async Task ScrapeCdemiBlog()
         {
             var scraperService = new HTMLScraperService(httpClient);
-            var urlMetaData = await scraperService.Scrape("https://blog.cdemi.io/whats-coming-in-c-8-0-nullable-reference-types/?src=NewsletterCuratorTest");
+            var urlMetaData = await scraperService.ScrapeMetadata("https://blog.cdemi.io/whats-coming-in-c-8-0-nullable-reference-types/?src=NewsletterCuratorTest");
 
             Assert.AreEqual(urlMetaData.CanonicalURL, "https://blog.cdemi.io/whats-coming-in-c-8-0-nullable-reference-types/");
             Assert.AreEqual(urlMetaData.Images.Count, 2);
