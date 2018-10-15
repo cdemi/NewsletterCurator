@@ -12,5 +12,7 @@ namespace NewsletterCurator.Data
         [Required]
         public string Name { get; set; }
         public List<Newsitem> Newsitems { get; set; }
+        [Required]
+        public int Priority { get; set; }
     }
 }
