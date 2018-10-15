@@ -25,6 +25,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("57e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Name = "AI", Priority=7 },
                     new Category { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Name = "Space", Priority=10 },
                     new Category { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Name = "Security", Priority=5 },
+                    new Category { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Name = "Hardware", Priority = 5.5f },
                     new Category { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Name = "iGaming", Priority=9 },
                     new Category { ID = new Guid("497FF497-33D2-434C-A1DB-5A722D94078F"), Name = "General Tech", Priority=8 },
                     new Category { ID = new Guid("527FF497-33D2-434C-A1DB-5A722D94078F"), Name = "Infrastructure", Priority=4 },
