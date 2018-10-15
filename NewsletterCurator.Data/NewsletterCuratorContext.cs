@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace NewsletterCurator.Data
@@ -29,8 +30,15 @@ namespace NewsletterCurator.Data
             });
         }
 
+        public IQueryable<IGrouping<Category, Newsitem>> NewsitemsByCategory()
+        {
+            return Newsitems.Where(n => n.IsAlreadySent == false).GroupBy(n => n.Category);
+        }
+
+
         public DbSet<Recipient> Recipients { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Newsitem> Newsitems { get; set; }
     }
+
 }

@@ -18,7 +18,7 @@ namespace NewsletterCurator.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var categoryNewsItemsViewModels = await newsletterCuratorContext.Newsitems.Where(n => n.IsAlreadySent == false).GroupBy(n => n.Category).Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToListAsync();
+            var categoryNewsItemsViewModels = await newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToListAsync();
 
             return View(categoryNewsItemsViewModels);
         }
