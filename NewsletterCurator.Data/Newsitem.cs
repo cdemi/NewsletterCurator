@@ -9,9 +9,11 @@ namespace NewsletterCurator.Data
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
         public Guid ID { get; set; }
         [Required]
-        public DateTime DateTime { get; set; }
+        public DateTimeOffset DateTime { get; set; }
         [Required]
         public Category Category { get; set; }
+        [Required]
+        public Guid CategoryID { get; set; }
         [Required]
         public string URL { get; set; }
         public string ImageURL { get; set; }

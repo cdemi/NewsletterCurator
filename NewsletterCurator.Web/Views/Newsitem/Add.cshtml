@@ -6,26 +6,26 @@
 <div class="container">
     <h1>Add a Newsitem</h1>
     <hr />
-    <form>
+    <form method="post" asp-action="Add">
         <div class="form-group">
             <label for="url">URL</label>
-            <input type="url" class="form-control" id="url" placeholder="URL" value="@Model.URL">
+            <input type="url" class="form-control" name="URL" id="url" placeholder="URL" value="@Model.URL">
         </div>
         <div class="form-group">
             <label for="categories">Category</label>
-            <select asp-for="Category" asp-items="Model.Categories" class="custom-select"></select>
+            <select asp-items="Model.Categories" name="CategoryID" class="custom-select"></select>
         </div>
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Title" value="@Model.Title">
+            <input type="text" class="form-control" id="title" name="Title" placeholder="Title" value="@Model.Title">
         </div>
         <div class="form-group">
             <label for="summary">Summary</label>
-            <textarea class="form-control" id="summary" rows="3">@Model.Summary</textarea>
+            <textarea class="form-control" id="summary" name="Summary" rows="3">@Model.Summary</textarea>
         </div>
         <div class="form-group">
             <label for="image">Image URL</label>
-            <input type="url" class="form-control" id="image" placeholder="Image URL" value="@Model.Images.FirstOrDefault()">
+            <input type="url" class="form-control" id="image" name="ImageURL" placeholder="Image URL" value="@Model.Images.FirstOrDefault()">
         </div>
         <div class="img-Group">
             @foreach (var image in Model.Images)
