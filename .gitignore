@@ -331,3 +331,4 @@ ASALocalRun/
 
 /NewsletterCurator.Web/wwwroot/lib/*
 /NewsletterCurator.Web/wwwroot/*/*.min.*
+appsettings.Development.json
