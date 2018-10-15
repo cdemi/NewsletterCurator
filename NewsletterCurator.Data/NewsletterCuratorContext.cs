@@ -29,6 +29,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("497FF497-33D2-434C-A1DB-5A722D94078F"), Name = "General Tech" },
                     new Category { ID = new Guid("527FF497-33D2-434C-A1DB-5A722D94078F"), Name = "Infrastructure" },
                     new Category { ID = new Guid("317FF497-33D2-434C-A1DB-5A722D94078F"), Name = "Software Development" },
+                    new Category { ID = new Guid("847FF497-33A2-424C-A1DB-5A722D94078F"), Name = "Design" },
                     new Category { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Name = ".NET" }
                         );
             });
