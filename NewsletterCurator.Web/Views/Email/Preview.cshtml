@@ -64,13 +64,16 @@
                             <a href="@newsItem.URL" target="_blank"><h3>@newsItem.Title</h3></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td align="center">
-                            <a href="@newsItem.URL" target="_blank">
-                                <img src="@newsItem.ImageURL" style="margin:0; padding:0; border:none; display:block;max-height:185px;max-width:400px; margin:20px" border="0" alt="" />
-                            </a>
-                        </td>
-                    </tr>
+                    @if (!String.IsNullOrEmpty(newsItem.ImageURL))
+                    {
+                        <tr>
+                            <td align="center">
+                                <a href="@newsItem.URL" target="_blank">
+                                    <img src="@newsItem.ImageURL" style="margin:0; padding:0; border:none; display:block;max-height:185px;max-width:400px; margin:20px" border="0" alt="" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
                     <tr>
                         <td align="center">
                             <p>@newsItem.Summary... <br /><a href="@newsItem.URL" target="_blank">Read More...</a></p>
