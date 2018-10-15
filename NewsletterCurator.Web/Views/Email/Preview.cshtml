@@ -12,147 +12,79 @@
     <title>@DateTime.Now.ToString("dd MMMM yyyy") - cdemi's Curated Newsletter</title>
 
     <style type="text/css">
-        /* CLIENT-SPECIFIC STYLES */
-        body, table, td, a {
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-
-        table, td {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
-
-        img {
-            -ms-interpolation-mode: bicubic;
-        }
-
-        /* RESET STYLES */
-        img {
-            border: 0;
-            outline: none;
-            text-decoration: none;
-        }
-
-        table {
-            border-collapse: collapse !important;
-        }
 
         body {
             margin: 0 !important;
             padding: 0 !important;
             width: 100% !important;
             font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            color: #333;
         }
 
-        /* iOS BLUE LINKS */
-        a[x-apple-data-detectors] {
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
-        }
 
-        /* ANDROID CENTER FIX */
-        div[style*="margin: 16px 0;"] {
-            margin: 0 !important;
-        }
-
-        /* MEDIA QUERIES */
-        @@media all and (max-width:639px) {
-            .wrapper {
-                width: 320px !important;
-                padding: 0 !important;
-            }
-
-            .container {
-                width: 300px !important;
-                padding: 0 !important;
-            }
-
-            .mobile {
-                width: 300px !important;
-                display: block !important;
-                padding: 0 !important;
-            }
-
-            .img {
-                width: 100% !important;
-                height: auto !important;
-            }
-
-            *[class="mobileOff"] {
-                width: 0px !important;
-                display: none !important;
-            }
-
-            *[class*="mobileOn"] {
-                display: block !important;
-                max-height: none !important;
-            }
-        }
-
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             margin: 0;
+            mso-line-height-rule: exactly;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        p a {
+            margin: 0;
+            font-weight: bold;
+            text-decoration: underline;
+            color: #35b900;
         }
     </style>
 </head>
 <body style="margin:0; padding:0; background-color:#F2F2F2;">
     <center>
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F2F2F2">
+        <table width="90%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width: 90%; max-width: 580px; padding: 40px">
             <tr>
-                <td align="center" valign="top">
-
-                    <table width="640" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:640px; width:100%;" bgcolor="#FFFFFF">
-                        <tr>
-                            <td align="center" valign="top" style="padding:10px;">
-
-                                <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
-                                    <tr>
-                                        <td align="center" valign="top" style="padding:10px;">
-                                            <h1>@DateTime.Now.ToString("dd MMMM yyyy") - cdemi's Curated Newsletter</h1>
-                                        </td>
-                                    </tr>
-                                </table>
-
-                            </td>
-                        </tr>
-                    </table>
-
-                    @foreach (var category in Model)
-                    {
-                        <table width="640" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:640px; width:100%;" bgcolor="#FFFFFF">
-                            <tr>
-                                <td align="center" valign="top" style="padding:10px;">
-                                    <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
-                                        <tr>
-                                            <td valign="top" style="padding:10px;">
-                                                <hr />
-                                                <h2>@category.Category.Name</h2>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-
-                        @foreach (var newsItem in category.Newsitems)
-                        {
-                            <table width="640" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:640px; width:100%;" bgcolor="#FFFFFF">
-                                <tr>
-                                    <td width="600" align="center" valign="top" style="padding:10px;">
-                                        <img src="@newsItem.ImageURL" style="margin:0; padding:0; border:none; display:block;max-height:185px;max-width:100%;" border="0" alt="" />
-                                        <h3>@newsItem.Title</h3>
-                                        <p>@newsItem.Summary... <a href="@newsItem.URL" target="_blank">Read More...</a></p>
-                                    </td>
-                                </tr>
-                            </table>
-                        }
-                    }
+                <td align="center">
+                    <h1>cdemi's Curated Newsletter</h1>
+                    <h2>@DateTime.Now.ToString("dd MMMM yyyy")</h2>
+                    <hr />
                 </td>
             </tr>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>
+                        <h2>@category.Category.Name</h2>
+                    </td>
+                </tr>
+                @foreach (var newsItem in category.Newsitems)
+                {
+                    <tr>
+                        <td align="center">
+                            <a href="@newsItem.URL" target="_blank">
+                                <img src="@newsItem.ImageURL" style="margin:0; padding:0; border:none; display:block;max-height:185px;max-width:400px; margin:20px" border="0" alt="" />
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <a href="@newsItem.URL" target="_blank"><h3>@newsItem.Title</h3></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <p>@newsItem.Summary... <br /><a href="@newsItem.URL" target="_blank">Read More...</a></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50"></td>
+                    </tr>
+                }
+                <tr>
+                    <td height="50"><hr /></td>
+                </tr>
+            }
+
         </table>
     </center>
 </body>
