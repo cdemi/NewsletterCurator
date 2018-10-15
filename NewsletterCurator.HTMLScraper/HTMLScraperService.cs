@@ -16,12 +16,12 @@ namespace NewsletterCurator.HTMLScraper
         {
             this.httpClient = httpClient;
         }
-        public async Task<string> Scrape(string url)
+        public async Task<string> ScrapeAsync(string url)
         {
             return await httpClient.GetStringAsync(url);
         }
 
-        public async Task<URLMetadata> ScrapeMetadata(string url)
+        public async Task<URLMetadata> ScrapeMetadataAsync(string url)
         {
             var responseString = await httpClient.GetStringAsync(url);
             htmlDoc.LoadHtml(responseString);

@@ -20,7 +20,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsletterCurator.Data.SqlS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsletterCurator.HTMLScraper", "NewsletterCurator.HTMLScraper\NewsletterCurator.HTMLScraper.csproj", "{F3D9D261-91B4-4B2B-B62E-CA696F141F4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsletterCurator.HTMLScraper.Tests", "NewsletterCurator.HTMLScraper.Tests\NewsletterCurator.HTMLScraper.Tests.csproj", "{31F35EE2-DB0B-4301-B000-AE1D09C6BF55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsletterCurator.HTMLScraper.Tests", "NewsletterCurator.HTMLScraper.Tests\NewsletterCurator.HTMLScraper.Tests.csproj", "{31F35EE2-DB0B-4301-B000-AE1D09C6BF55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsletterCurator.EmailService", "NewsletterCurator.EmailService\NewsletterCurator.EmailService.csproj", "{92444D66-B90F-4BBE-B0B9-261EC8BA1267}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{31F35EE2-DB0B-4301-B000-AE1D09C6BF55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31F35EE2-DB0B-4301-B000-AE1D09C6BF55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31F35EE2-DB0B-4301-B000-AE1D09C6BF55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92444D66-B90F-4BBE-B0B9-261EC8BA1267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92444D66-B90F-4BBE-B0B9-261EC8BA1267}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92444D66-B90F-4BBE-B0B9-261EC8BA1267}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92444D66-B90F-4BBE-B0B9-261EC8BA1267}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

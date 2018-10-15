@@ -21,7 +21,7 @@ namespace NewsletterCurator.Web.Controllers
 
         public async Task<IActionResult> Add(string url)
         {
-            var urlMetaData = await htmlScraperService.ScrapeMetadata(url);
+            var urlMetaData = await htmlScraperService.ScrapeMetadataAsync(url);
 
             return View(new AddNewsitemViewModel
             {

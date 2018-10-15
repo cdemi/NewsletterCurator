@@ -12,21 +12,20 @@ namespace NewsletterCurator.Web.Controllers
     {
         private readonly NewsletterCuratorContext newsletterCuratorContext;
         private readonly HTMLScraperService htmlScraperService;
+        private readonly EmailService.EmailService emailService;
 
-        public EmailController(NewsletterCuratorContext newsletterCuratorContext, HTMLScraperService htmlScraperService)
+        public EmailController(NewsletterCuratorContext newsletterCuratorContext, HTMLScraperService htmlScraperService, EmailService.EmailService emailService)
         {
             this.newsletterCuratorContext = newsletterCuratorContext;
             this.htmlScraperService = htmlScraperService;
+            this.emailService = emailService;
         }
 
         public async Task<IActionResult> Send()
         {
-            var src = await htmlScraperService.Scrape(Url.AbsoluteAction("Preview", "Email"));
-            return new ContentResult()
-            {
-                Content = src,
-                ContentType = "text/html",
-            };
+            var src = await htmlScraperService.ScrapeAsync(Url.AbsoluteAction("Preview", "Email"));
+            await emailService.SendAsync(src);
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Preview()

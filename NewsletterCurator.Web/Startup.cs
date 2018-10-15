@@ -27,8 +27,13 @@ namespace NewsletterCurator.Web
             services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
+            services.AddTransient(s => new EmailService.EmailService(new System.Net.Mail.SmtpClient(Configuration.GetValue<string>("SMTP:Host"), Configuration.GetValue<int>("SMTP:Port"))
+            {
+                Credentials = new System.Net.NetworkCredential(Configuration.GetValue<string>("SMTP:Username"), Configuration.GetValue<string>("SMTP:Password")),
+                EnableSsl = Configuration.GetValue<bool>("SMTP:EnableSsl")
+            }));
             services.AddTransient<HTMLScraperService>();
-            services.AddHttpClient<HTMLScraperService>("scraper", (client) =>
+            services.AddHttpClient<HTMLScraperService>((client) =>
             {
                 client.DefaultRequestHeaders.Add("User-Agent", Configuration.GetValue<string>("HttpClient:UserAgent"));
                 client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
