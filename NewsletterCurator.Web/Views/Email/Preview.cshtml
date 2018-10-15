@@ -138,23 +138,14 @@
                             </tr>
                         </table>
 
-                        @foreach (var newsGroup in category.Newsitems.Select((p, index) => new { p, index }).GroupBy(a => a.index / 2))
+                        @foreach (var newsItem in category.Newsitems)
                         {
                             <table width="640" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:640px; width:100%;" bgcolor="#FFFFFF">
                                 <tr>
-                                    <td align="center" valign="top" style="padding:10px;">
-                                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
-                                            <tr>
-                                                @foreach (var newsItem in newsGroup)
-                                                {
-                                                    <td width="300" align="center" valign="top" style="padding:10px;">
-                                                        <img src="@newsItem.p.ImageURL" style="margin:0; padding:0; border:none; display:block;max-height:185px;max-width:100%;" border="0" alt="" />
-                                                        <h3>@newsItem.p.Title</h3>
-                                                        <p>@newsItem.p.Summary... <a href="@newsItem.p.URL" target="_blank">Read More...</a></p>
-                                                    </td>
-                                                }
-                                            </tr>
-                                        </table>
+                                    <td width="600" align="center" valign="top" style="padding:10px;">
+                                        <img src="@newsItem.ImageURL" style="margin:0; padding:0; border:none; display:block;max-height:185px;max-width:100%;" border="0" alt="" />
+                                        <h3>@newsItem.Title</h3>
+                                        <p>@newsItem.Summary... <a href="@newsItem.URL" target="_blank">Read More...</a></p>
                                     </td>
                                 </tr>
                             </table>
