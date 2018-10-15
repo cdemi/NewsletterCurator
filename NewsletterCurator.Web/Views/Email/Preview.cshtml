@@ -61,7 +61,7 @@
                 {
                     <tr>
                         <td align="center">
-                            <a href="@newsItem.URL" target="_blank"><h3>@newsItem.Title</h3></a>
+                            <a href="@newsItem.URL" target="_blank"><h3 style="display:inline-block;">@newsItem.Title</h3>&nbsp; <span style="font-size: 10px">(@(new Uri(newsItem.URL).Host.Replace("www.", "")))</span></a>
                         </td>
                     </tr>
                     @if (!String.IsNullOrEmpty(newsItem.ImageURL))
