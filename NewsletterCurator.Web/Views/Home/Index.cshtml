@@ -25,10 +25,11 @@
         </table>
     }
 
-    <a href="javascript: document.location='@Url.AbsoluteAction("Add", "Newsitem")?url=' + encodeURIComponent(document.location)">Add to Newsletter</a>
+    <a href="javascript: document.location='@Url.AbsoluteAction("Add", "Newsitem")?url=' + encodeURIComponent(document.location)">Add to Newsletter</a><br />
+    <a asp-action="Preview" asp-controller="Email">Email Preview</a>
 
     <form method="get" asp-action="Add" asp-controller="Newsitem">
         <input type="url" name="url" placeholder="URL" />
-        <input type="submit"  value="Submit"/>
+        <input type="submit" value="Submit" />
     </form>
 </div>
