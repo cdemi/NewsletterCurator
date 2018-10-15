@@ -1,6 +1,9 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NewsletterCurator.Data;
+using NewsletterCurator.Web.Models;
 
 namespace NewsletterCurator.Web.Controllers
 {
@@ -13,9 +16,11 @@ namespace NewsletterCurator.Web.Controllers
             this.newsletterCuratorContext = newsletterCuratorContext;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(newsletterCuratorContext.Categories.ToList());
+            var categoryNewsItemsViewModels = await newsletterCuratorContext.Newsitems.Where(n => n.IsAlreadySent == false).GroupBy(n => n.Category).Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToListAsync();
+
+            return View(categoryNewsItemsViewModels);
         }
     }
 }

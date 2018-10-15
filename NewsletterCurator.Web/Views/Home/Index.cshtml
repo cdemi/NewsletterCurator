@@ -1,13 +1,34 @@
-﻿@model List<Category>
+﻿@model List<CategoryNewsItemsViewModel>
 
 <div class="container">
-    <h1>Newsletter Curator</h1>
-    <ul>
-        @foreach (var category in Model)
-        {
-            <li>@category.ID - @category.Name</li>
-        }
-    </ul>
+    @foreach (var categoryNewsItemsViewModel in Model)
+    {
+        <h1>@categoryNewsItemsViewModel.Category.Name</h1>
+        <table class="table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th width="5%" scope="col"></th>
+                    <th width="15%" scope="col">Title</th>
+                    <th width="80%" scope="col">Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var newsItem in categoryNewsItemsViewModel.Newsitems)
+                {
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>@newsItem.Title</td>
+                        <td>@newsItem.Summary</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 
     <a href="javascript: document.location='@Url.AbsoluteAction("Add", "Newsitem")?url=' + encodeURIComponent(document.location)">Add to Newsletter</a>
+
+    <form method="get" asp-action="Add" asp-controller="Newsitem">
+        <input type="url" name="url" placeholder="URL" />
+        <input type="submit"  value="Submit"/>
+    </form>
 </div>
