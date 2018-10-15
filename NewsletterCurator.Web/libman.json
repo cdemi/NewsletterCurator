@@ -8,9 +8,7 @@
       "destination": "wwwroot/lib/twitter-bootstrap/",
       "files": [
         "css/bootstrap.css",
-        "css/bootstrap.css.map",
-        "js/bootstrap.js",
-        "js/bootstrap.js.map"
+        "js/bootstrap.js"
       ]
     },
     {
@@ -18,8 +16,7 @@
       "library": "popper.js@1.14.4",
       "destination": "wwwroot/lib/popper.js/",
       "files": [
-        "umd/popper.js",
-        "umd/popper.js.map"
+        "umd/popper.js"
       ]
     },
     {
