@@ -17,7 +17,7 @@ namespace NewsletterCurator.EmailService
         {
             await smtpClient.SendMailAsync(new MailMessage(new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"), new MailAddress("christopher.demicoli@outlook.com", "Christopher Demicoli"))
             {
-                Subject = $"{DateTime.Now.ToString("MMMM yyyy")} - cdemi's Curated Newsletter",
+                Subject = $"{DateTime.Now.ToString("dd MMMM yyyy")} - cdemi's Curated Newsletter",
                 Body = html,
                 IsBodyHtml = true
             });
