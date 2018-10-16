@@ -20,16 +20,23 @@
             color: #333;
         }
 
-        h1, h2, h3, h4 {
+        h2, h3, h4 {
             margin: 0;
             mso-line-height-rule: exactly;
+            line-height:1.4em !important;
         }
 
-        a {
-            margin: 0 !important;
-            text-decoration: underline !important;
-            color: #0032e6 !important;
+        h1 {
+            margin: 0;
+            mso-line-height-rule: exactly;
+            line-height: 1.2em !important;
         }
+
+            a {
+                margin: 0 !important;
+                text-decoration: underline !important;
+                color: #0032e6 !important;
+            }
 
             a, a span {
                 text-decoration: none !important;
@@ -43,7 +50,7 @@
             <tr>
                 <td align="center">
                     <h1>cdemi's Curated Newsletter</h1>
-                    <h2>@DateTime.Now.ToString("dd MMMM yyyy")</h2>
+                    <h4 style="padding:10px 0 0 0;">@DateTime.Now.ToString("dd MMMM yyyy")</h4>
                 </td>
             </tr>
         </table>
