@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
@@ -13,14 +14,21 @@ namespace NewsletterCurator.EmailService
             this.smtpClient = smtpClient;
         }
 
-        public async Task SendAsync(string html)
+        public async Task SendAsync(string html, List<string> bcc, string unsubscribeEmail)
         {
-            await smtpClient.SendMailAsync(new MailMessage(new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"), new MailAddress("christopher.demicoli@outlook.com", "Christopher Demicoli"))
+            var mail = new MailMessage()
             {
+                From = new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"),
                 Subject = $"{DateTime.Now.ToString("dd MMMM yyyy")} - cdemi's Curated Newsletter",
                 Body = html,
                 IsBodyHtml = true
-            });
+            };
+            foreach (var address in bcc)
+            {
+                mail.Bcc.Add(address);
+            }
+            mail.Headers.Add("List-Unsubscribe", $"<mailto:{unsubscribeEmail}?subject=unsubscribe>");
+            await smtpClient.SendMailAsync(mail);
         }
 
         public async Task SendValidationEmailAsync(string email, string validationURL)
