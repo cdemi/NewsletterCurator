@@ -1,2 +1,36 @@
-﻿body {
+﻿li.media .media-img {
+    min-width: 100%;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+}
+
+li.media:not(:last-of-type) {
+    margin-bottom: 14px;
+}
+
+li.media {
+    display: block;
+    padding: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+    li.media.broken {
+        display: none;
+    }
+
+li.media.small {
+    background: repeating-linear-gradient(45deg, gray, gray 4px, transparent 4px, transparent 20px);
+}
+
+li.media.selected {
+    border: 2px solid blue;
+}
+
+.img-preview {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
 }

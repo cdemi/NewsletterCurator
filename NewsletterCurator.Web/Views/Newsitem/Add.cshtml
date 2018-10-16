@@ -25,14 +25,33 @@
         </div>
         <div class="form-group">
             <label for="image">Image URL</label>
-            <input type="url" class="form-control" id="image" name="ImageURL" placeholder="Image URL" value="@Model.Images.FirstOrDefault()">
+            <div class="input-group mb-3">
+              <input class="form-control" type="url" class="form-control" id="image" name="ImageURL" placeholder="Image URL" value="@Model.Images.FirstOrDefault()">
+              <div class="input-group-append">
+                <span id="reset-url" class="input-group-text" id="basic-addon2">Reset</span>
+              </div>
+            </div>
         </div>
-        <div class="img-Group">
-            @foreach (var image in Model.Images)
-            {
-                <img src="@image" width="200" />
-            }
+        <div class="row">
+            <div class="col-md">
+                <ul class="list-unstyled">
+                    @foreach (var image in Model.Images)
+                    {
+                        <li class="media">
+                            <img src="@image" onerror="this.parentElement.classList.add('broken')" style="display: none;"/>
+                            <div class="media-img" style="background-image: url(@image)"></div>
+                            <div class="media-body">
+                                <span class="mt-0 mb-1">...@image.Substring(Math.Max(0, image.Length - 40))</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col d-sm-none d-md-block">
+                <div class="img-preview"></div>
+            </div>
         </div>
+        
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
