@@ -38,8 +38,8 @@ namespace NewsletterCurator.EmailService
             var mail = new MailMessage(new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"), new MailAddress(email))
             {
                 Subject = $"Validate your Email",
-                Body = $"Welcome to cdemi's Curated Newsletter! Please validate your email by visitng this URL: {validationURL}",
-                IsBodyHtml = false
+                Body = $"<h1>Welcome to cdemi's Curated Newsletter!</h1><br/><br/>Please validate your email by clicking this link: <a href='{validationURL}'>{validationURL}</a>",
+                IsBodyHtml = true
             };
             mail.Headers.Add("List-Unsubscribe", $"<mailto:{unsubscribeEmail}?subject=unsubscribe>");
             await smtpClient.SendMailAsync(mail);
