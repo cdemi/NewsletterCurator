@@ -12,7 +12,6 @@
     <title>@DateTime.Now.ToString("dd MMMM yyyy") - cdemi's Curated Newsletter</title>
 
     <style type="text/css">
-
         body {
             margin: 0 !important;
             padding: 0 !important;
@@ -21,77 +20,89 @@
             color: #333;
         }
 
-
-        h1, h2, h3, h4 {
+        h2, h3, h4 {
             margin: 0;
             mso-line-height-rule: exactly;
+            line-height:1.4em !important;
         }
 
-        h3 {
-            padding-top: 40px;
+        h1 {
+            margin: 0;
+            mso-line-height-rule: exactly;
+            line-height: 1.2em !important;
         }
 
-
-
-        a {
-            margin: 0 !important;
-            
-            text-decoration: underline !important;
-            color: #0065b9 !important;
-        }
+            a {
+                margin: 0 !important;
+                text-decoration: underline !important;
+                color: #0032e6 !important;
+            }
 
             a, a span {
                 text-decoration: none !important;
-                color: #0065b9 !important;
+                color: #0032e6 !important;
             }
     </style>
 </head>
 <body style="margin:0; padding:0; background-color:#F2F2F2;">
     <center>
-        <table width="90%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width: 90%; max-width: 580px; padding: 40px">
+        <table width="90%" border="0" cellpadding="0" cellspacing="0" style="width: 90%; max-width: 580px; padding: 40px">
             <tr>
                 <td align="center">
                     <h1>cdemi's Curated Newsletter</h1>
-                    <h2>@DateTime.Now.ToString("dd MMMM yyyy")</h2>
-                    <hr />
+                    <h4 style="padding:10px 0 0 0;">@DateTime.Now.ToString("dd MMMM yyyy")</h4>
                 </td>
             </tr>
-            @foreach (var category in Model)
-            {
+        </table>
+        @foreach (var category in Model)
+        {
+            <table width="90%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width: 90%; max-width: 580px;">
                 <tr>
-                    <td>
+                    <td align="center" bgcolor="#0032e6" style="color:#fff; padding:10px 20px;">
                         <h2>@category.Category.Name</h2>
                     </td>
                 </tr>
                 @foreach (var newsItem in category.Newsitems)
                 {
                     <tr>
-                        <td>
-                            <a href="@newsItem.URL" target="_blank"><h3 style="display:inline-block;">@newsItem.Title&nbsp; <span style="font-size: 12px">(@(new Uri(newsItem.URL).Host.Replace("www.", "")))</span></h3></a>
+                        <td style="padding:30px 20px 10px 20px;">
+                            <a href="@newsItem.URL" target="_blank">
+                                <h3>
+                                    <span>
+                                        @(newsItem.Title)
+                                    </span>
+                                    <span style="font-size: 12px">
+                                        (@(new Uri(newsItem.URL).Host.Replace("www.", "")))
+                                    </span>
+                                </h3>
+                            </a>
                         </td>
                     </tr>
                     @if (!String.IsNullOrEmpty(newsItem.ImageURL))
                     {
                         <tr>
-                            <td align="center">
+                            <td align="center" style="padding:0 20px 0 20px;">
                                 <a href="@newsItem.URL" target="_blank">
-                                    <img src="@newsItem.ImageURL" style="margin:0; padding:0; border:none; display:block;max-height:185px;max-width:400px;" border="0" alt="" />
+                                    <img src="@newsItem.ImageURL" style="margin:0; padding:0; border:1px solid #ccc; display:block; width: 100%" border="0" alt="" />
                                 </a>
                             </td>
                         </tr>
                     }
                     <tr>
-                        <td align="justify">
+                        <td align="justify" style="padding:10px 20px 30px 20px; border-bottom:1px solid #eee;">
                             @newsItem.Summary... <a href="@newsItem.URL" target="_blank">Read more</a>
                         </td>
                     </tr>
                 }
+            </table>
+            <table width="90%" border="0" cellpadding="0" cellspacing="0" style="width: 90%; max-width: 580px; padding: 20px">
                 <tr>
-                    <td height="50"><hr /></td>
+                    <td align="center">
+                    </td>
                 </tr>
-            }
+            </table>
+        }
 
-        </table>
     </center>
 </body>
 </html>
