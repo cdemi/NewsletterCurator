@@ -22,5 +22,15 @@ namespace NewsletterCurator.EmailService
                 IsBodyHtml = true
             });
         }
+
+        public async Task SendValidationEmailAsync(string email, string validationURL)
+        {
+            await smtpClient.SendMailAsync(new MailMessage(new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"), new MailAddress(email))
+            {
+                Subject = $"Validate your Email",
+                Body = $"Welcome to cdemi's Curated Newsletter! Please validate your email by visitng this URL: {validationURL}",
+                IsBodyHtml = false
+            });
+        }
     }
 }

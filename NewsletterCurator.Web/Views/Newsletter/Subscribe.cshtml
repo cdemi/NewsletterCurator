@@ -1,0 +1,26 @@
+﻿@model bool
+@{
+    ViewData["Title"] = "Subscribe";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Subscribe</h1>
+        <p class="lead">Write your email adress to subscribe to cdemi's Curated Newsletter for weekly updates.</p>
+        <hr class="my-4">
+        @if (Model)
+        {
+            <p>Please check your email to confirm your subscription</p>
+        }
+        else
+        {
+            <form asp-action="Subscribe" method="post">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="sjobs@apple.com" autofocus autocomplete="on" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        }
+    </div>
+</div>

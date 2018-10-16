@@ -67,24 +67,27 @@ namespace NewsletterCurator.Web
                 }
             }
 
-            if (env.IsDevelopment())
+
+            app.UseMvc(routes =>
             {
-                app.UseMvc(routes =>
+                routes.MapRoute(
+                    name: "newsletter",
+                    template: "Newsletter/{action=Index}/{id?}", defaults: new { controller = "Newsletter" });
+
+                if (env.IsDevelopment())
                 {
                     routes.MapRoute(
-                        name: "default",
-                        template: "{controller=Home}/{action=Index}/{id?}");
-                });
-            }
-            else
-            {
-                app.UseMvc(routes =>
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+                }
+                else
                 {
                     routes.MapRoute(
-                        name: "default",
-                        template: Configuration.GetValue<string>("AdminKey") + "/{controller=Home}/{action=Index}/{id?}");
-                });
-            }
+                       name: "default",
+                       template: Configuration.GetValue<string>("AdminKey") + "/{controller=Home}/{action=Index}/{id?}");
+                }
+            });
+            
         }
     }
 }

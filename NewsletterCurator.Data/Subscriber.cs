@@ -10,8 +10,6 @@ namespace NewsletterCurator.Data
         public Guid ID { get; set; }
         [Required]
         public string Email { get; set; }
-        [Required]
-        public string DisplayName { get; set; }
         public DateTimeOffset? DateSubscribed { get; set; }
         public DateTimeOffset? DateValidated { get; set; }
         public DateTimeOffset? DateUnsubscribed { get; set; }
