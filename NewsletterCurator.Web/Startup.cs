@@ -31,7 +31,7 @@ namespace NewsletterCurator.Web
             {
                 Credentials = new System.Net.NetworkCredential(Configuration.GetValue<string>("SMTP:Username"), Configuration.GetValue<string>("SMTP:Password")),
                 EnableSsl = Configuration.GetValue<bool>("SMTP:EnableSsl")
-            }));
+            }, Configuration.GetValue<string>("Mail:List-Unsubscribe-Mail")));
             services.AddTransient<HTMLScraperService>();
             services.AddHttpClient<HTMLScraperService>((client) =>
             {

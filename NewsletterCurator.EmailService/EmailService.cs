@@ -8,13 +8,15 @@ namespace NewsletterCurator.EmailService
     public class EmailService
     {
         private readonly SmtpClient smtpClient;
+        private readonly string unsubscribeEmail;
 
-        public EmailService(SmtpClient smtpClient)
+        public EmailService(SmtpClient smtpClient, string unsubscribeEmail)
         {
             this.smtpClient = smtpClient;
+            this.unsubscribeEmail = unsubscribeEmail;
         }
 
-        public async Task SendAsync(string html, List<string> bcc, string unsubscribeEmail)
+        public async Task SendAsync(string html, List<string> bcc)
         {
             var mail = new MailMessage()
             {
@@ -33,12 +35,14 @@ namespace NewsletterCurator.EmailService
 
         public async Task SendValidationEmailAsync(string email, string validationURL)
         {
-            await smtpClient.SendMailAsync(new MailMessage(new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"), new MailAddress(email))
+            var mail = new MailMessage(new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"), new MailAddress(email))
             {
                 Subject = $"Validate your Email",
                 Body = $"Welcome to cdemi's Curated Newsletter! Please validate your email by visitng this URL: {validationURL}",
                 IsBodyHtml = false
-            });
+            };
+            mail.Headers.Add("List-Unsubscribe", $"<mailto:{unsubscribeEmail}?subject=unsubscribe>");
+            await smtpClient.SendMailAsync(mail);
         }
     }
 }

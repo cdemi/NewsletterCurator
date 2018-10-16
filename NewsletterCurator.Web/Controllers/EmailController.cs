@@ -28,7 +28,7 @@ namespace NewsletterCurator.Web.Controllers
         {
             var src = await htmlScraperService.ScrapeAsync(Url.AbsoluteAction("Preview", "Email"));
 
-            await emailService.SendAsync(src, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync(), configuration.GetValue<string>("Mail:List-Unsubscribe-Mail"));
+            await emailService.SendAsync(src, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
 
             return RedirectToAction("Index", "Home");
         }
