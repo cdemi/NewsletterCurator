@@ -17,6 +17,27 @@ namespace NewsletterCurator.Web.Controllers
             this.emailService = emailService;
         }
 
+        public IActionResult Unsubscribe()
+        {
+            return View(false);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Unsubscribe(string email)
+        {
+            var subscriber = newsletterCuratorContext.Subscribers.SingleOrDefault(s => s.Email.Equals(email));
+
+            if (subscriber != null)
+            {
+                subscriber.DateUnsubscribed = DateTimeOffset.UtcNow;
+            }
+
+            await newsletterCuratorContext.SaveChangesAsync();
+
+
+            return View(true);
+        }
+
         public IActionResult Subscribe()
         {
             return View(false);
