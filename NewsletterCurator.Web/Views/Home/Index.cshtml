@@ -35,7 +35,7 @@
         </div>
     }
 
-    <a href="javascript: document.location='@Url.AbsoluteAction("Add", "Newsitem")?url=' + encodeURIComponent(document.location)">Add to Newsletter</a><br/>
+    <a href="javascript: window.open('@Url.AbsoluteAction("Add", "Newsitem")?url=' + encodeURIComponent(document.location), '_blank')">Add to Newsletter</a><br/>
     <a asp-action="Preview" asp-controller="Email">Email Preview</a>
 
     <form method="get" asp-action="Add" asp-controller="Newsitem">
