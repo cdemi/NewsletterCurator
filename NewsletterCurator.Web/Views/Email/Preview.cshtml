@@ -58,7 +58,7 @@
         {
             <table width="90%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width: 90%; max-width: 580px;">
                 <tr>
-                    <td align="center" bgcolor="#2C8693" style="color:#fff; padding:10px 20px;">
+                    <td align="center" bgcolor="@category.Category.Color" style="color:#fff; padding:10px 20px;">
                         <h2>@category.Category.Name</h2>
                     </td>
                 </tr>
@@ -68,10 +68,10 @@
                         <td style="padding:30px 20px 10px 20px;">
                             <a href="@newsItem.URL" target="_blank">
                                 <h3>
-                                    <span>
+                                    <span style="color: @category.Category.Color !important">
                                         @(newsItem.Title)
                                     </span>
-                                    <span style="font-size: 12px">
+                                    <span style="font-size: 12px; color: @category.Category.Color !important">
                                         (@(new Uri(newsItem.URL).Host.Replace("www.", "")))
                                     </span>
                                 </h3>
@@ -90,7 +90,7 @@
                     }
                     <tr>
                         <td align="justify" style="padding:10px 20px 30px 20px; border-bottom:1px solid #eee;">
-                            @newsItem.Summary... <a href="@newsItem.URL" target="_blank">Read more</a>
+                            @newsItem.Summary... <a href="@newsItem.URL" target="_blank" style="color: @category.Category.Color !important">Read more</a>
                         </td>
                     </tr>
                 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsletterCurator.Data;
 
 namespace NewsletterCurator.Data.Migrations
 {
     [DbContext(typeof(NewsletterCuratorContext))]
-    partial class NewsletterCuratorContextModelSnapshot : ModelSnapshot
+    [Migration("20181017142917_Added Category Colors")]
+    partial class AddedCategoryColors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,20 +39,20 @@ namespace NewsletterCurator.Data.Migrations
                     b.ToTable("Categories");
 
                     b.HasData(
-                        new { ID = new Guid("bbf3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#673ab7", Name = "DevOps", Priority = 3f },
-                        new { ID = new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#3f51b5", Name = "Front End", Priority = 2f },
-                        new { ID = new Guid("57e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2196f3", Name = "AI", Priority = 7f },
-                        new { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#03a9f4", Name = "Space", Priority = 10f },
-                        new { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#00bcd4", Name = "Security", Priority = 5f },
-                        new { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#009688", Name = "Hardware", Priority = 5.5f },
-                        new { ID = new Guid("a1e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#4caf50", Name = "Quality Assurance", Priority = 5.8f },
-                        new { ID = new Guid("84754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#8bc34a", Name = "eSports", Priority = 8.5f },
-                        new { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#ffc107", Name = "iGaming", Priority = 9f },
-                        new { ID = new Guid("497ff497-33d2-434c-a1db-5a722d94078f"), Color = "#ff9800", Name = "General Tech", Priority = 8f },
-                        new { ID = new Guid("527ff497-33d2-434c-a1db-5a722d94078f"), Color = "#ff5722", Name = "Infrastructure", Priority = 4f },
-                        new { ID = new Guid("317ff497-33d2-434c-a1db-5a722d94078f"), Color = "#607d8b", Name = "Software Development", Priority = 0f },
-                        new { ID = new Guid("847ff497-33a2-424c-a1db-5a722d94078f"), Color = "#795548", Name = "Design", Priority = 6f },
-                        new { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Color = "#2C8693", Name = ".NET", Priority = 1f }
+                        new { ID = new Guid("bbf3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#2C8693", Name = "DevOps", Priority = 3f },
+                        new { ID = new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#2C8693", Name = "Front End", Priority = 2f },
+                        new { ID = new Guid("57e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2C8693", Name = "AI", Priority = 7f },
+                        new { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2C8693", Name = "Space", Priority = 10f },
+                        new { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2C8693", Name = "Security", Priority = 5f },
+                        new { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2C8693", Name = "Hardware", Priority = 5.5f },
+                        new { ID = new Guid("a1e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2C8693", Name = "Quality Assurance", Priority = 5.8f },
+                        new { ID = new Guid("84754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#2C8693", Name = "eSports", Priority = 8.5f },
+                        new { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#2C8693", Name = "iGaming", Priority = 9f },
+                        new { ID = new Guid("497ff497-33d2-434c-a1db-5a722d94078f"), Color = "#2C8693", Name = "General Tech", Priority = 8f },
+                        new { ID = new Guid("527ff497-33d2-434c-a1db-5a722d94078f"), Color = "#2C8693", Name = "Infrastructure", Priority = 4f },
+                        new { ID = new Guid("317ff497-33d2-434c-a1db-5a722d94078f"), Color = "#2C8693", Name = "Software Development", Priority = 0f },
+                        new { ID = new Guid("847ff497-33a2-424c-a1db-5a722d94078f"), Color = "#2C8693", Name = "Design", Priority = 6f },
+                        new { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Color = "#2C869", Name = ".NET", Priority = 1f }
                     );
                 });
 
