@@ -29,5 +29,19 @@
                     img.src = $(e).attr('src');
                 });
         });
+
+        $(document)
+            .on('click',
+            'button.select-all',
+            function () {
+                $('.category input[type="checkbox"]').prop('checked', true);
+                $(this).removeClass('select-all').addClass('deselect-all');
+            })
+            .on('click',
+            'button.deselect-all',
+            function () {
+                $('.category input[type="checkbox"]').prop('checked', false);
+                $(this).removeClass('deselect-all').addClass('select-all');
+            });
     });
 }());

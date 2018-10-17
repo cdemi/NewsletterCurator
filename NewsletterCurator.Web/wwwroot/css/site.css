@@ -34,3 +34,11 @@ li.media.selected {
     background-size: cover;
     background-position: center;
 }
+
+button.select-all::before {
+    content: "Select All";
+}
+
+button.deselect-all::before {
+    content: "Deselect All";
+}

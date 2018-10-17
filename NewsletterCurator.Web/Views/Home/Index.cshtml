@@ -1,35 +1,45 @@
 ﻿@model List<CategoryNewsItemsViewModel>
 
 <div class="container">
+    <div class="row align-items-center">
+        <div class="col">
+            <h1>News Categories</h1>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary select-all" autocomplete="off"></button>
+        </div>
+    </div>
     @foreach (var categoryNewsItemsViewModel in Model)
     {
-        <h1>@categoryNewsItemsViewModel.Category.Name</h1>
-        <table class="table-striped table-bordered table-hover">
-            <thead>
+        <div class="mb-4 category">
+            <h2>@categoryNewsItemsViewModel.Category.Name</h2>
+            <table class="table-striped table-bordered table-hover">
+                <thead>
                 <tr>
                     <th width="5%" scope="col"></th>
                     <th width="15%" scope="col">Title</th>
                     <th width="80%" scope="col">Summary</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach (var newsItem in categoryNewsItemsViewModel.Newsitems)
                 {
                     <tr>
-                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox"/></td>
                         <td>@newsItem.Title</td>
                         <td>@newsItem.Summary</td>
                     </tr>
                 }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     }
 
-    <a href="javascript: document.location='@Url.AbsoluteAction("Add", "Newsitem")?url=' + encodeURIComponent(document.location)">Add to Newsletter</a><br />
+    <a href="javascript: document.location='@Url.AbsoluteAction("Add", "Newsitem")?url=' + encodeURIComponent(document.location)">Add to Newsletter</a><br/>
     <a asp-action="Preview" asp-controller="Email">Email Preview</a>
 
     <form method="get" asp-action="Add" asp-controller="Newsitem">
-        <input type="url" name="url" placeholder="URL" />
-        <input type="submit" value="Submit" />
+        <input type="url" name="url" placeholder="URL"/>
+        <input type="submit" value="Submit"/>
     </form>
 </div>
