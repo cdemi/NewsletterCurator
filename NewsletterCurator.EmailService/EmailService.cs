@@ -21,7 +21,7 @@ namespace NewsletterCurator.EmailService
             var mail = new MailMessage()
             {
                 From = new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"),
-                Subject = $"{DateTime.Now.ToString("dd MMMM yyyy")} - cdemi's Curated Newsletter",
+                Subject = $"📰 {DateTime.Now.ToString("dd MMMM yyyy")} - cdemi's Curated Newsletter",
                 Body = html,
                 IsBodyHtml = true
             };
@@ -37,7 +37,7 @@ namespace NewsletterCurator.EmailService
         {
             var mail = new MailMessage(new MailAddress("curated@newsletters.cdemi.io", "cdemi's Curated Newsletter"), new MailAddress(email))
             {
-                Subject = $"Validate your Email",
+                Subject = $"Validate your Email 📧",
                 Body = $"<h1>Welcome to cdemi's Curated Newsletter!</h1><br/><br/>Please validate your email by clicking this link: <a href='{validationURL}'>{validationURL}</a>",
                 IsBodyHtml = true
             };
