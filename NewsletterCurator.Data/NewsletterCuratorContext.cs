@@ -71,6 +71,7 @@ namespace NewsletterCurator.Data
                 options.HasData(
                     new Category { ID = new Guid("01f3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#004D40", Name = "Databases", Priority = 3.5f },
                     new Category { ID = new Guid("bbf3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#673ab7", Name = "DevOps", Priority = 3 },
+                    new Category { ID = new Guid("219acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#F50057", Name = "User Experience", Priority = 2.5f },
                     new Category { ID = new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#3f51b5", Name = "Front End", Priority = 2 },
                     new Category { ID = new Guid("57e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2196f3", Name = "AI", Priority = 7 },
                     new Category { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#03a9f4", Name = "Space", Priority = 10 },
