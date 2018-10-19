@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NewsletterCurator.Data;
 using NewsletterCurator.HTMLScraper;
 using NewsletterCurator.Web.Models;
@@ -51,6 +52,22 @@ namespace NewsletterCurator.Web.Controllers
 
             return RedirectToAction("Index", "Home");
 
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var newsItem = await newsletterCuratorContext.Newsitems.SingleOrDefaultAsync(n => n.ID.Equals(id));
+
+            if (newsItem != null)
+            {
+                newsletterCuratorContext.Newsitems.Remove(newsItem);
+                await newsletterCuratorContext.SaveChangesAsync();
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

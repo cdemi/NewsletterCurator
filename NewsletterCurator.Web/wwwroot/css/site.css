@@ -20,13 +20,13 @@ li.media {
         display: none;
     }
 
-li.media.small {
-    background: repeating-linear-gradient(45deg, gray, gray 4px, transparent 4px, transparent 20px);
-}
+    li.media.small {
+        background: repeating-linear-gradient(45deg, gray, gray 4px, transparent 4px, transparent 20px);
+    }
 
-li.media.selected {
-    border: 2px solid blue;
-}
+    li.media.selected {
+        border: 2px solid blue;
+    }
 
 .img-preview {
     width: 100%;
@@ -41,4 +41,8 @@ button.select-all::before {
 
 button.deselect-all::before {
     content: "Deselect All";
+}
+
+.deletePost {
+    cursor: pointer;
 }

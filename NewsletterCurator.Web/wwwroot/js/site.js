@@ -13,8 +13,22 @@
 
         $(document).on('click',
             '#reset-url',
-            function() {
+            function () {
                 $('#image').val('');
+            });
+
+        $(document).on('click',
+            '.deletePost',
+            function () {
+                var that = $(this);
+                $.ajax({
+                    url: '/Newsitem/Delete/' + $(this).data("newsitemid"),
+                    success: function () {
+                        that.parents("tr").remove();
+                    }
+                });
+
+                
             });
 
         $(window).on("load", function () {
@@ -32,16 +46,16 @@
 
         $(document)
             .on('click',
-            'button.select-all',
-            function () {
-                $('.category input[type="checkbox"]').prop('checked', true);
-                $(this).removeClass('select-all').addClass('deselect-all');
-            })
+                'button.select-all',
+                function () {
+                    $('.category input[type="checkbox"]').prop('checked', true);
+                    $(this).removeClass('select-all').addClass('deselect-all');
+                })
             .on('click',
-            'button.deselect-all',
-            function () {
-                $('.category input[type="checkbox"]').prop('checked', false);
-                $(this).removeClass('deselect-all').addClass('select-all');
-            });
+                'button.deselect-all',
+                function () {
+                    $('.category input[type="checkbox"]').prop('checked', false);
+                    $(this).removeClass('deselect-all').addClass('select-all');
+                });
     });
 }());

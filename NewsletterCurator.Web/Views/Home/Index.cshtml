@@ -19,6 +19,7 @@
                     <th width="5%" scope="col"></th>
                     <th width="15%" scope="col">Title</th>
                     <th width="80%" scope="col">Summary</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,7 @@
                         <td><input type="checkbox"/></td>
                         <td>@newsItem.Title</td>
                         <td>@newsItem.Summary</td>
+                        <td><span class="deletePost" data-newsitemid="@newsItem.ID">🗑️</span></td>
                     </tr>
                 }
                 </tbody>
