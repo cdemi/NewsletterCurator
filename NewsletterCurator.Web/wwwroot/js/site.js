@@ -22,13 +22,13 @@
             function () {
                 var that = $(this);
                 $.ajax({
-                    url: '/Newsitem/Delete/' + $(this).data("newsitemid"),
+                    url: $(this).data("deleteurl") + '/' + $(this).data("newsitemid"),
                     success: function () {
                         that.parents("tr").remove();
                     }
                 });
 
-                
+
             });
 
         $(window).on("load", function () {
