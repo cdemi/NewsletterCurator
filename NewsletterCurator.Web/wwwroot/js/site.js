@@ -5,7 +5,7 @@
             function () {
                 var url = $(this).find('img').attr('src');
                 $('#image').val(url);
-                $('.img-preview').css('background-image', 'url(\'' + url + '\')');
+                $('.img-preview').attr('src', url);
                 $('.media').removeClass('selected');
                 $(this).addClass('selected');
 
