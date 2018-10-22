@@ -30,6 +30,8 @@ namespace NewsletterCurator.Web.Controllers
 
             await emailService.SendAsync(src, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
 
+            newsletterCuratorContext.Newsitems.RemoveRange(newsletterCuratorContext.Newsitems);
+
             return RedirectToAction("Index", "Home");
         }
 
