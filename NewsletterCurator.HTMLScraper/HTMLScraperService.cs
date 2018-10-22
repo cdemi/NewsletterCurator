@@ -75,7 +75,7 @@ namespace NewsletterCurator.HTMLScraper
                     }
 
                     return imageSrc;
-                }));
+                }).Distinct());
             }
 
             urlMetadata.Title = HtmlEntity.DeEntitize(urlMetadata.Title);
