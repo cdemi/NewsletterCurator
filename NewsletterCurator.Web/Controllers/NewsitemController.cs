@@ -29,7 +29,7 @@ namespace NewsletterCurator.Web.Controllers
                 URL = urlMetaData.CanonicalURL,
                 Categories = newsletterCuratorContext.Categories.OrderBy(c => c.Name).Select(s => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Value = s.ID.ToString(), Text = s.Name }).ToList(),
                 Title = urlMetaData.Title,
-                Images = urlMetaData.Images,
+                Images = urlMetaData.Images.Distinct(),
                 Summary = urlMetaData.Summary,
             });
         }
