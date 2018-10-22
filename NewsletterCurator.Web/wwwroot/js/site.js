@@ -40,7 +40,7 @@
 
                     var img = new Image();
                     img.onload = function () {
-                        if (this.width < 400 || this.height < 400) {
+                        if (this.width < 400 || this.height < 200) {
                             $(e).parents('.media').first().addClass('small');
                         }
                     };
