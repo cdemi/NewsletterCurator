@@ -34,6 +34,10 @@
         $(window).on("load", function () {
             $('.media img')
                 .each(function (i, e) {
+                    if ($(e).attr('src').endsWith('.svg')) {
+                        return;
+                    }
+
                     var img = new Image();
                     img.onload = function () {
                         if (this.width < 400 || this.height < 400) {
