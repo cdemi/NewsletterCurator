@@ -93,7 +93,7 @@ namespace NewsletterCurator.Web
 
             app.Use(async (context, next) =>
             {
-                context.Response.Headers.Add("X-Frame-Options", Configuration.GetValue<string>("X-Frame-Options"));
+                context.Response.Headers.Add("Content-Security-Policy", Configuration.GetValue<string>("Content-Security-Policy"));
                 await next();
             });
 
