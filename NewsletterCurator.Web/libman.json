@@ -13,7 +13,7 @@
     },
     {
       "provider": "cdnjs",
-      "library": "popper.js@1.14.4",
+      "library": "popper.js@1.14.5",
       "destination": "wwwroot/lib/popper.js/",
       "files": [
         "umd/popper.js"
