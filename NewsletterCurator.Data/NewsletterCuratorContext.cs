@@ -87,6 +87,14 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Color = "#2C8693", Name = ".NET", Priority = 1 }
                         );
             });
+
+            modelBuilder.Entity<Subscriber>(options =>
+            {
+                options.HasData(
+                    new Subscriber { ID = new Guid("FF6F302B-8266-4D45-978A-9E8456B593C4"), Email = "test@test.test", DateSubscribed = new DateTimeOffset(new DateTime(2018, 11, 9)), DateValidated = new DateTimeOffset(new DateTime(2018, 11, 10)), DateUnsubscribed = new DateTimeOffset(new DateTime(2018, 11, 11)) },
+                    new Subscriber { ID = new Guid("F16F302B-8266-4D45-978A-9E8456B593C4"), Email = "test2@test.test", DateSubscribed = new DateTimeOffset(new DateTime(2017, 11, 9)), DateValidated = new DateTimeOffset(new DateTime(2017, 11, 10)) }
+                    );
+            });
         }
 
         public IQueryable<IGrouping<Category, Newsitem>> NewsitemsByCategory()

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsletterCurator.Data;
 
 namespace NewsletterCurator.Data.Migrations
 {
     [DbContext(typeof(NewsletterCuratorContext))]
-    partial class NewsletterCuratorContextModelSnapshot : ModelSnapshot
+    [Migration("20181111131914_Added new Subscribers")]
+    partial class AddednewSubscribers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,7 +116,7 @@ namespace NewsletterCurator.Data.Migrations
 
                     b.HasData(
                         new { ID = new Guid("ff6f302b-8266-4d45-978a-9e8456b593c4"), DateSubscribed = new DateTimeOffset(new DateTime(2018, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), DateUnsubscribed = new DateTimeOffset(new DateTime(2018, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), DateValidated = new DateTimeOffset(new DateTime(2018, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), Email = "test@test.test" },
-                        new { ID = new Guid("f16f302b-8266-4d45-978a-9e8456b593c4"), DateSubscribed = new DateTimeOffset(new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), DateValidated = new DateTimeOffset(new DateTime(2017, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), Email = "test2@test.test" }
+                        new { ID = new Guid("f16f302b-8266-4d45-978a-9e8456b593c4"), DateSubscribed = new DateTimeOffset(new DateTime(2018, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), DateValidated = new DateTimeOffset(new DateTime(2018, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), Email = "test2@test.test" }
                     );
                 });
 

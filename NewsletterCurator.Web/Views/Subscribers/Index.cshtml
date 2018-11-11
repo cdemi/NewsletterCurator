@@ -1,0 +1,30 @@
+﻿@model List<Subscriber>
+
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col">
+            <h1>Subscribers</h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Email</th>
+                <th scope="col">Date Subscribed</th>
+                <th scope="col">Date Validated</th>
+                <th scope="col">Date Unsubscribed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subscriber in Model)
+            {
+                <tr class="@(subscriber.DateValidated.HasValue?"table-success":"") @(subscriber.DateUnsubscribed.HasValue?"table-danger":"")">
+                    <th scope="row">@subscriber.Email</th>
+                    <td>@subscriber.DateSubscribed?.ToString("dd/MM/yyyy")</td>
+                    <td>@subscriber.DateValidated?.ToString("dd/MM/yyyy")</td>
+                    <td>@subscriber.DateUnsubscribed?.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
