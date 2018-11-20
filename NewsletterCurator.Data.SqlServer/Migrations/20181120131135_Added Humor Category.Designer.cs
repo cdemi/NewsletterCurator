@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsletterCurator.Data;
 
 namespace NewsletterCurator.Data.Migrations
 {
     [DbContext(typeof(NewsletterCuratorContext))]
-    partial class NewsletterCuratorContextModelSnapshot : ModelSnapshot
+    [Migration("20181120131135_Added Humor Category")]
+    partial class AddedHumorCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
