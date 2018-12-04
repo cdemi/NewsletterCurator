@@ -5,6 +5,10 @@ trigger:
 pool:
   vmImage: 'vs2017-win2016'
 steps:
+- task: DotNetCoreInstaller@0
+  inputs:
+    packageType: 'sdk'
+    version: '2.2.0' 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: dotnet build
 - script: dotnet test NewsletterCurator.HTMLScraper.Tests --no-build --no-restore --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
