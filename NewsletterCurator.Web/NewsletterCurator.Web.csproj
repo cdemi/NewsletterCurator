@@ -6,7 +6,8 @@
     <ApplicationInsightsAnnotationResourceId>/subscriptions/69aa7db1-7827-422c-b44e-d830d07d61d7/resourcegroups/NewsletterCurator/providers/microsoft.insights/components/NewsletterCurator</ApplicationInsightsAnnotationResourceId>
     <UserSecretsId>dd191c59-771f-43f9-8837-863c62b1d128</UserSecretsId>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
