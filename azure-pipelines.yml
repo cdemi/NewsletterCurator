@@ -10,6 +10,10 @@ steps:
     packageType: 'sdk'
     version: '2.2.100' 
 - task: JavaToolInstaller@0
+  inputs:
+    jdkSourceOption: azureStorage
+    jdkArchitectureOption: x64
+    jdkDestinationDirectory: .java
 - script: dotnet tool install -g dotnet-sonarscanner
   displayName: dotnet install sonarscanner
 - script: dotnet sonarscanner begin /k:"cdemi_NewsletterCurator" /d:sonar.organization="cdemi-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$(sonarLogin)"
