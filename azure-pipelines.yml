@@ -15,10 +15,10 @@ steps:
   displayName: dotnet sonarscanner begin 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: dotnet build
-- script: dotnet sonarscanner end /d:sonar.login="$(sonarLogin)"
-  displayName: dotnet sonarscanner end
 - script: dotnet test NewsletterCurator.HTMLScraper.Tests --no-build --no-restore --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
   displayName: dotnet test
+- script: dotnet sonarscanner end /d:sonar.login="$(sonarLogin)"
+  displayName: dotnet sonarscanner end
 - task: PublishTestResults@2
   condition: succeededOrFailed()
   inputs:
