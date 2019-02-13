@@ -70,6 +70,7 @@ namespace NewsletterCurator.Data
             {
                 options.HasData(
                     new Category { ID = new Guid("01f3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#004D40", Name = "Databases", Priority = 3.5f },
+                    new Category { ID = new Guid("01f3205e-578b-4568-3d87-5c15fceb6a4f"), Color = "#e91e63", Name = "Big Data", Priority = 3.6f },
                     new Category { ID = new Guid("bbf3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#673ab7", Name = "DevOps", Priority = 3 },
                     new Category { ID = new Guid("219acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#F50057", Name = "User Experience", Priority = 2.5f },
                     new Category { ID = new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#3f51b5", Name = "Front End", Priority = 2 },
@@ -81,6 +82,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("84754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#8bc34a", Name = "eSports", Priority = 8.5f },
                     new Category { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#ffc107", Name = "iGaming", Priority = 9 },
                     new Category { ID = new Guid("497FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff9800", Name = "General Tech", Priority = 8 },
+                    new Category { ID = new Guid("527FF497-33D2-724C-A1DB-5A722D94078F"), Color = "#0336ff", Name = "Cloud", Priority = 3.4f },
                     new Category { ID = new Guid("527FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff5722", Name = "Infrastructure", Priority = 4 },
                     new Category { ID = new Guid("317FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#607d8b", Name = "Software Development", Priority = 0 },
                     new Category { ID = new Guid("847FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#795548", Name = "Design", Priority = 6 },
