@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using Microsoft.ApplicationInsights.AspNetCore;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.SnapshotCollector;
@@ -51,7 +52,13 @@ namespace NewsletterCurator.Web
                 EnableSsl = Configuration.GetValue<bool>("SMTP:EnableSsl")
             }, Configuration.GetValue<string>("Mail:List-Unsubscribe-Mail")));
             services.AddTransient<HTMLScraperService>();
-            services.AddHttpClient<HTMLScraperService>((client) =>
+            services.AddHttpClient("github", c =>
+            {
+                c.BaseAddress = new Uri("https://api.github.com/");
+                c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+                c.DefaultRequestHeaders.Add("User-Agent", "NewsletterCurator-Archive");
+                c.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{Configuration.GetValue<string>("GitHub:Username")}:{Configuration.GetValue<string>("GitHub:PersonalAccessToken")}")));
+            }); services.AddHttpClient<HTMLScraperService>((client) =>
             {
                 client.DefaultRequestHeaders.Add("User-Agent", Configuration.GetValue<string>("HttpClient:UserAgent"));
                 client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
