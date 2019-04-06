@@ -49,7 +49,7 @@ namespace NewsletterCurator.Web.Controllers
         {
             var client = clientFactory.CreateClient("github");
 
-            var request = new HttpRequestMessage(HttpMethod.Put, $"/repos/{configuration.GetValue<string>("GitHub:Username")}/{configuration.GetValue<string>("GitHub:ArchiveRepo")}/contents/{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html")
+            var request = new HttpRequestMessage(HttpMethod.Put, $"/repos/{configuration.GetValue<string>("GitHub:Username")}/{configuration.GetValue<string>("GitHub:ArchiveRepo")}/contents/archives/{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html")
             {
                 Content = new StringContent(JsonConvert.SerializeObject(new
                 {
