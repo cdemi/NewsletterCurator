@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,21 +36,28 @@ namespace NewsletterCurator.Web.Controllers
         {
             var src = await htmlScraperService.ScrapeAsync(Url.AbsoluteAction("Preview", "Email"));
 
-            var result = await addToGitHubArchive(src);
+            var newsletterFilename = $"{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html";
+
+            var result = await addToGitHubArchive(src, newsletterFilename);
 
             await emailService.SendAsync(src, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
 
             newsletterCuratorContext.Newsitems.RemoveRange(newsletterCuratorContext.Newsitems);
             await newsletterCuratorContext.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.Name).ToListAsync()) });
         }
 
-        private async Task<HttpResponseMessage> addToGitHubArchive(string source)
+        public IActionResult Share(string newsletterUrl, string[] hashTags)
+        {
+            return View(new { url = HttpUtility.UrlEncode(newsletterUrl), hashTags });
+        }
+
+        private async Task<HttpResponseMessage> addToGitHubArchive(string source, string newsletterFilename)
         {
             var client = clientFactory.CreateClient("github");
 
-            var request = new HttpRequestMessage(HttpMethod.Put, $"/repos/{configuration.GetValue<string>("GitHub:Username")}/{configuration.GetValue<string>("GitHub:ArchiveRepo")}/contents/archives/{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html")
+            var request = new HttpRequestMessage(HttpMethod.Put, $"/repos/{configuration.GetValue<string>("GitHub:Username")}/{configuration.GetValue<string>("GitHub:ArchiveRepo")}/contents/archives/{newsletterFilename}")
             {
                 Content = new StringContent(JsonConvert.SerializeObject(new
                 {
