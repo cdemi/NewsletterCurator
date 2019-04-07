@@ -45,7 +45,7 @@ namespace NewsletterCurator.Web.Controllers
             newsletterCuratorContext.Newsitems.RemoveRange(newsletterCuratorContext.Newsitems);
             await newsletterCuratorContext.SaveChangesAsync();
 
-            return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.Name).ToListAsync()) });
+            return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.Name.Replace(' ','')).ToListAsync()) });
         }
 
         public IActionResult Share(string newsletterUrl, string[] hashTags)
