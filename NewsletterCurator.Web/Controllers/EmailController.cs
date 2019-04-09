@@ -50,7 +50,7 @@ namespace NewsletterCurator.Web.Controllers
 
         public IActionResult Share(string newsletterUrl, string[] hashTags)
         {
-            return View(new { url = HttpUtility.UrlEncode(newsletterUrl), hashTags });
+            return View(new ShareURLModel { URL = HttpUtility.UrlEncode(newsletterUrl), HashTags = hashTags });
         }
 
         private async Task<HttpResponseMessage> addToGitHubArchive(string source, string newsletterFilename)

@@ -1,4 +1,4 @@
-﻿
+﻿@model ShareURLModel
 @{
     ViewData["Title"] = "Share";
 }
@@ -7,8 +7,9 @@
 
 <ul>
     <li>
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=@Model.url">https://www.linkedin.com/shareArticle?mini=true&url=@Model.url</a>
-        <a href="https://twitter.com/intent/tweet?url=@Model.url&hashtags=@(String.Join(',',Model.hashTags))">https://twitter.com/intent/tweet?url=@Model.url&hashtags=@(String.Join(',', Model.hashTags))</a>
-        <a href="http://www.facebook.com/sharer.php?u=@Model.url">http://www.facebook.com/sharer.php?u=@Model.url</a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=@Model.URL">https://www.linkedin.com/shareArticle?mini=true&url=@Model.URL</a></li>
+    <li>
+        <a href="https://twitter.com/intent/tweet?url=@Model.URL&hashtags=@(String.Join(',',Model.HashTags))">https://twitter.com/intent/tweet?url=@Model.URL&hashtags=@(String.Join(',', Model.HashTags))</a></li>
+        <li><a href="http://www.facebook.com/sharer.php?u=@Model.URL">http://www.facebook.com/sharer.php?u=@Model.URL</a>
     </li>
 </ul>
