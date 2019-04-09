@@ -45,12 +45,12 @@ namespace NewsletterCurator.Web.Controllers
             newsletterCuratorContext.Newsitems.RemoveRange(newsletterCuratorContext.Newsitems);
             await newsletterCuratorContext.SaveChangesAsync();
 
-            return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.Name.Replace(" ","")).ToListAsync()) });
+            return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.Name).ToListAsync()) });
         }
 
         public IActionResult Share(string newsletterUrl, string[] hashTags)
         {
-            return View(new { url = HttpUtility.UrlEncode(newsletterUrl), hashTags });
+            return View(new ShareURLModel { URL = HttpUtility.UrlEncode(newsletterUrl), HashTags = hashTags });
         }
 
         private async Task<HttpResponseMessage> addToGitHubArchive(string source, string newsletterFilename)

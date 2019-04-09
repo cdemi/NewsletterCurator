@@ -10,11 +10,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")</title>
+    <meta property="og:title" content="cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")" />
     <meta property="og:site_name" content="newsletters.cdemi.io" />
     <meta property="og:description" content="This week's most important articles about @(String.Join(", ",Model.Take(Model.Count-1).Select(c=>c.Category.Name).ToArray())) and @Model.Last().Category.Name" />
     <meta property="og:image" content="https://newsletters.cdemi.io/images/cover.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta name="author" content="Christopher Demicoli">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -145,5 +148,27 @@
         </table>
 
     </center>
+    <script>
+      // This is the "Offline copy of pages" service worker
+
+      // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+
+      // Check compatibility for the browser we're running this in
+      if ("serviceWorker" in navigator) {
+        if (navigator.serviceWorker.controller) {
+          console.log("[PWA Builder] active service worker found, no need to register");
+        } else {
+          // Register the service worker
+          navigator.serviceWorker
+            .register("pwabuilder-sw.js", {
+              scope: "./"
+            })
+            .then(function (reg) {
+              console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+      }
+
+    </script>
 </body>
 </html>

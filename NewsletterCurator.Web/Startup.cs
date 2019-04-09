@@ -23,8 +23,10 @@ namespace NewsletterCurator.Web
         {
             private readonly IServiceProvider _serviceProvider;
 
-            public SnapshotCollectorTelemetryProcessorFactory(IServiceProvider serviceProvider) =>
+            public SnapshotCollectorTelemetryProcessorFactory(IServiceProvider serviceProvider)
+            {
                 _serviceProvider = serviceProvider;
+            }
 
             public ITelemetryProcessor Create(ITelemetryProcessor next)
             {
@@ -80,14 +82,14 @@ namespace NewsletterCurator.Web
         {
             if (env.IsDevelopment())
             {
-            app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
-            app.UseHsts();
+                app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -123,7 +125,7 @@ namespace NewsletterCurator.Web
                        template: Configuration.GetValue<string>("AdminKey") + "/{controller=Home}/{action=Index}/{id?}");
                 }
             });
-            
+
         }
     }
 }
