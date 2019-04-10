@@ -38,6 +38,8 @@ namespace NewsletterCurator.Web.Controllers
 
             var newsletterFilename = $"{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html";
 
+            var hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.Name).ToListAsync());
+
             var result = await addToGitHubArchive(src, newsletterFilename);
 
             await emailService.SendAsync(src, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
@@ -45,7 +47,7 @@ namespace NewsletterCurator.Web.Controllers
             newsletterCuratorContext.Newsitems.RemoveRange(newsletterCuratorContext.Newsitems);
             await newsletterCuratorContext.SaveChangesAsync();
 
-            return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.Name).ToListAsync()) });
+            return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags });
         }
 
         public IActionResult Share(string newsletterUrl, string[] hashTags)
