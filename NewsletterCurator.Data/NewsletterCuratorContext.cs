@@ -31,7 +31,7 @@ namespace NewsletterCurator.Data
                     new Newsitem
                     {
                         ID = new Guid("0A8A1CA1-29E9-473E-1B07-08D632B276CB"),
-                        DateTime = new DateTimeOffset(new DateTime(2018, 10, 15)),
+                        DateTime = new DateTimeOffset(new DateTime(2018, 10, 16)),
                         Title = "You'll never guess what you can do once you steal a laptop, reflash the BIOS, and reboot it",
                         Summary = "Hardware hackers bring cold boot attacks out of the deep freeze",
                         ImageURL = "https://regmedia.co.uk/2018/01/23/mr_freeze.jpg",
@@ -42,7 +42,7 @@ namespace NewsletterCurator.Data
                     new Newsitem
                     {
                         ID = new Guid("D501A11E-26A3-423B-1B06-08D632B276CB"),
-                        DateTime = new DateTimeOffset(new DateTime(2018, 10, 15)),
+                        DateTime = new DateTimeOffset(new DateTime(2018, 10, 17)),
                         Title = "4 New Security Features For Apple A12 And S4 That Weren't Mentioned Onstage",
                         Summary = "Apple's A12 and S4 processor upgrade boot-level security. Take a look here for all of the changes and more.",
                         ImageURL = "https://cdn.wccftech.com/wp-content/uploads/2018/09/apple-a12-bionic-header-wccftech.com_-740x418.jpg",
@@ -53,7 +53,7 @@ namespace NewsletterCurator.Data
                     new Newsitem
                     {
                         ID = new Guid("6DF0545E-0B4B-4162-F391-08D632CED619"),
-                        DateTime = new DateTimeOffset(new DateTime(2018, 10, 15)),
+                        DateTime = new DateTimeOffset(new DateTime(2018, 10, 18)),
                         Title = "Event Driven 2.0: Data as a Service | Confluent",
                         Summary = "Streaming systems have led to far richer approaches than the event-driven architectures of old. In the future, data will be as automated and self-service as infrastructure is today, in the form of data as a service.",
                         ImageURL = "https://www.confluent.io/wp-content/uploads/Event-Driven-2.0-–-Data-as-a-Service.png",
