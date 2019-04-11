@@ -103,7 +103,7 @@ namespace NewsletterCurator.Data
 
         public IQueryable<IGrouping<Category, Newsitem>> NewsitemsByCategory()
         {
-            return Newsitems.Where(n => !n.IsAlreadySent).GroupBy(n => n.Category).OrderBy(c => c.Key.Priority);
+            return Newsitems.Where(n => !n.IsAlreadySent).OrderByDescending(n => n.DateTime).GroupBy(n => n.Category).OrderBy(c => c.Key.Priority);
         }
 
 
