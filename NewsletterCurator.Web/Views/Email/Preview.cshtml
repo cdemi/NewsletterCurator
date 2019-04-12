@@ -99,7 +99,7 @@
                 @foreach (var newsItem in category.Newsitems)
                 {
                     <tr>
-                        <td style="padding:30px 20px 0 20px; border-left: @category.Category.Color 2px solid; border-right: @category.Category.Color 2px solid;">
+                        <td style="padding:30px 20px 0 20px;">
                             <a href="@newsItem.URL" target="_blank">
                                 <h3>
                                     <span style="color: @category.Category.Color !important">
@@ -115,7 +115,7 @@
                     @if (!String.IsNullOrEmpty(newsItem.ImageURL))
                     {
                         <tr>
-                            <td align="center" style="padding:10px 20px 10px 20px;  border-left: @category.Category.Color 2px solid; border-right: @category.Category.Color 2px solid;">
+                            <td align="center" style="padding:10px 20px 10px 20px;">
                                 <a href="@newsItem.URL" target="_blank">
                                     <img loading="lazy" src="@newsItem.ImageURL" style="margin:0; padding:0; border:1px solid #ccc; display:block; width: 100%" border="0" alt="" />
                                 </a>
@@ -123,7 +123,7 @@
                         </tr>
                     }
                     <tr>
-                        <td align="justify" style="padding:0 20px 30px 20px;  border-left: @category.Category.Color 2px solid; border-right: @category.Category.Color 2px solid; border-bottom:@category.Category.Color 2px solid; word-break: break-word; overflow-wrap: break-word;">
+                        <td align="justify" style="padding:0 20px 30px 20px; border-bottom:1px solid #eee; word-break: break-word; overflow-wrap: break-word;">
                             @newsItem.Summary... <a href="@newsItem.URL" target="_blank" style="color: @category.Category.Color !important">Read more</a>
                         </td>
                     </tr>
