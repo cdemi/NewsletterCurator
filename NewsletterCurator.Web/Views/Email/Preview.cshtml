@@ -62,7 +62,7 @@
 </head>
 <body style="margin:0; padding:0; background-color:#F2F2F2;">
     <center>
-        <table width="90%" border="0" cellpadding="0" cellspacing="0" style="width: 90%; max-width: 580px; padding: 40px; color: #3f51b5; text-shadow: 0px 0px 11px rgba(0,0,0,0.6);">
+        <table width="90%" border="0" cellpadding="0" cellspacing="0" style="width: 90%; max-width: 580px; padding: 40px; color: #3f51b5">
             <tr>
                 <td align="center">
 
@@ -91,7 +91,6 @@
         @foreach (var category in Model)
         {
             <table width="90%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width: 90%; max-width: 580px;">
-                <tbody style="box-shadow: 2px 1px 11px -1px rgba(0,0,0,0.75); -webkit-box-shadow: 2px 1px 11px -1px rgba(0,0,0,0.75); -moz-box-shadow: 2px 1px 11px -1px rgba(0,0,0,0.75);">
                 <tr>
                     <td align="center" bgcolor="@category.Category.Color" style="color:#fff; padding:10px 20px;">
                         <h2>@category.Category.Name</h2>
@@ -129,7 +128,6 @@
                         </td>
                     </tr>
                 }
-                </tbody>
             </table>
             <table width="90%" border="0" cellpadding="0" cellspacing="0" style="width: 90%; max-width: 580px; padding: 20px">
                 <tr>
