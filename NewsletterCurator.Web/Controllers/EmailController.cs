@@ -40,7 +40,7 @@ namespace NewsletterCurator.Web.Controllers
 
             var hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.Name).ToListAsync());
 
-            var result = await addToGitHubArchive(src, newsletterFilename);
+            await addToGitHubArchive(src, newsletterFilename);
 
             await emailService.SendAsync(src, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
 
