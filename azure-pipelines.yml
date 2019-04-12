@@ -5,10 +5,6 @@ trigger:
 pool:
   vmImage: 'windows-2019'
 steps:
-- task: DotNetCoreInstaller@0
-  inputs:
-    packageType: 'sdk'
-    version: '2.2.100' 
 - script: dotnet tool install -g dotnet-sonarscanner
   displayName: dotnet install sonarscanner
 - script: dotnet sonarscanner begin /k:"cdemi_NewsletterCurator" /o:"cdemi-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$(sonarLogin)" /d:sonar.projectVersion="$(Build.BuildNumber)""
