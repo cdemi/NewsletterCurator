@@ -16,5 +16,7 @@ namespace NewsletterCurator.Data
         public float Priority { get; set; }
         [Required]
         public string Color { get; set; }
+        [Required]
+        public string HashTag { get; set; }
     }
 }

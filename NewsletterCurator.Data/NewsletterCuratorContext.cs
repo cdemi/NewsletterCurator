@@ -69,26 +69,26 @@ namespace NewsletterCurator.Data
             modelBuilder.Entity<Category>(options =>
             {
                 options.HasData(
-                    new Category { ID = new Guid("01f3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#004D40", Name = "Data", Priority = 3.5f },
-                    new Category { ID = new Guid("01f3205e-578b-4568-3d87-5c15fceb6a4f"), Color = "#e91e63", Name = "Big Data", Priority = 3.6f },
-                    new Category { ID = new Guid("bbf3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#673ab7", Name = "DevOps", Priority = 3 },
-                    new Category { ID = new Guid("219acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#F50057", Name = "User Experience", Priority = 2.5f },
-                    new Category { ID = new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#3f51b5", Name = "Front End", Priority = 2 },
-                    new Category { ID = new Guid("57e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2196f3", Name = "AI", Priority = 7 },
-                    new Category { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#03a9f4", Name = "Space", Priority = 10 },
-                    new Category { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#00bcd4", Name = "Security", Priority = 5 },
-                    new Category { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#009688", Name = "Hardware", Priority = 5.5f },
-                    new Category { ID = new Guid("a1e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#4caf50", Name = "Quality Assurance", Priority = 5.8f },
-                    new Category { ID = new Guid("84754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#8bc34a", Name = "eSports", Priority = 8.5f },
-                    new Category { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#ffc107", Name = "iGaming", Priority = 9 },
-                    new Category { ID = new Guid("497FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff9800", Name = "General Tech", Priority = 8 },
-                    new Category { ID = new Guid("527FF497-33D2-724C-A1DB-5A722D94078F"), Color = "#0336ff", Name = "Cloud", Priority = 3.4f },
-                    new Category { ID = new Guid("527FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff5722", Name = "Infrastructure", Priority = 4 },
-                    new Category { ID = new Guid("317FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#607d8b", Name = "Software Development", Priority = 0 },
-                    new Category { ID = new Guid("847FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#795548", Name = "Design", Priority = 6 },
-                    new Category { ID = new Guid("927FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#ef0078", Name = "Random", Priority = 90 },
-                    new Category { ID = new Guid("917FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#ef0078", Name = "Humor", Priority = 100 },
-                    new Category { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Color = "#2C8693", Name = ".NET", Priority = 1 }
+                    new Category { ID = new Guid("01f3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#004D40", HashTag = "Data", Name = "Data", Priority = 3.5f },
+                    new Category { ID = new Guid("01f3205e-578b-4568-3d87-5c15fceb6a4f"), Color = "#e91e63", HashTag = "BigData", Name = "Big Data", Priority = 3.6f },
+                    new Category { ID = new Guid("bbf3205e-578b-4568-9d86-7c15fceb6a4f"), Color = "#673ab7", HashTag = "DevOps", Name = "DevOps", Priority = 3 },
+                    new Category { ID = new Guid("219acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#F50057", HashTag = "UX", Name = "User Experience", Priority = 2.5f },
+                    new Category { ID = new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#3f51b5", HashTag = "FrontEnd", Name = "Front End", Priority = 2 },
+                    new Category { ID = new Guid("57e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2196f3", HashTag = "AI", Name = "AI", Priority = 7 },
+                    new Category { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#03a9f4", HashTag = "Space", Name = "Space", Priority = 10 },
+                    new Category { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#00bcd4", HashTag = "Security", Name = "Security", Priority = 5 },
+                    new Category { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#009688", HashTag = "Hardware", Name = "Hardware", Priority = 5.5f },
+                    new Category { ID = new Guid("a1e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#4caf50", HashTag = "QA", Name = "Quality Assurance", Priority = 5.8f },
+                    new Category { ID = new Guid("84754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#8bc34a", HashTag = "eSports", Name = "eSports", Priority = 8.5f },
+                    new Category { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#ffc107", HashTag = "iGaming", Name = "iGaming", Priority = 9 },
+                    new Category { ID = new Guid("497FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff9800", HashTag = "Tech", Name = "General Tech", Priority = 8 },
+                    new Category { ID = new Guid("527FF497-33D2-724C-A1DB-5A722D94078F"), Color = "#0336ff", HashTag = "Cloud", Name = "Cloud", Priority = 3.4f },
+                    new Category { ID = new Guid("527FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff5722", HashTag = "Infrastructure", Name = "Infrastructure", Priority = 4 },
+                    new Category { ID = new Guid("317FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#607d8b", HashTag = "SoftwareDevelopment", Name = "Software Development", Priority = 0 },
+                    new Category { ID = new Guid("847FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#795548", HashTag = "Design", Name = "Design", Priority = 6 },
+                    new Category { ID = new Guid("927FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#ef0078", HashTag = "Random", Name = "Random", Priority = 90 },
+                    new Category { ID = new Guid("917FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#ef0078", HashTag = "Humor", Name = "Humor", Priority = 100 },
+                    new Category { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Color = "#2C8693", HashTag = "dotnet", Name = ".NET", Priority = 1 }
                         );
             });
 

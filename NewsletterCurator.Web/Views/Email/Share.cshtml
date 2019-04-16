@@ -4,7 +4,7 @@
 }
 
 <h1>Share</h1>
-
+<textare>This week's most important articles about @(String.Join(", ", Model.HashTags.Take(Model.HashTags.Length - 1).Select(c => "#" + c).ToArray())) and #@Model.HashTags.Last()</textare>
 <ul>
     <li>
         <a href="https://www.linkedin.com/shareArticle?mini=true&url=@Model.URL">https://www.linkedin.com/shareArticle?mini=true&url=@Model.URL</a></li>

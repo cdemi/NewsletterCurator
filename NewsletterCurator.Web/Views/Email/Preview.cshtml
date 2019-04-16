@@ -12,7 +12,7 @@
     <title>cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")</title>
     <meta property="og:title" content="cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")" />
     <meta property="og:site_name" content="newsletters.cdemi.io" />
-    <meta property="og:description" content="This week's most important articles about @(String.Join(", ",Model.Take(Model.Count-1).Select(c=>c.Category.Name).ToArray())) and @Model.Last().Category.Name" />
+    <meta property="og:description" content="This week's most important news articles about @(String.Join(", ",Model.Take(Model.Count-1).Select(c=> "#" + c.Category.HashTag).ToArray())) and #@Model.Last().Category.HashTag" />
     <meta property="og:image" content="https://newsletters.cdemi.io/images/cover.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
