@@ -34,15 +34,16 @@ namespace NewsletterCurator.Web.Controllers
 
         public async Task<IActionResult> Send()
         {
-            var src = await htmlScraperService.ScrapeAsync(Url.AbsoluteAction("Preview", "Email"));
+            var emailSrc = await htmlScraperService.ScrapeAsync(Url.AbsoluteAction("Preview", "Email", new { isWeb = false }));
+            var webSrc = await htmlScraperService.ScrapeAsync(Url.AbsoluteAction("Preview", "Email", new { isWeb = true }));
 
             var newsletterFilename = $"{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html";
 
             var hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.HashTag).ToListAsync());
 
-            await addToGitHubArchive(src, newsletterFilename);
+            await addToGitHubArchive(webSrc, newsletterFilename);
 
-            await emailService.SendAsync(src, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
+            await emailService.SendAsync(emailSrc, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
 
             newsletterCuratorContext.Newsitems.RemoveRange(newsletterCuratorContext.Newsitems);
             await newsletterCuratorContext.SaveChangesAsync();
@@ -71,11 +72,11 @@ namespace NewsletterCurator.Web.Controllers
             return response;
         }
 
-        public async Task<IActionResult> Preview()
+        public async Task<IActionResult> Preview(bool isWeb)
         {
             var categoryNewsItemsViewModels = await newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToListAsync();
 
-            return View(categoryNewsItemsViewModels);
+            return View(new PreviewModel { Newsitems = categoryNewsItemsViewModels, IsWeb = isWeb });
         }
     }
 }

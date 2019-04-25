@@ -1,31 +1,34 @@
-﻿@model List<CategoryNewsItemsViewModel>
+﻿@model PreviewModel
 @{
     Layout = null;
 }
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @if (Model.IsWeb)
+    {
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")</title>
-    <meta property="og:title" content="cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")" />
-    <meta property="og:site_name" content="newsletters.cdemi.io" />
-    <meta property="og:description" content="This week's most important news articles about @(String.Join(", ",Model.Take(Model.Count-1).Select(c=> "#" + c.Category.HashTag).ToArray())) and #@Model.Last().Category.HashTag" />
-    <meta property="og:image" content="https://newsletters.cdemi.io/images/cover.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="author" content="Christopher Demicoli">
+        <title>cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")</title>
+        <meta property="og:title" content="cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")" />
+        <meta property="og:site_name" content="newsletters.cdemi.io" />
+        <meta property="og:description" content="This week's most important news articles about @(String.Join(", ",Model.Newsitems.Take(Model.Newsitems.Count-1).Select(c=> "#" + c.Category.HashTag).ToArray())) and #@Model.Newsitems.Last().Category.HashTag" />
+        <meta property="og:image" content="https://newsletters.cdemi.io/images/cover.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="author" content="Christopher Demicoli">
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3f51b5" />
-    <meta name="msapplication-TileColor" content="#3f51b5" />
-    <meta name="theme-color" content="#3f51b5" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3f51b5" />
+        <meta name="msapplication-TileColor" content="#3f51b5" />
+        <meta name="theme-color" content="#3f51b5" />
+    }
 
     <style type="text/css">
         body {
@@ -88,7 +91,7 @@
                 </td>
             </tr>
         </table>
-        @foreach (var category in Model)
+        @foreach (var category in Model.Newsitems)
         {
             <table width="90%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width: 90%; max-width: 580px;">
                 <tr>
@@ -148,27 +151,27 @@
         </table>
 
     </center>
-    <script>
-      // This is the "Offline copy of pages" service worker
-
-      // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-
-      // Check compatibility for the browser we're running this in
-      if ("serviceWorker" in navigator) {
-        if (navigator.serviceWorker.controller) {
-          console.log("[PWA Builder] active service worker found, no need to register");
-        } else {
-          // Register the service worker
-          navigator.serviceWorker
-            .register("pwabuilder-sw.js", {
-              scope: "./"
-            })
-            .then(function (reg) {
-              console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-            });
-        }
-      }
-
-    </script>
+    @if (Model.IsWeb)
+    {
+        <script>
+            // This is the "Offline copy of pages" service worker
+            // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+            // Check compatibility for the browser we're running this in
+            if ("serviceWorker" in navigator) {
+                if (navigator.serviceWorker.controller) {
+                    console.log("[PWA Builder] active service worker found, no need to register");
+                } else {
+                    // Register the service worker
+                    navigator.serviceWorker
+                        .register("pwabuilder-sw.js", {
+                            scope: "./"
+                        })
+                        .then(function (reg) {
+                            console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+                        });
+                }
+            }
+        </script>
+    }
 </body>
 </html>

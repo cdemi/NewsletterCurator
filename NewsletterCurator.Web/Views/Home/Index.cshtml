@@ -40,7 +40,7 @@
     }
 
     <a href="javascript: window.open('@Url.AbsoluteAction("Add", "Newsitem")?url=' + encodeURIComponent(document.location), '_blank')">Add to Newsletter</a><br/>
-    <a asp-action="Preview" asp-controller="Email">Email Preview</a>
+    <a asp-action="Preview" asp-controller="Email" asp-route-isWeb="true">Email Preview</a>
 
     <form method="get" asp-action="Add" asp-controller="Newsitem">
         <input type="url" name="url" placeholder="URL"/>
