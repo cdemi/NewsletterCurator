@@ -84,6 +84,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("497FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff9800", HashTag = "Tech", Name = "General Tech", Priority = 8 },
                     new Category { ID = new Guid("527FF497-33D2-724C-A1DB-5A722D94078F"), Color = "#0336ff", HashTag = "Cloud", Name = "Cloud", Priority = 3.4f },
                     new Category { ID = new Guid("527FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff5722", HashTag = "Infrastructure", Name = "Infrastructure", Priority = 4 },
+                    new Category { ID = new Guid("622FA497-32D2-434C-A1DB-5A722D94012F"), Color = "#6e179b", HashTag = "IoT", Name = "IoT", Priority = 4.5f },
                     new Category { ID = new Guid("317FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#607d8b", HashTag = "SoftwareDevelopment", Name = "Software Development", Priority = 0 },
                     new Category { ID = new Guid("847FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#795548", HashTag = "Design", Name = "Design", Priority = 6 },
                     new Category { ID = new Guid("927AF497-33A2-424C-A1DB-5A722D92078A"), Color = "#a74141", HashTag = "Medical", Name = "Medical", Priority = 89 },
