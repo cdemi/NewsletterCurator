@@ -24,6 +24,18 @@
             <textarea class="form-control" id="summary" name="Summary" rows="3">@Model.Summary</textarea>
         </div>
         <div class="form-group">
+            <label for="tags">Tags</label>
+            <select multiple class="form-control" id="tags" name="tags">
+                @if (Model.Tags != null)
+                {
+                    foreach (var tag in Model.Tags)
+                    {
+                        <option selected>@tag</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
             <label for="image">Favicon URL</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">

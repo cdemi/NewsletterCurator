@@ -24,6 +24,7 @@ namespace NewsletterCurator.Data
         [Required]
         public string Title { get; set; }
         public string FaviconURL { get; set; }
+        public string[] Tags { get; set; }
 
     }
 }
