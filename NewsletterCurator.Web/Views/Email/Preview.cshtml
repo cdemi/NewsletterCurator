@@ -113,12 +113,20 @@
                                             </span>
                                         }
                                         <span style="color: @category.Category.Color !important">@(newsItem.Title)</span>
-                                        
+
                                     </span>
                                     <span style="font-size: 12px; opacity: 0.7; color: @category.Category.Color !important">
                                         (@(new Uri(newsItem.URL).Host.Replace("www.", "")))
                                     </span>
+                                    @if (newsItem.Tags != null && newsItem.Tags.Any())
+                                    {
+                                        @foreach (var tag in newsItem.Tags)
+                                        {
+                                            <span style="font-size: 12px; opacity: 0.7; background-color: @category.Category.Color !important; color: #fff !important; border-radius: 5px; padding: 3px 5px;">@tag</span>
+                                        }
+                                    }
                                 </h3>
+                               
                             </a>
                         </td>
                     </tr>

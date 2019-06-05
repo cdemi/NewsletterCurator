@@ -81,8 +81,19 @@ namespace NewsletterCurator.HTMLScraper
             var tags = htmlDoc.DocumentNode.SelectNodes("//meta[@property='article:tag']");
             if (tags != null)
             {
-                urlMetadata.Tags = tags.Select(t => t.GetAttributeValue("content", null)).ToList();
+                urlMetadata.Tags.AddRange(tags.Select(t => t.GetAttributeValue("content", null)).ToList());
             }
+
+            var keywords = htmlDoc.DocumentNode.SelectNodes("//meta[@name='news_keywords' or @name='keywords']");
+            if (keywords != null)
+            {
+                foreach (var newsKeyword in keywords)
+                {
+                    urlMetadata.Tags.AddRange(newsKeyword.GetAttributeValue("content", null).Split(",").Select(t => t.Trim()));
+                }
+            }
+
+            urlMetadata.Tags = urlMetadata.Tags.Distinct().ToList();
 
             var faviconTag = htmlDoc.DocumentNode.SelectNodes("/html/head/link[contains(@rel, 'icon') and not(contains(@rel, '-icon'))]")?.FirstOrDefault();
             if (faviconTag != null)

@@ -9,6 +9,6 @@ namespace NewsletterCurator.HTMLScraper
         public string Summary { get; internal set; }
         public string CanonicalURL { get; internal set; }
         public string FaviconURL { get; internal set; }
-        public List<string> Tags { get; internal set; }
+        public List<string> Tags { get; internal set; } = new List<string>();
     }
 }
