@@ -78,7 +78,7 @@ namespace NewsletterCurator.HTMLScraper
                 }).Distinct());
             }
 
-            var faviconTag = htmlDoc.DocumentNode.SelectNodes("/html/head/link[@rel='icon']")?.FirstOrDefault();
+            var faviconTag = htmlDoc.DocumentNode.SelectNodes("/html/head/link[contains(@rel, 'icon')]")?.FirstOrDefault();
             if (faviconTag != null)
             {
                 urlMetadata.FaviconURL = faviconTag.GetAttributeValue("href", null);
