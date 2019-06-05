@@ -78,6 +78,17 @@ namespace NewsletterCurator.HTMLScraper
                 }).Distinct());
             }
 
+            var faviconTag = htmlDoc.DocumentNode.SelectNodes("/html/head/link[@rel='icon']").FirstOrDefault();
+            if (faviconTag != null)
+            {
+                urlMetadata.FaviconURL = faviconTag.GetAttributeValue("href", null);
+
+                if (!urlMetadata.FaviconURL.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    urlMetadata.FaviconURL = new Uri(new Uri(url), urlMetadata.FaviconURL).ToString();
+                }
+            }
+
             urlMetadata.Title = HtmlEntity.DeEntitize(urlMetadata.Title);
             urlMetadata.Summary = HtmlEntity.DeEntitize(urlMetadata.Summary);
 
