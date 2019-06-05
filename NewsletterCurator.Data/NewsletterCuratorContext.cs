@@ -15,6 +15,13 @@ namespace NewsletterCurator.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Newsitem>()
+            .Property(e => e.Tags)
+            .HasConversion(
+                v => string.Join('|', v),
+                v => v.Split('|', StringSplitOptions.RemoveEmptyEntries));
+
+
             modelBuilder.Entity<Newsitem>(options =>
             {
                 options.HasData(
