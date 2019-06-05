@@ -23,6 +23,7 @@ namespace NewsletterCurator.Data
         public bool IsAlreadySent { get; set; }
         [Required]
         public string Title { get; set; }
+        public string FaviconURL { get; set; }
 
     }
 }

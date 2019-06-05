@@ -106,7 +106,14 @@
                             <a href="@newsItem.URL" target="_blank">
                                 <h3>
                                     <span style="color: @category.Category.Color !important">
-                                        @(newsItem.Title)
+                                        @if (newsItem.FaviconURL != null)
+                                        {
+                                            <span>
+                                                <img src="@newsItem.FaviconURL" style="height:16px" alt="@(newsItem.Title) Favicon" />
+                                            </span>
+                                        }
+                                        <span>@(newsItem.Title)</span>
+                                        
                                     </span>
                                     <span style="font-size: 12px; color: @category.Category.Color !important">
                                         (@(new Uri(newsItem.URL).Host.Replace("www.", "")))

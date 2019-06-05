@@ -14,5 +14,6 @@ namespace NewsletterCurator.Web.Models
         public string ImageURL { get; set; }
         public List<string> Images { get; set; }
         public string Summary { get; set; }
+        public string Favicon { get; set; }
     }
 }
