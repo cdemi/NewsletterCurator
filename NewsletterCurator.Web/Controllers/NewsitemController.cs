@@ -31,6 +31,7 @@ namespace NewsletterCurator.Web.Controllers
                 Title = urlMetaData.Title,
                 Images = urlMetaData.Images.Distinct().ToList(),
                 Summary = urlMetaData.Summary,
+                Favicon = urlMetaData.FaviconURL
             });
         }
 
@@ -45,6 +46,7 @@ namespace NewsletterCurator.Web.Controllers
                 Summary = addNewsitemViewModel.Summary,
                 Title = addNewsitemViewModel.Title,
                 URL = addNewsitemViewModel.URL,
+                FaviconURL = addNewsitemViewModel.Favicon,
                 DateTime = DateTimeOffset.UtcNow
             });
 

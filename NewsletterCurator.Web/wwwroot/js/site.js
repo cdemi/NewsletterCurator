@@ -18,6 +18,12 @@
             });
 
         $(document).on('click',
+            '#reset-faviconurl',
+            function () {
+                $('#faviconurl').val('');
+            });
+
+        $(document).on('click',
             '.deletePost',
             function () {
                 var that = $(this);

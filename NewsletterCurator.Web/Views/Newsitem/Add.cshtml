@@ -24,6 +24,19 @@
             <textarea class="form-control" id="summary" name="Summary" rows="3">@Model.Summary</textarea>
         </div>
         <div class="form-group">
+            <label for="image">Favicon URL</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="padding:0"><img src="@Model.Favicon" alt="test" /></span>
+                    
+                </div>
+                <input class="form-control" type="url" class="form-control" id="faviconurl" pattern="^https://.+" name="favicon" placeholder="Favicon URL" value="@Model.Favicon">
+                <div class="input-group-append">
+                    <span id="reset-faviconurl" class="input-group-text">Reset</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="image">Image URL</label>
             <div class="input-group mb-3">
                 <input class="form-control" type="url" class="form-control" id="image" pattern="^https://.+" name="ImageURL" placeholder="Image URL" value="@Model.Images.FirstOrDefault()">
@@ -38,7 +51,7 @@
                     @foreach (var image in Model.Images)
                     {
                         <li class="media">
-                            <img src="@image" onerror="this.parentElement.classList.add('broken')" style="display: none;"/>
+                            <img src="@image" onerror="this.parentElement.classList.add('broken')" style="display: none;" />
                             <div class="media-img" style="background-image: url(@image)"></div>
                             <div class="media-body">
                                 <span class="mt-0 mb-1">...@image.Substring(Math.Max(0, image.Length - 40))</span>
@@ -51,7 +64,7 @@
                 <img class="img-preview"></img>
             </div>
         </div>
-        
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
