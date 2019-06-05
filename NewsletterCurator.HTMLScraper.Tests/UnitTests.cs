@@ -33,6 +33,10 @@ namespace NewsletterCurator.HTMLScraper.Tests
             Assert.AreEqual(urlMetaData.Summary, "One of the features being discussed for introduction in C# 8.0 is Nullable Reference Types. A proficient C# Developer might say \"What?! Aren't all reference types nullable?\" ");
             Assert.AreEqual(urlMetaData.Title, "What's Coming in C# 8.0? Nullable Reference Types");
             StringAssert.StartsWith(urlMetaData.FaviconURL, "https://blog.cdemi.io/assets/img/favicons/apple-touch-icon-180x180.png");
+            CollectionAssert.Contains(urlMetaData.Tags, "C# 8.0");
+            CollectionAssert.Contains(urlMetaData.Tags, "C#");
+            CollectionAssert.Contains(urlMetaData.Tags, "Software Development");
+            CollectionAssert.Contains(urlMetaData.Tags, ".NET");
         }
     }
 }

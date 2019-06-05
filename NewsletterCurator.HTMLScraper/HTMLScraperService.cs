@@ -78,6 +78,12 @@ namespace NewsletterCurator.HTMLScraper
                 }).Distinct());
             }
 
+            var tags = htmlDoc.DocumentNode.SelectNodes("//meta[@property='article:tag']");
+            if (tags != null)
+            {
+                urlMetadata.Tags = tags.Select(t => t.GetAttributeValue("content", null)).ToList();
+            }
+
             var faviconTag = htmlDoc.DocumentNode.SelectNodes("/html/head/link[contains(@rel, 'icon')]")?.FirstOrDefault();
             if (faviconTag != null)
             {
