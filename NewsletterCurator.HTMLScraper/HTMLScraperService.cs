@@ -95,7 +95,7 @@ namespace NewsletterCurator.HTMLScraper
 
             urlMetadata.Tags = urlMetadata.Tags.Distinct().ToList();
 
-            var faviconTag = htmlDoc.DocumentNode.SelectNodes("/html/head/link[contains(@rel, 'icon') and not(contains(@rel, '-icon'))]")?.FirstOrDefault();
+            var faviconTag = htmlDoc.DocumentNode.SelectNodes("//link[contains(@rel, 'icon') and not(contains(@rel, '-icon'))]")?.FirstOrDefault();
             if (faviconTag != null)
             {
                 urlMetadata.FaviconURL = faviconTag.GetAttributeValue("href", null);
