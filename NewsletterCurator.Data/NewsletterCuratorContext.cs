@@ -87,7 +87,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#009688", HashTag = "Hardware", Name = "Hardware", Priority = 5.5f },
                     new Category { ID = new Guid("a1e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#4caf50", HashTag = "QA", Name = "Quality Assurance", Priority = 5.8f },
                     new Category { ID = new Guid("84754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#8bc34a", HashTag = "eSports", Name = "eSports", Priority = 8.5f },
-                    new Category { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#ffc107", HashTag = "iGaming", Name = "iGaming", Priority = 9 },
+                    new Category { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#ca9a07", HashTag = "iGaming", Name = "iGaming", Priority = 9 },
                     new Category { ID = new Guid("497FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff9800", HashTag = "Tech", Name = "General Tech", Priority = 8 },
                     new Category { ID = new Guid("527FF497-33D2-724C-A1DB-5A722D94078F"), Color = "#0336ff", HashTag = "Cloud", Name = "Cloud", Priority = 3.4f },
                     new Category { ID = new Guid("127FF497-33D2-734C-A1DB-5A722A94078F"), Color = "#77b53f", HashTag = "Serverless", Name = "Serverless", Priority = 3.6f },
