@@ -39,7 +39,7 @@ namespace NewsletterCurator.Web.Controllers
 
             var newsletterFilename = $"{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html";
 
-            var hashTags = (await newsletterCuratorContext.NewsitemsByCategory().Select(n => n.Key.HashTag).ToListAsync());
+            var hashTags = (await newsletterCuratorContext.NewsitemsByCategory().SelectMany(n => n.Key.HashTags).ToListAsync());
 
             await addToGitHubArchive(webSrc, newsletterFilename);
 
