@@ -88,6 +88,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("219acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#F50057", HashTags = new string[] { "UX", "UserExperience" }, Name = "User Experience", Priority = 2.5f },
                     new Category { ID = new Guid("3f9acf3f-bf48-455d-9a3f-f660cd3a13b3"), Color = "#3f51b5", HashTags = new string[] { "FrontEnd" }, Name = "Front End", Priority = 2 },
                     new Category { ID = new Guid("57e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#2196f3", HashTags = new string[] { "AI", "ArtificalIntelligence" }, Name = "Artifical Intelligence", Priority = 7 },
+                    new Category { ID = new Guid("21e0baf7-4b80-4866-b9ae-3a2e77ad88fb"), Color = "#6f8b60", HashTags = new string[] { "Blockchain", "Crypto", "Cryptocurrency" }, Name = "Blockchain and Cryptocurrencies", Priority = 9.5f },
                     new Category { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#03a9f4", HashTags = new string[] { "Space" }, Name = "Space", Priority = 10 },
                     new Category { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#00bcd4", HashTags = new string[] { "Security" }, Name = "Security", Priority = 5 },
                     new Category { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#009688", HashTags = new string[] { "Hardware" }, Name = "Hardware", Priority = 5.5f },
