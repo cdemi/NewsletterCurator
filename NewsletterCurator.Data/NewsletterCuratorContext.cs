@@ -91,7 +91,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("21e0baf7-4b80-4866-b9ae-3a2e77ad88fb"), Color = "#6f8b60", HashTags = new string[] { "Blockchain", "Crypto", "Cryptocurrency" }, Name = "Blockchain and Cryptocurrencies", Priority = 9.5f },
                     new Category { ID = new Guid("32e0baf7-4b80-4866-b9ae-3a2e77ad88fb"), Color = "#bc4dd1", HashTags = new string[] { "QuantumComputing", "Quantum" }, Name = "Quantum Computing", Priority = 9.5f },
                     new Category { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#03a9f4", HashTags = new string[] { "Space" }, Name = "Space", Priority = 10 },
-                    new Category { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#00bcd4", HashTags = new string[] { "Security" }, Name = "Security", Priority = 5 },
+                    new Category { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#00bcd4", HashTags = new string[] { "Security", "InfoSec" }, Name = "Security", Priority = 5 },
                     new Category { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#009688", HashTags = new string[] { "Hardware" }, Name = "Hardware", Priority = 5.5f },
                     new Category { ID = new Guid("a1e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#4caf50", HashTags = new string[] { "QA", "QualityAssurance" }, Name = "Quality Assurance", Priority = 5.8f },
                     new Category { ID = new Guid("12e0baf7-3b82-4866-b9ae-5a2e77ad88fb"), Color = "#683864", HashTags = new string[] { "Product", "ProductOwnership", "ProductManagement" }, Name = "Product", Priority = 5.9f },
@@ -109,8 +109,8 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("927AF497-33A2-424C-A1DB-5A722D92078A"), Color = "#a74141", HashTags = new string[] { "Healthcare", "Medical" }, Name = "Healthcare", Priority = 89 },
                     new Category { ID = new Guid("123FF497-33A2-424C-A1DB-5A722D940456"), Color = "#1dae0b", HashTags = new string[] { "Politics" }, Name = "Politics", Priority = 89.5f },
                     new Category { ID = new Guid("927FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#ef0078", HashTags = new string[] { "Random" }, Name = "Random", Priority = 90 },
-                    new Category { ID = new Guid("917FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#ef0078", HashTags = new string[] { "Humor" }, Name = "Humor", Priority = 100 },
-                    new Category { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Color = "#2C8693", HashTags = new string[] { "dotnet" }, Name = ".NET", Priority = 1 }
+                    new Category { ID = new Guid("917FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#ef0078", HashTags = new string[] { "Humor", "Funny" }, Name = "Humor", Priority = 100 },
+                    new Category { ID = new Guid("e17226a6-bed1-44f5-863f-3970bb634fce"), Color = "#2C8693", HashTags = new string[] { "dotNet" }, Name = ".NET", Priority = 1 }
                         );
             });
 
