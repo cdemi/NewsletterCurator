@@ -96,63 +96,79 @@
             <table width="90%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width: 90%; max-width: 580px;">
                 <tr>
                     <td align="center" bgcolor="@category.Category.Color" style="color:#fff; padding:10px 20px;">
-                        <h2>@category.Category.Name</h2>
+                        <h2>
+                            @category.Category.Name
+                            @foreach (var hashTag in category.Category.HashTags.Where(h=>!h.Replace(" ","").Equals(category.Category.Name.Replace(" ",""), StringComparison.InvariantCultureIgnoreCase)))
+                            {
+                                <span style="
+                                    font-size: 12px;
+                                    opacity: 0.7;
+                                    background-color: #fff !important;
+                                    color: @category.Category.Color !important;
+                                    border-radius: 5px;
+                                    padding: 3px 5px;
+                                    margin-left: 5px;
+                                    white-space: nowrap;
+                                    vertical-align: middle;
+                                ">#@hashTag</span>
+                            }
+                        </h2>
+                </td>
+            </tr>
+            @foreach (var newsItem in category.Newsitems)
+            {
+                <tr>
+                    <td style="padding:30px 20px 0 20px;">
+                        <a href="@newsItem.URL" target="_blank">
+                            <h3>
+                                <span style="color: @category.Category.Color !important">
+                                    @if (newsItem.FaviconURL != null)
+                                    {
+                                        <span>
+                                            <img src="@newsItem.FaviconURL" style="height:16px" alt="@(newsItem.Title) Favicon" />
+                                        </span>
+                                    }
+                                    <span style="color: @category.Category.Color !important">@(newsItem.Title)</span>
+
+                                </span>
+                                <span style="font-size: 12px; opacity: 0.7; color: @category.Category.Color !important">
+                                    (@(new Uri(newsItem.URL).Host.Replace("www.", "")))
+                                </span>
+                                @if (newsItem.Tags != null && newsItem.Tags.Any())
+                                {
+                                    @foreach (var tag in newsItem.Tags)
+                                    {
+                                        <span style="font-size: 12px; opacity: 0.7; background-color: @category.Category.Color !important; color: #fff !important; border-radius: 5px; padding: 3px 5px; white-space:nowrap;text-transform: capitalize;">@tag</span>
+                                    }
+                                }
+                            </h3>
+
+                        </a>
                     </td>
                 </tr>
-                @foreach (var newsItem in category.Newsitems)
+                @if (!String.IsNullOrEmpty(newsItem.ImageURL))
                 {
                     <tr>
-                        <td style="padding:30px 20px 0 20px;">
+                        <td align="center" style="padding:10px 20px 10px 20px;">
                             <a href="@newsItem.URL" target="_blank">
-                                <h3>
-                                    <span style="color: @category.Category.Color !important">
-                                        @if (newsItem.FaviconURL != null)
-                                        {
-                                            <span>
-                                                <img src="@newsItem.FaviconURL" style="height:16px" alt="@(newsItem.Title) Favicon" />
-                                            </span>
-                                        }
-                                        <span style="color: @category.Category.Color !important">@(newsItem.Title)</span>
-
-                                    </span>
-                                    <span style="font-size: 12px; opacity: 0.7; color: @category.Category.Color !important">
-                                        (@(new Uri(newsItem.URL).Host.Replace("www.", "")))
-                                    </span>
-                                    @if (newsItem.Tags != null && newsItem.Tags.Any())
-                                    {
-                                        @foreach (var tag in newsItem.Tags)
-                                        {
-                                            <span style="font-size: 12px; opacity: 0.7; background-color: @category.Category.Color !important; color: #fff !important; border-radius: 5px; padding: 3px 5px; white-space:nowrap;text-transform: capitalize;">@tag</span>
-                                        }
-                                    }
-                                </h3>
-                               
+                                <img loading="lazy" src="@newsItem.ImageURL" style="margin:0; padding:0; border:1px solid #ccc; display:block; width: 100%" border="0" alt="" />
                             </a>
                         </td>
                     </tr>
-                    @if (!String.IsNullOrEmpty(newsItem.ImageURL))
-                    {
-                        <tr>
-                            <td align="center" style="padding:10px 20px 10px 20px;">
-                                <a href="@newsItem.URL" target="_blank">
-                                    <img loading="lazy" src="@newsItem.ImageURL" style="margin:0; padding:0; border:1px solid #ccc; display:block; width: 100%" border="0" alt="" />
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                    <tr>
-                        <td align="justify" style="padding:0 20px 30px 20px; border-bottom:1px solid #eee; word-break: break-word; overflow-wrap: break-word;">
-                            @newsItem.Summary... <a href="@newsItem.URL" target="_blank" style="color: @category.Category.Color !important">Read more</a>
-                        </td>
-                    </tr>
                 }
-            </table>
-            <table width="90%" border="0" cellpadding="0" cellspacing="0" style="width: 90%; max-width: 580px; padding: 20px">
                 <tr>
-                    <td align="center"></td>
+                    <td align="justify" style="padding:0 20px 30px 20px; border-bottom:1px solid #eee; word-break: break-word; overflow-wrap: break-word;">
+                        @newsItem.Summary... <a href="@newsItem.URL" target="_blank" style="color: @category.Category.Color !important">Read more</a>
+                    </td>
                 </tr>
-            </table>
-        }
+            }
+        </table>
+        <table width="90%" border="0" cellpadding="0" cellspacing="0" style="width: 90%; max-width: 580px; padding: 20px">
+            <tr>
+                <td align="center"></td>
+            </tr>
+        </table>
+    }
         <table width="90%" border="0" cellpadding="0" cellspacing="0" style="width: 90%; max-width: 580px; padding: 20px; font-size: 10pt; color: #999999">
             <tr>
                 <td align="center" style="line-height: 15px;">
