@@ -71,7 +71,14 @@ namespace NewsletterCurator.HTMLScraper
                     var imageSrc = n.GetAttributeValue("src", null);
                     if (!imageSrc.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
                     {
-                        imageSrc = new Uri(new Uri(url), imageSrc).ToString();
+                        try
+                        {
+                            imageSrc = new Uri(new Uri(url), imageSrc).ToString();
+                        }
+                        catch
+                        {
+                            imageSrc = "";
+                        }
                     }
 
                     return imageSrc;
