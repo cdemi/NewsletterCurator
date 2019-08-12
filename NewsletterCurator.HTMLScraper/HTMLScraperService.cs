@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Microsoft.Extensions.Logging;
 
 namespace NewsletterCurator.HTMLScraper
 {
@@ -11,10 +12,12 @@ namespace NewsletterCurator.HTMLScraper
     {
         private readonly HtmlDocument htmlDoc = new HtmlDocument();
         private readonly HttpClient httpClient;
+        private readonly ILogger<HTMLScraperService> logger;
 
-        public HTMLScraperService(HttpClient httpClient)
+        public HTMLScraperService(HttpClient httpClient, ILogger<HTMLScraperService> logger)
         {
             this.httpClient = httpClient;
+            this.logger = logger;
         }
         public async Task<string> ScrapeAsync(string url)
         {
@@ -41,6 +44,7 @@ namespace NewsletterCurator.HTMLScraper
             }
             catch (Exception ex) when (ex is InvalidOperationException || ex is HttpRequestException)
             {
+                logger.LogError(ex, "Error trying to load canonical URL. Using current URL instead");
                 canonicalUrl = null;
             }
 
@@ -119,6 +123,7 @@ namespace NewsletterCurator.HTMLScraper
 
             if (String.IsNullOrEmpty(urlMetadata.FaviconURL))
             {
+                logger.LogInformation("No favicons found in metadata. Trying to get default favicon from: " + new Uri(new Uri(url), "/favicon.ico").ToString());
                 try
                 {
                     HttpClient faviconClient = new HttpClient();
@@ -126,9 +131,10 @@ namespace NewsletterCurator.HTMLScraper
                     if (faviconResponse.IsSuccessStatusCode)
                         urlMetadata.FaviconURL = new Uri(new Uri(url), "/favicon.ico").ToString();
                 }
-                catch
+                catch (Exception ex)
                 {
                     //Leave without favicon if something's wrong
+                    logger.LogError(ex, "Error trying to retrieve favicon. Ignoring favicons");
                 }
             }
 

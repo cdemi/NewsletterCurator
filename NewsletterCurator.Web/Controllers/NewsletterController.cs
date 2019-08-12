@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
 using NewsletterCurator.Data;
 
@@ -10,11 +11,13 @@ namespace NewsletterCurator.Web.Controllers
     {
         private readonly NewsletterCuratorContext newsletterCuratorContext;
         private readonly EmailService.EmailService emailService;
+        private readonly TelemetryClient telemetryClient;
 
-        public NewsletterController(NewsletterCuratorContext newsletterCuratorContext, EmailService.EmailService emailService)
+        public NewsletterController(NewsletterCuratorContext newsletterCuratorContext, EmailService.EmailService emailService, TelemetryClient telemetryClient)
         {
             this.newsletterCuratorContext = newsletterCuratorContext;
             this.emailService = emailService;
+            this.telemetryClient = telemetryClient;
         }
 
         public IActionResult Unsubscribe()
@@ -34,12 +37,14 @@ namespace NewsletterCurator.Web.Controllers
 
             await newsletterCuratorContext.SaveChangesAsync();
 
+            telemetryClient.TrackEvent("UserUnsubscribed");
 
             return View(true);
         }
 
         public IActionResult Subscribe()
         {
+            telemetryClient.TrackEvent("UserSubscribeAttempt");
             return View(false);
         }
 
@@ -67,7 +72,7 @@ namespace NewsletterCurator.Web.Controllers
             await newsletterCuratorContext.SaveChangesAsync();
 
             await emailService.SendValidationEmailAsync(email, Url.AbsoluteAction("Validate", "Newsletter", new { id = subscriber.ID }));
-
+            telemetryClient.TrackEvent("UserSubscribed");
             return View(true);
         }
 
@@ -76,6 +81,7 @@ namespace NewsletterCurator.Web.Controllers
             var subscriber = await newsletterCuratorContext.Subscribers.FindAsync(id);
             subscriber.DateValidated = DateTimeOffset.UtcNow;
             await newsletterCuratorContext.SaveChangesAsync();
+            telemetryClient.TrackEvent("UserValidated");
             return View();
         }
     }
