@@ -117,6 +117,21 @@ namespace NewsletterCurator.HTMLScraper
                 }
             }
 
+            if (String.IsNullOrEmpty(urlMetadata.FaviconURL))
+            {
+                try
+                {
+                    HttpClient faviconClient = new HttpClient();
+                    var faviconResponse = await faviconClient.GetAsync(new Uri(new Uri(url), "/favicon.ico"), HttpCompletionOption.ResponseHeadersRead);
+                    if (faviconResponse.IsSuccessStatusCode)
+                        urlMetadata.FaviconURL = new Uri(new Uri(url), "/favicon.ico").ToString();
+                }
+                catch
+                {
+                    //Leave without favicon if something's wrong
+                }
+            }
+
             urlMetadata.Title = HtmlEntity.DeEntitize(urlMetadata.Title);
             urlMetadata.Summary = HtmlEntity.DeEntitize(urlMetadata.Summary);
 
