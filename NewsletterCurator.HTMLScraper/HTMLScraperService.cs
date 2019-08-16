@@ -32,14 +32,17 @@ namespace NewsletterCurator.HTMLScraper
             var canonicalUrl = htmlDoc.DocumentNode.SelectSingleNode("//link[@rel='canonical']")?.GetAttributeValue("href", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:url']")?.GetAttributeValue("content", null);
             try
             {
-                if (!canonicalUrl.StartsWith("http"))
+                if (canonicalUrl != null)
                 {
-                    canonicalUrl = new Uri(new Uri(url), canonicalUrl).ToString();
-                }
-                if (canonicalUrl != null && !canonicalUrl.Equals(url, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    responseString = await httpClient.GetStringAsync(canonicalUrl);
-                    htmlDoc.LoadHtml(responseString);
+                    if (!canonicalUrl.StartsWith("http"))
+                    {
+                        canonicalUrl = new Uri(new Uri(url), canonicalUrl).ToString();
+                    }
+                    if (canonicalUrl != null && !canonicalUrl.Equals(url, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        responseString = await httpClient.GetStringAsync(canonicalUrl);
+                        htmlDoc.LoadHtml(responseString);
+                    }
                 }
             }
             catch (Exception ex) when (ex is InvalidOperationException || ex is HttpRequestException)
