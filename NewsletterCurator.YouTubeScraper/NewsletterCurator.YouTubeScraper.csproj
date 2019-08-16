@@ -13,4 +13,5 @@
     <ProjectReference Include="..\NewsletterCurator.Scraper.Contracts\NewsletterCurator.Scraper.Contracts.csproj" />
   </ItemGroup>
 
+
 </Project>
