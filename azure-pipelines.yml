@@ -1,7 +1,7 @@
-﻿variables:
-  buildConfiguration: 'Release'
 trigger:
 - master
+variables:
+  buildConfiguration: 'Release'
 pool:
   vmImage: 'windows-2019'
 steps:
