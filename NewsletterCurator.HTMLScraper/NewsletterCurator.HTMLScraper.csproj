@@ -9,4 +9,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NewsletterCurator.HTMLScraper.Contracts\NewsletterCurator.HTMLScraper.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

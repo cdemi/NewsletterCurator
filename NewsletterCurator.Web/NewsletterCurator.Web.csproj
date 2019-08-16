@@ -26,6 +26,7 @@
     <ProjectReference Include="..\NewsletterCurator.Data.SqlServer\NewsletterCurator.Data.SqlServer.csproj" />
     <ProjectReference Include="..\NewsletterCurator.Data\NewsletterCurator.Data.csproj" />
     <ProjectReference Include="..\NewsletterCurator.EmailService\NewsletterCurator.EmailService.csproj" />
+    <ProjectReference Include="..\NewsletterCurator.HTMLScraper.Contracts\NewsletterCurator.HTMLScraper.Contracts.csproj" />
     <ProjectReference Include="..\NewsletterCurator.HTMLScraper\NewsletterCurator.HTMLScraper.csproj" />
   </ItemGroup>
 

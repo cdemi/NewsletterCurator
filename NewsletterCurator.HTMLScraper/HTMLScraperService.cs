@@ -5,10 +5,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
+using NewsletterCurator.HTMLScraper.Contracts;
 
 namespace NewsletterCurator.HTMLScraper
 {
-    public class HTMLScraperService
+    public class HTMLScraperService : IScraperService
     {
         private readonly HtmlDocument htmlDoc = new HtmlDocument();
         private readonly HttpClient httpClient;
