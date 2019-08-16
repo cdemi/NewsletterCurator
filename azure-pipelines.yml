@@ -1,4 +1,4 @@
-trigger:
+﻿trigger:
 - master
 variables:
   buildConfiguration: 'Release'
@@ -24,7 +24,7 @@ steps:
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
-- script: dotnet publish --no-build --no-restore --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+- script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
   displayName: dotnet publish
 - task: PublishBuildArtifacts@1
   displayName: Publishing Artifacts
