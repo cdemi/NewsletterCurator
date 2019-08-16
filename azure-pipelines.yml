@@ -8,7 +8,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    useGlobalJson: true
+    version: '2.2.401'
 - script: dotnet tool install -g dotnet-sonarscanner
   displayName: dotnet install sonarscanner
 - script: dotnet sonarscanner begin /k:"cdemi_NewsletterCurator" /o:"cdemi-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$(sonarLogin)" /v:"$(Build.BuildNumber)"
