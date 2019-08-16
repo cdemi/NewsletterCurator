@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NewsletterCurator.HTMLScraper.Contracts\NewsletterCurator.HTMLScraper.Contracts.csproj" />
     <ProjectReference Include="..\NewsletterCurator.HTMLScraper\NewsletterCurator.HTMLScraper.csproj" />
+    <ProjectReference Include="..\NewsletterCurator.Scraper.Contracts\NewsletterCurator.Scraper.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

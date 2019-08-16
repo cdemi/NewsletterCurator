@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using NewsletterCurator.Data;
 using NewsletterCurator.HTMLScraper;
 using NewsletterCurator.Web.Models;
+using NewsletterCurator.YouTubeScraper;
 
 namespace NewsletterCurator.Web.Controllers
 {
@@ -13,16 +14,23 @@ namespace NewsletterCurator.Web.Controllers
     {
         private readonly NewsletterCuratorContext newsletterCuratorContext;
         private readonly HTMLScraperService htmlScraperService;
+        private readonly YouTubeMetadataService youTubeMetadataService;
 
-        public NewsitemController(NewsletterCuratorContext newsletterCuratorContext, HTMLScraperService htmlScraperService)
+        public NewsitemController(NewsletterCuratorContext newsletterCuratorContext, HTMLScraperService htmlScraperService, YouTubeMetadataService youTubeMetadataService)
         {
             this.newsletterCuratorContext = newsletterCuratorContext;
             this.htmlScraperService = htmlScraperService;
+            this.youTubeMetadataService = youTubeMetadataService;
         }
 
         public async Task<IActionResult> Add(string url)
         {
-            var urlMetaData = await htmlScraperService.ScrapeMetadataAsync(url);
+            Scraper.Contracts.URLMetadata urlMetaData;
+
+            if (url.Replace(".","").Contains("youtube", StringComparison.InvariantCultureIgnoreCase))
+                urlMetaData = await youTubeMetadataService.ScrapeMetadataAsync(url);
+            else
+                urlMetaData = await htmlScraperService.ScrapeMetadataAsync(url);
 
             return View(new AddNewsitemViewModel
             {

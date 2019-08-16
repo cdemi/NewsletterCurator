@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
+    <PackageReference Include="Google.Apis" Version="1.40.3" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.SnapshotCollector" Version="1.3.5" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -26,8 +27,9 @@
     <ProjectReference Include="..\NewsletterCurator.Data.SqlServer\NewsletterCurator.Data.SqlServer.csproj" />
     <ProjectReference Include="..\NewsletterCurator.Data\NewsletterCurator.Data.csproj" />
     <ProjectReference Include="..\NewsletterCurator.EmailService\NewsletterCurator.EmailService.csproj" />
-    <ProjectReference Include="..\NewsletterCurator.HTMLScraper.Contracts\NewsletterCurator.HTMLScraper.Contracts.csproj" />
     <ProjectReference Include="..\NewsletterCurator.HTMLScraper\NewsletterCurator.HTMLScraper.csproj" />
+    <ProjectReference Include="..\NewsletterCurator.Scraper.Contracts\NewsletterCurator.Scraper.Contracts.csproj" />
+    <ProjectReference Include="..\NewsletterCurator.YouTubeScraper\NewsletterCurator.YouTubeScraper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

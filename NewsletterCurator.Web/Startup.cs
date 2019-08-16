@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Text;
+using Google.Apis.Services;
 using Microsoft.ApplicationInsights.AspNetCore;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.SnapshotCollector;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NewsletterCurator.Data;
 using NewsletterCurator.HTMLScraper;
+using NewsletterCurator.YouTubeScraper;
 using Polly;
 
 namespace NewsletterCurator.Web
@@ -54,6 +56,11 @@ namespace NewsletterCurator.Web
                 EnableSsl = Configuration.GetValue<bool>("SMTP:EnableSsl")
             }, Configuration.GetValue<string>("Mail:List-Unsubscribe-Mail")));
             services.AddTransient<HTMLScraperService>();
+            services.AddTransient(s=> new BaseClientService.Initializer() {
+                ApiKey = Configuration.GetValue<string>("YouTubeKey"),
+                ApplicationName = this.GetType().ToString()
+            });
+            services.AddTransient<YouTubeMetadataService>();
             services.AddHttpClient("github", c =>
             {
                 c.BaseAddress = new Uri("https://api.github.com/");

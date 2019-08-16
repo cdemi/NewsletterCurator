@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
-using NewsletterCurator.HTMLScraper.Contracts;
+using NewsletterCurator.Scraper.Contracts;
 
 namespace NewsletterCurator.HTMLScraper
 {

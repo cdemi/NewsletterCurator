@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace NewsletterCurator.HTMLScraper.Contracts
+namespace NewsletterCurator.Scraper.Contracts
 {
     public interface IScraperService
     {
