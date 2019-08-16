@@ -5,10 +5,6 @@ trigger:
 pool:
   vmImage: 'windows-2019'
 steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '2.2.401'
 - script: dotnet tool install -g dotnet-sonarscanner
   displayName: dotnet install sonarscanner
 - script: dotnet sonarscanner begin /k:"cdemi_NewsletterCurator" /o:"cdemi-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$(sonarLogin)" /v:"$(Build.BuildNumber)"
@@ -24,7 +20,7 @@ steps:
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
-- script: dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+- script: dotnet publish --no-build --no-restore --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
   displayName: dotnet publish
 - task: PublishBuildArtifacts@1
   displayName: Publishing Artifacts
