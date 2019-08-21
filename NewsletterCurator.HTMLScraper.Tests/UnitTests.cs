@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -27,7 +28,7 @@ namespace NewsletterCurator.HTMLScraper.Tests
         public async Task ScrapeCdemiBlog()
         {
             var scraperService = new HTMLScraperService(httpClient, new NullLogger<HTMLScraperService>());
-            var urlMetaData = await scraperService.ScrapeMetadataAsync("https://blog.cdemi.io/whats-coming-in-c-8-0-nullable-reference-types/?src=NewsletterCuratorTest");
+            var urlMetaData = await scraperService.ScrapeMetadataAsync(new Uri("https://blog.cdemi.io/whats-coming-in-c-8-0-nullable-reference-types/?src=NewsletterCuratorTest"));
 
             Assert.AreEqual(urlMetaData.CanonicalURL, "https://blog.cdemi.io/whats-coming-in-c-8-0-nullable-reference-types/");
             Assert.AreEqual(urlMetaData.Images.Count, 2);

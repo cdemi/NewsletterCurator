@@ -20,14 +20,14 @@ namespace NewsletterCurator.HTMLScraper
             this.httpClient = httpClient;
             this.logger = logger;
         }
-        public async Task<string> ScrapeAsync(string url)
+        public async Task<string> ScrapeAsync(Uri uri)
         {
-            return await httpClient.GetStringAsync(url);
+            return await httpClient.GetStringAsync(uri);
         }
 
-        public async Task<URLMetadata> ScrapeMetadataAsync(string url)
+        public async Task<URLMetadata> ScrapeMetadataAsync(Uri uri)
         {
-            var responseString = await httpClient.GetStringAsync(url);
+            var responseString = await httpClient.GetStringAsync(uri.GetLeftPart(UriPartial.Query));
             htmlDoc.LoadHtml(responseString);
 
             var canonicalUrl = htmlDoc.DocumentNode.SelectSingleNode("//link[@rel='canonical']")?.GetAttributeValue("href", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:url']")?.GetAttributeValue("content", null);
@@ -37,9 +37,9 @@ namespace NewsletterCurator.HTMLScraper
                 {
                     if (!canonicalUrl.StartsWith("http"))
                     {
-                        canonicalUrl = new Uri(new Uri(url), canonicalUrl).ToString();
+                        canonicalUrl = new Uri(uri, canonicalUrl).ToString();
                     }
-                    if (canonicalUrl != null && !canonicalUrl.Equals(url, StringComparison.InvariantCultureIgnoreCase))
+                    if (canonicalUrl != null && !canonicalUrl.Equals(uri.ToString(), StringComparison.InvariantCultureIgnoreCase))
                     {
                         responseString = await httpClient.GetStringAsync(canonicalUrl);
                         htmlDoc.LoadHtml(responseString);
@@ -54,7 +54,7 @@ namespace NewsletterCurator.HTMLScraper
 
             var urlMetadata = new URLMetadata
             {
-                CanonicalURL = canonicalUrl ?? url,
+                CanonicalURL = canonicalUrl ?? uri.ToString(),
                 Title = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:title']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//title")?.InnerText,
                 Summary = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og:description']")?.GetAttributeValue("content", null) ?? htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='description']")?.GetAttributeValue("content", null)
             };
@@ -85,7 +85,7 @@ namespace NewsletterCurator.HTMLScraper
                     {
                         try
                         {
-                            imageSrc = new Uri(new Uri(url), imageSrc).ToString();
+                            imageSrc = new Uri(uri, imageSrc).ToString();
                         }
                         catch
                         {
@@ -121,19 +121,19 @@ namespace NewsletterCurator.HTMLScraper
 
                 if (!urlMetadata.FaviconURL.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    urlMetadata.FaviconURL = new Uri(new Uri(url), urlMetadata.FaviconURL).ToString();
+                    urlMetadata.FaviconURL = new Uri(uri, urlMetadata.FaviconURL).ToString();
                 }
             }
 
             if (String.IsNullOrEmpty(urlMetadata.FaviconURL))
             {
-                logger.LogInformation("No favicons found in metadata. Trying to get default favicon from: " + new Uri(new Uri(url), "/favicon.ico").ToString());
+                logger.LogInformation("No favicons found in metadata. Trying to get default favicon from: " + new Uri(uri, "/favicon.ico").ToString());
                 try
                 {
                     HttpClient faviconClient = new HttpClient();
-                    var faviconResponse = await faviconClient.GetAsync(new Uri(new Uri(url), "/favicon.ico"), HttpCompletionOption.ResponseHeadersRead);
+                    var faviconResponse = await faviconClient.GetAsync(new Uri(uri, "/favicon.ico"), HttpCompletionOption.ResponseHeadersRead);
                     if (faviconResponse.IsSuccessStatusCode)
-                        urlMetadata.FaviconURL = new Uri(new Uri(url), "/favicon.ico").ToString();
+                        urlMetadata.FaviconURL = new Uri(uri, "/favicon.ico").ToString();
                 }
                 catch (Exception ex)
                 {

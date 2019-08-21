@@ -5,6 +5,6 @@ namespace NewsletterCurator.Scraper.Contracts
 {
     public interface IScraperService
     {
-        Task<URLMetadata> ScrapeMetadataAsync(string url);
+        Task<URLMetadata> ScrapeMetadataAsync(Uri uri);
     }
 }

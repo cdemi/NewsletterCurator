@@ -27,10 +27,10 @@ namespace NewsletterCurator.Web.Controllers
         {
             Scraper.Contracts.URLMetadata urlMetaData;
 
-            if (url.Replace(".","").Contains("youtube", StringComparison.InvariantCultureIgnoreCase))
-                urlMetaData = await youTubeMetadataService.ScrapeMetadataAsync(url);
+            if (url.Replace(".", "").Contains("youtube", StringComparison.InvariantCultureIgnoreCase))
+                urlMetaData = await youTubeMetadataService.ScrapeMetadataAsync(new Uri(url));
             else
-                urlMetaData = await htmlScraperService.ScrapeMetadataAsync(url);
+                urlMetaData = await htmlScraperService.ScrapeMetadataAsync(new Uri(url));
 
             return View(new AddNewsitemViewModel
             {

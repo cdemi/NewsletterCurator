@@ -20,10 +20,10 @@ namespace NewsletterCurator.YouTubeScraper
             youtubeService = new YouTubeService(baseClientServiceInitializer);
         }
 
-        public async Task<URLMetadata> ScrapeMetadataAsync(string url)
+        public async Task<URLMetadata> ScrapeMetadataAsync(Uri uri)
         {
             var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = url;
+            searchListRequest.Q = uri.ToString();
             searchListRequest.MaxResults = 1;
             searchListRequest.Type = "video";
 

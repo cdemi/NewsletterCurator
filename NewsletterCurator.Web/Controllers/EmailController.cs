@@ -34,8 +34,8 @@ namespace NewsletterCurator.Web.Controllers
 
         public async Task<IActionResult> Send()
         {
-            var emailSrc = await htmlScraperService.ScrapeAsync(Url.AbsoluteAction("Preview", "Email", new { isWeb = false }));
-            var webSrc = await htmlScraperService.ScrapeAsync(Url.AbsoluteAction("Preview", "Email", new { isWeb = true }));
+            var emailSrc = await htmlScraperService.ScrapeAsync(new Uri(Url.AbsoluteAction("Preview", "Email", new { isWeb = false })));
+            var webSrc = await htmlScraperService.ScrapeAsync(new Uri(Url.AbsoluteAction("Preview", "Email", new { isWeb = true })));
 
             var newsletterFilename = $"{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html";
 
