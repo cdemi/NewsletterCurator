@@ -1,4 +1,8 @@
-﻿pool:
+﻿trigger:
+- master
+pr:
+- master
+pool:
   vmImage: 'windows-2019'
 variables:
   buildConfiguration: 'Release'
