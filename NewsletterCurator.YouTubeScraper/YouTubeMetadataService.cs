@@ -42,7 +42,7 @@ namespace NewsletterCurator.YouTubeScraper
                 FaviconURL = "https://www.youtube.com/favicon.ico",
                 Title = videoListResponse.Items.First().Snippet.Title,
                 Summary = videoListResponse.Items.First().Snippet.Description,
-                Tags = videoListResponse.Items.First().Snippet.Tags.ToList(),
+                Tags = videoListResponse.Items.First().Snippet.Tags?.ToList(),
                 Images = new System.Collections.Generic.List<string> { videoListResponse.Items.First().Snippet.Thumbnails.Maxres.Url }
             };
 

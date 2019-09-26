@@ -3,17 +3,18 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace NewsletterCurator.HTMLScraper.Tests
 {
     [TestClass]
     public class UnitTests
     {
-        private readonly HttpClient httpClient;
+        private readonly IHttpClientFactory httpClientFactory;
 
         public UnitTests()
         {
-            httpClient = new HttpClient(new HttpClientHandler
+            var httpClient = new HttpClient(new HttpClientHandler
             {
                 AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate | System.Net.DecompressionMethods.None
             });
@@ -21,13 +22,15 @@ namespace NewsletterCurator.HTMLScraper.Tests
             httpClient.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
             httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
 
-
+            var mockFactory = new Mock<IHttpClientFactory>();
+            mockFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
+            httpClientFactory = mockFactory.Object;
         }
 
         [TestMethod]
         public async Task ScrapeCdemiBlog()
         {
-            var scraperService = new HTMLScraperService(httpClient, new NullLogger<HTMLScraperService>());
+            var scraperService = new HTMLScraperService(httpClientFactory, new NullLogger<HTMLScraperService>());
             var urlMetaData = await scraperService.ScrapeMetadataAsync(new Uri("https://blog.cdemi.io/whats-coming-in-c-8-0-nullable-reference-types/?src=NewsletterCuratorTest"));
 
             Assert.AreEqual(urlMetaData.CanonicalURL, "https://blog.cdemi.io/whats-coming-in-c-8-0-nullable-reference-types/");

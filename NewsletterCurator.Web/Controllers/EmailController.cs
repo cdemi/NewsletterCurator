@@ -39,7 +39,7 @@ namespace NewsletterCurator.Web.Controllers
 
             var newsletterFilename = $"{DateTimeOffset.UtcNow.ToString("yyyy-MM-dd")}.html";
 
-            var hashTags = (await newsletterCuratorContext.NewsitemsByCategory().SelectMany(n => n.Key.HashTags).ToListAsync());
+            var hashTags = (newsletterCuratorContext.NewsitemsByCategory().SelectMany(n => n.Key.HashTags).ToList());
 
             await addToGitHubArchive(webSrc, newsletterFilename);
 
@@ -72,9 +72,9 @@ namespace NewsletterCurator.Web.Controllers
             return response;
         }
 
-        public async Task<IActionResult> Preview(bool isWeb)
+        public IActionResult Preview(bool isWeb)
         {
-            var categoryNewsItemsViewModels = await newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToListAsync();
+            var categoryNewsItemsViewModels = newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToList();
 
             return View(new PreviewModel { Newsitems = categoryNewsItemsViewModels, IsWeb = isWeb });
         }

@@ -15,9 +15,9 @@ namespace NewsletterCurator.HTMLScraper
         private readonly HttpClient httpClient;
         private readonly ILogger<HTMLScraperService> logger;
 
-        public HTMLScraperService(HttpClient httpClient, ILogger<HTMLScraperService> logger)
+        public HTMLScraperService(IHttpClientFactory httpClientFactory, ILogger<HTMLScraperService> logger)
         {
-            this.httpClient = httpClient;
+            this.httpClient = httpClientFactory.CreateClient("httpClient");
             this.logger = logger;
         }
         public async Task<string> ScrapeAsync(Uri uri)
