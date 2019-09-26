@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using NewsletterCurator.Data;
 using NewsletterCurator.HTMLScraper;
+using NewsletterCurator.Scraper.Contracts;
 using NewsletterCurator.YouTubeScraper;
 using Polly;
 
@@ -48,14 +50,13 @@ namespace NewsletterCurator.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllersWithViews();
             services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
             services.AddTransient(s => new EmailService.EmailService(new System.Net.Mail.SmtpClient(Configuration.GetValue<string>("SMTP:Host"), Configuration.GetValue<int>("SMTP:Port"))
             {
                 Credentials = new System.Net.NetworkCredential(Configuration.GetValue<string>("SMTP:Username"), Configuration.GetValue<string>("SMTP:Password")),
                 EnableSsl = Configuration.GetValue<bool>("SMTP:EnableSsl")
             }, Configuration.GetValue<string>("Mail:List-Unsubscribe-Mail")));
-            services.AddTransient<HTMLScraperService>();
             services.AddTransient(s=> new BaseClientService.Initializer() {
                 ApiKey = Configuration.GetValue<string>("YouTubeKey"),
                 ApplicationName = this.GetType().ToString()
@@ -67,7 +68,10 @@ namespace NewsletterCurator.Web
                 c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
                 c.DefaultRequestHeaders.Add("User-Agent", "NewsletterCurator-Archive");
                 c.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{Configuration.GetValue<string>("GitHub:Username")}:{Configuration.GetValue<string>("GitHub:PersonalAccessToken")}")));
-            }); services.AddHttpClient<HTMLScraperService>((client) =>
+            });
+
+
+            services.AddHttpClient<HTMLScraperService>((client) =>
             {
                 client.DefaultRequestHeaders.Add("User-Agent", Configuration.GetValue<string>("HttpClient:UserAgent"));
                 client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
@@ -77,6 +81,9 @@ namespace NewsletterCurator.Web
                 AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate | System.Net.DecompressionMethods.None
             }).AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(600)));
 
+            services.AddTransient<HTMLScraperService>();
+
+
             // Configure SnapshotCollector from application settings
             services.Configure<SnapshotCollectorConfiguration>(Configuration.GetSection(nameof(SnapshotCollectorConfiguration)));
 
@@ -85,8 +92,11 @@ namespace NewsletterCurator.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
+            app.UseStaticFiles();
+            app.UseRouting();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -97,7 +107,6 @@ namespace NewsletterCurator.Web
                 app.UseHttpsRedirection();
             }
 
-            app.UseStaticFiles();
 
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -113,23 +122,23 @@ namespace NewsletterCurator.Web
                 await next();
             });
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "newsletter",
-                    template: "Newsletter/{action=Index}/{id?}", defaults: new { controller = "Newsletter" });
+                    pattern: "Newsletter/{action=Index}/{id?}", defaults: new { controller = "Newsletter" });
 
                 if (env.IsDevelopment())
                 {
-                    routes.MapRoute(
+                    endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 }
                 else
                 {
-                    routes.MapRoute(
+                    endpoints.MapControllerRoute(
                        name: "default",
-                       template: Configuration.GetValue<string>("AdminKey") + "/{controller=Home}/{action=Index}/{id?}");
+                       pattern: Configuration.GetValue<string>("AdminKey") + "/{controller=Home}/{action=Index}/{id?}");
                 }
             });
 
