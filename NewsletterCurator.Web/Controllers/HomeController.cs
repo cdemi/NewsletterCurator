@@ -16,9 +16,9 @@ namespace NewsletterCurator.Web.Controllers
             this.newsletterCuratorContext = newsletterCuratorContext;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var categoryNewsItemsViewModels = await newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToListAsync();
+            var categoryNewsItemsViewModels = newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToList();
 
             return View(categoryNewsItemsViewModels);
         }

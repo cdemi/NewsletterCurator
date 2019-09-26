@@ -49,6 +49,7 @@ namespace NewsletterCurator.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry();
             services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
             services.AddControllersWithViews();
             services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
@@ -71,7 +72,7 @@ namespace NewsletterCurator.Web
             });
 
 
-            services.AddHttpClient<HTMLScraperService>((client) =>
+            services.AddHttpClient("httpClient", client =>
             {
                 client.DefaultRequestHeaders.Add("User-Agent", Configuration.GetValue<string>("HttpClient:UserAgent"));
                 client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");

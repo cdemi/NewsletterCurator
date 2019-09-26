@@ -125,9 +125,9 @@ namespace NewsletterCurator.Data
             });
         }
 
-        public IQueryable<IGrouping<Category, Newsitem>> NewsitemsByCategory()
+        public IOrderedEnumerable<IGrouping<Category, Newsitem>> NewsitemsByCategory()
         {
-            return Newsitems.Where(n => !n.IsAlreadySent).OrderByDescending(n => n.DateTime).GroupBy(n => n.Category).OrderBy(c => c.Key.Priority);
+            return Newsitems.Include(n=>n.Category).Where(n => !n.IsAlreadySent).OrderByDescending(n => n.DateTime).AsEnumerable().GroupBy(n => n.Category).OrderBy(c => c.Key.Priority);
         }
 
 
