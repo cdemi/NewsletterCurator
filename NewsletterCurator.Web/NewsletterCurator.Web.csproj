@@ -7,6 +7,7 @@
     <UserSecretsId>dd191c59-771f-43f9-8837-863c62b1d128</UserSecretsId>
     <DockerTargetOS>Linux</DockerTargetOS>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
 
   <ItemGroup>
