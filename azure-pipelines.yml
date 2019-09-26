@@ -1,4 +1,4 @@
-﻿variables:
+variables:
   buildConfiguration: 'Release'
 trigger:
 - master
