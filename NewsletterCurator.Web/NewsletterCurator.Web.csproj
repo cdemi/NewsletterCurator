@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/69aa7db1-7827-422c-b44e-d830d07d61d7/resourcegroups/NewsletterCurator/providers/microsoft.insights/components/NewsletterCurator</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/69aa7db1-7827-422c-b44e-d830d07d61d7/resourcegroups/NewsletterCurator/providers/microsoft.insights/components/NewsletterCurator</ApplicationInsightsAnnotationResourceId>
     <UserSecretsId>dd191c59-771f-43f9-8837-863c62b1d128</UserSecretsId>
