@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.42.0.1758" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
