@@ -30,5 +30,5 @@ stages:
         repository: 'cdemi/NewsletterCurator'
         buildContext: '$(Build.SourcesDirectory)'
         tags: |
-          'cdemi/NewsletterCurator:latest'
-          'cdemi/NewsletterCurator:$(Build.BuildId)'
+          'latest'
+          '$(Build.BuildId)'
