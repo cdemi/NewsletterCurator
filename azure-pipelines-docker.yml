@@ -31,4 +31,6 @@ stages:
         buildContext: '$(Build.SourcesDirectory)'
         tags: |
           latest
-          $(Build.BuildId)
+          $(Build.BuildNumber)
+          $(Build.BuildNumber)-linux
+          latest-linux
