@@ -18,9 +18,14 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
     - task: Docker@2
-      displayName: Build an image
+      displayName: Login to Dockerhub
       inputs:
-        command: build
+        command: login
+        containerRegistry: Dockerhub
+    - task: Docker@2
+      displayName: Build and Push an image
+      inputs:
+        command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/NewsletterCurator.Web/Dockerfile'
         buildContext: '$(Build.SourcesDirectory)'
         tags: |
