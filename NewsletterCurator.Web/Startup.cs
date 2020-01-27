@@ -7,6 +7,7 @@ using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.SnapshotCollector;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -52,6 +53,13 @@ namespace NewsletterCurator.Web
             services.AddApplicationInsightsTelemetry();
             services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
             services.AddControllersWithViews();
+
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
             services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
             services.AddTransient(s => new EmailService.EmailService(new System.Net.Mail.SmtpClient(Configuration.GetValue<string>("SMTP:Host"), Configuration.GetValue<int>("SMTP:Port"))
             {
