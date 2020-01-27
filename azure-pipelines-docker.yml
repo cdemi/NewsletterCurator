@@ -27,6 +27,7 @@ stages:
       inputs:
         command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/NewsletterCurator.Web/Dockerfile'
+        repository: 'cdemi/NewsletterCurator'
         buildContext: '$(Build.SourcesDirectory)'
         tags: |
           'cdemi/NewsletterCurator:latest'
