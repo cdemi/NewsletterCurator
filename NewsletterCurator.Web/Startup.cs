@@ -112,8 +112,8 @@ namespace NewsletterCurator.Web
             }
             else
             {
-                app.UseHsts();
-                app.UseHttpsRedirection();
+                //app.UseHsts();
+                //app.UseHttpsRedirection();
             }
 
 
