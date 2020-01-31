@@ -4,6 +4,6 @@
     <Authors>cdemi</Authors>
     <Version>$(Version)</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
   </PropertyGroup>
 </Project>
