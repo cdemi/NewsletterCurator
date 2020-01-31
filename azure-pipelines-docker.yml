@@ -1,6 +1,4 @@
-﻿# Docker
-# Build a Docker image 
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+name: 2.0.$(Build.BuildId)
 
 trigger:
 - master
