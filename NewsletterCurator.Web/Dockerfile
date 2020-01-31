@@ -14,10 +14,8 @@ COPY ["NewsletterCurator.EmailService/NewsletterCurator.EmailService.csproj", "N
 RUN dotnet restore "NewsletterCurator.Web/NewsletterCurator.Web.csproj"
 COPY . .
 WORKDIR "/src/NewsletterCurator.Web"
-RUN dotnet build "NewsletterCurator.Web.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "NewsletterCurator.Web.csproj" -c Release -o /app/publish
+ARG VERSION=1
+RUN dotnet publish "NewsletterCurator.Web.csproj" /p:Version=$VERSION -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

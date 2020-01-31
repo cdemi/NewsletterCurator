@@ -1,4 +1,4 @@
-# Docker
+﻿# Docker
 # Build a Docker image 
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -23,12 +23,23 @@ stages:
         command: login
         containerRegistry: Dockerhub
     - task: Docker@2
-      displayName: Build and Push an image
+      displayName: Build the image
       inputs:
-        command: buildAndPush
+        command: build
         dockerfile: '$(Build.SourcesDirectory)/NewsletterCurator.Web/Dockerfile'
         repository: 'cdemi/NewsletterCurator'
         buildContext: '$(Build.SourcesDirectory)'
+        arguments: --build-arg VERSION=$(Build.BuildNumber)
+        tags: |
+          latest
+          $(Build.BuildNumber)
+          $(Build.BuildNumber)-linux
+          latest-linux
+    - task: Docker@2
+      displayName: Push an image
+      inputs:
+        command: push
+        repository: 'cdemi/NewsletterCurator'
         tags: |
           latest
           $(Build.BuildNumber)
