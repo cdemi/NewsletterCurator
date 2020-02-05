@@ -6,13 +6,6 @@ trigger:
 resources:
 - repo: self
 
-variables:
-  tags: |
-      latest
-      $(Build.BuildNumber)
-      $(Build.BuildNumber)-linux
-      latest-linux
-
 stages:
 - stage: Build
   displayName: Build image
@@ -35,11 +28,19 @@ stages:
         repository: 'cdemi/NewsletterCurator'
         buildContext: '$(Build.SourcesDirectory)'
         arguments: --build-arg VERSION=$(Build.BuildNumber)
-        tags: tags
+        tags: |
+            latest
+            $(Build.BuildNumber)
+            $(Build.BuildNumber)-linux
+            latest-linux
     - task: Docker@2
       displayName: Push an image
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
       inputs:
         command: push
         repository: 'cdemi/NewsletterCurator'
-        tags: tags
+        tags: |
+            latest
+            $(Build.BuildNumber)
+            $(Build.BuildNumber)-linux
+            latest-linux
