@@ -1,8 +1,12 @@
 ﻿<Project>
   <PropertyGroup>
-    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <Company>cdemi</Company>
+    <Authors>cdemi</Authors>
+    <Version>$(Version)</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+	<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <RestoreLockedMode>true</RestoreLockedMode>
-    <!--<NoWarn>NU1603</NoWarn>-->
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
   </PropertyGroup>
 </Project>

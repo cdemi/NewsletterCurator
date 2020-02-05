@@ -1,9 +1,11 @@
 ﻿@model List<Subscriber>
-
+@{
+    ViewData["Title"] = "Subscribers";
+}
 <div class="container">
     <div class="row align-items-center">
         <div class="col">
-            <h1>Subscribers</h1>
+            <h1>@Model.Count(s => s.DateUnsubscribed == null && s.DateValidated != null) Subscribers</h1>
         </div>
     </div>
     <table class="table">

@@ -1,0 +1,55 @@
+name: 2.0.$(Build.BuildId)
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Login to Dockerhub
+      inputs:
+        command: login
+        containerRegistry: Dockerhub
+    - task: Docker@2
+      displayName: Build the image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/NewsletterCurator.Web/Dockerfile'
+        repository: 'cdemi/NewsletterCurator'
+        buildContext: '$(Build.SourcesDirectory)'
+        arguments: --build-arg VERSION=$(Build.BuildNumber)
+        tags: |
+            latest
+            $(Build.BuildNumber)
+            $(Build.BuildNumber)-linux
+            latest-linux
+    - task: Docker@2
+      displayName: Push a latest image
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        command: push
+        repository: 'cdemi/NewsletterCurator'
+        tags: |
+            latest
+            $(Build.BuildNumber)
+            $(Build.BuildNumber)-linux
+            latest-linux
+    - task: Docker@2
+      displayName: Push an image
+      condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        command: push
+        repository: 'cdemi/NewsletterCurator'
+        tags: |
+            $(Build.BuildNumber)
+            $(Build.BuildNumber)-linux

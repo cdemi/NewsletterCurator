@@ -17,7 +17,7 @@ namespace NewsletterCurator.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var subscribers = await newsletterCuratorContext.Subscribers.OrderByDescending(s => new[] { s.DateSubscribed, s.DateUnsubscribed, s.DateValidated }.Max()).ToListAsync();
+            var subscribers = (await newsletterCuratorContext.Subscribers.ToListAsync()).OrderByDescending(s => new[] { s.DateSubscribed, s.DateUnsubscribed, s.DateValidated }.Max()).ToList();
             return View(subscribers);
         }
     }

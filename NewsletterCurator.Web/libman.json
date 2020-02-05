@@ -4,7 +4,7 @@
   "libraries": [
     {
       "provider": "cdnjs",
-      "library": "twitter-bootstrap@4.3.1",
+      "library": "twitter-bootstrap@4.4.1",
       "destination": "wwwroot/lib/twitter-bootstrap/",
       "files": [
         "css/bootstrap.css",
@@ -13,7 +13,7 @@
     },
     {
       "provider": "cdnjs",
-      "library": "popper.js@1.15.0",
+      "library": "popper.js@1.16.1",
       "destination": "wwwroot/lib/popper.js/",
       "files": [
         "umd/popper.js"
