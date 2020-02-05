@@ -34,7 +34,7 @@ stages:
             $(Build.BuildNumber)-linux
             latest-linux
     - task: Docker@2
-      displayName: Push an image
+      displayName: Push a latest image
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
       inputs:
         command: push
@@ -44,3 +44,12 @@ stages:
             $(Build.BuildNumber)
             $(Build.BuildNumber)-linux
             latest-linux
+    - task: Docker@2
+      displayName: Push an image
+      condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        command: push
+        repository: 'cdemi/NewsletterCurator'
+        tags: |
+            $(Build.BuildNumber)
+            $(Build.BuildNumber)-linux
