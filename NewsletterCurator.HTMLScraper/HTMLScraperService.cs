@@ -121,7 +121,7 @@ namespace NewsletterCurator.HTMLScraper
             {
                 urlMetadata.FaviconURL = faviconTag.GetAttributeValue("href", null);
 
-                if (!urlMetadata.FaviconURL.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                if (!String.IsNullOrEmpty(urlMetadata.FaviconURL) && !urlMetadata.FaviconURL.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
                 {
                     urlMetadata.FaviconURL = new Uri(response.RequestMessage.RequestUri, urlMetadata.FaviconURL).ToString();
                 }
