@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BuildBundlerMinifier" Version="3.2.435" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
     <PackageReference Include="Google.Apis" Version="1.45.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.13.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
