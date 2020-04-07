@@ -28,7 +28,11 @@ namespace NewsletterCurator.YouTubeScraper
             searchListRequest.Type = "video";
 
             var searchListResponse = await searchListRequest.ExecuteAsync();
-            var videoID = searchListResponse.Items.First().Id.VideoId;
+            string videoID;
+            if (searchListResponse.Items.Count > 0)
+                videoID = searchListResponse.Items.First().Id.VideoId;
+            else
+                videoID = System.Web.HttpUtility.ParseQueryString(uri.Query).Get("v");
 
             var videosListRequest = youtubeService.Videos.List("snippet");
             videosListRequest.Id = videoID;
