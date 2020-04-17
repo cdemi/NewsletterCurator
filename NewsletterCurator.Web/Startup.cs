@@ -50,6 +50,7 @@ namespace NewsletterCurator.Web
                 c.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{Configuration.GetValue<string>("GitHub:Username")}:{Configuration.GetValue<string>("GitHub:PersonalAccessToken")}")));
             });
 
+            services.AddHealthChecks();
 
             services.AddHttpClient("httpClient", client =>
             {
@@ -100,6 +101,8 @@ namespace NewsletterCurator.Web
                 endpoints.MapControllerRoute(
                     name: "newsletter",
                     pattern: "Newsletter/{action=Index}/{id?}", defaults: new { controller = "Newsletter" });
+
+                endpoints.MapHealthChecks("/health");
 
                 if (env.IsDevelopment())
                 {
