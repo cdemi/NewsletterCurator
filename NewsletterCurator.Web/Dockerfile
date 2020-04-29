@@ -9,6 +9,7 @@ COPY ["NewsletterCurator.YouTubeScraper/NewsletterCurator.YouTubeScraper.csproj"
 COPY ["NewsletterCurator.Scraper.Contracts/NewsletterCurator.Scraper.Contracts.csproj", "NewsletterCurator.Scraper.Contracts/"]
 COPY ["NewsletterCurator.HTMLScraper/NewsletterCurator.HTMLScraper.csproj", "NewsletterCurator.HTMLScraper/"]
 COPY ["NewsletterCurator.Data.SqlServer/NewsletterCurator.Data.SqlServer.csproj", "NewsletterCurator.Data.SqlServer/"]
+COPY ["NewsletterCurator.Data.Postgres/NewsletterCurator.Data.Postgres.csproj", "NewsletterCurator.Data.Postgres/"]
 COPY ["NewsletterCurator.Data/NewsletterCurator.Data.csproj", "NewsletterCurator.Data/"]
 COPY ["NewsletterCurator.EmailService/NewsletterCurator.EmailService.csproj", "NewsletterCurator.EmailService/"]
 RUN dotnet restore "NewsletterCurator.Web/NewsletterCurator.Web.csproj"
