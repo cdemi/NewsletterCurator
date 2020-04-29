@@ -31,7 +31,11 @@ namespace NewsletterCurator.Web
             services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
             services.AddControllersWithViews();
 
-            services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
+            if (Configuration.GetValue<string>("DBType").Equals("postgres", StringComparison.InvariantCultureIgnoreCase))
+                services.AddDbContext<NewsletterCuratorContext>(options => options.UseNpgsql(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.Postgres")));
+            else if (Configuration.GetValue<string>("DBType").Equals("mssql", StringComparison.InvariantCultureIgnoreCase))
+                services.AddDbContext<NewsletterCuratorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewsletterCuratorContext"), builder => builder.MigrationsAssembly("NewsletterCurator.Data.SqlServer")));
+
             services.AddTransient(s => new EmailService.EmailService(new System.Net.Mail.SmtpClient(Configuration.GetValue<string>("SMTP:Host"), Configuration.GetValue<int>("SMTP:Port"))
             {
                 Credentials = new System.Net.NetworkCredential(Configuration.GetValue<string>("SMTP:Username"), Configuration.GetValue<string>("SMTP:Password")),

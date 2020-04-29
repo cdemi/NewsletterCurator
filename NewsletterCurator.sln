@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsletterCurator.YouTubeSc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsletterCurator.Scraper.Contracts", "NewsletterCurator.Scraper.Contracts\NewsletterCurator.Scraper.Contracts.csproj", "{4A57AC02-1CFE-47A3-AADA-E758AFE8F5C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsletterCurator.Data.Postgres", "NewsletterCurator.Data.Postgres\NewsletterCurator.Data.Postgres.csproj", "{AED81C98-0BE6-45E2-99D8-A71F8D1607DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{4A57AC02-1CFE-47A3-AADA-E758AFE8F5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A57AC02-1CFE-47A3-AADA-E758AFE8F5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A57AC02-1CFE-47A3-AADA-E758AFE8F5C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AED81C98-0BE6-45E2-99D8-A71F8D1607DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AED81C98-0BE6-45E2-99D8-A71F8D1607DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AED81C98-0BE6-45E2-99D8-A71F8D1607DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AED81C98-0BE6-45E2-99D8-A71F8D1607DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
