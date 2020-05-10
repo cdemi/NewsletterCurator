@@ -15,7 +15,7 @@ namespace NewsletterCurator.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -252,6 +252,14 @@ namespace NewsletterCurator.Data.Migrations
                             HashTags = "SoftwareDevelopment,Software,Dev,Programming",
                             Name = "Software Development",
                             Priority = 0f
+                        },
+                        new
+                        {
+                            ID = new Guid("217f4497-33d2-434c-a1db-5a422d98078f"),
+                            Color = "#67ca0c",
+                            HashTags = "Architecture,SoftwareArchitecture,EnterpriseArchitecture",
+                            Name = "Architecture",
+                            Priority = 0.1f
                         },
                         new
                         {

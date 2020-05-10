@@ -108,6 +108,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("527FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff5722", HashTags = new string[] { "Infrastructure", "sysadmin" }, Name = "Infrastructure", Priority = 4 },
                     new Category { ID = new Guid("622FA497-32D2-434C-A1DB-5A722D94012F"), Color = "#6e179b", HashTags = new string[] { "IoT", "InternetOfThings" }, Name = "Internet of Things", Priority = 4.5f },
                     new Category { ID = new Guid("317FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#607d8b", HashTags = new string[] { "SoftwareDevelopment", "Software", "Dev", "Programming" }, Name = "Software Development", Priority = 0 },
+                    new Category { ID = new Guid("217F4497-33D2-434C-A1DB-5A422D98078F"), Color = "#67ca0c", HashTags = new string[] { "Architecture", "SoftwareArchitecture", "EnterpriseArchitecture" }, Name = "Architecture", Priority = 0.1f },
                     new Category { ID = new Guid("847FF497-33A2-424C-A1DB-5A722D94078F"), Color = "#795548", HashTags = new string[] { "Design" }, Name = "Design", Priority = 6 },
                     new Category { ID = new Guid("927AF497-33A2-424C-A1DB-5A722D92078A"), Color = "#a74141", HashTags = new string[] { "Healthcare", "Medical" }, Name = "Healthcare", Priority = 89 },
                     new Category { ID = new Guid("123FF497-33A2-424C-A1DB-5A722D940456"), Color = "#1dae0b", HashTags = new string[] { "Politics" }, Name = "Politics", Priority = 89.5f },
