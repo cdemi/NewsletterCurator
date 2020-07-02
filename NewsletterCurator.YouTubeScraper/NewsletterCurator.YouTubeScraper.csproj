@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.47.0.2005" />
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.47.0.2008" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.5" />
   </ItemGroup>
 
