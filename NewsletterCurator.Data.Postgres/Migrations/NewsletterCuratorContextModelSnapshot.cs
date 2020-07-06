@@ -16,7 +16,7 @@ namespace NewsletterCurator.Data.Postgres.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("NewsletterCurator.Data.Category", b =>
@@ -260,6 +260,14 @@ namespace NewsletterCurator.Data.Postgres.Migrations
                             HashTags = "Architecture,SoftwareArchitecture,EnterpriseArchitecture",
                             Name = "Architecture",
                             Priority = 0.1f
+                        },
+                        new
+                        {
+                            ID = new Guid("847bf497-33a2-424c-a1db-5a722d94078a"),
+                            Color = "#88b224",
+                            HashTags = "Open Source,OSS,FOSS",
+                            Name = "Open Source",
+                            Priority = 5.7f
                         },
                         new
                         {
