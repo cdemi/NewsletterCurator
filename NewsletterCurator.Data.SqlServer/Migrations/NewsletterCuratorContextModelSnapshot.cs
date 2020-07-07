@@ -265,7 +265,7 @@ namespace NewsletterCurator.Data.Migrations
                         {
                             ID = new Guid("847bf497-33a2-424c-a1db-5a722d94078a"),
                             Color = "#88b224",
-                            HashTags = "Open Source,OSS,FOSS",
+                            HashTags = "OpenSource,OSS,FOSS",
                             Name = "Open Source",
                             Priority = 5.7f
                         },
