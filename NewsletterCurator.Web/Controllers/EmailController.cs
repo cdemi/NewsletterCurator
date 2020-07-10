@@ -74,7 +74,7 @@ namespace NewsletterCurator.Web.Controllers
 
         public IActionResult Preview(bool isWeb)
         {
-            var categoryNewsItemsViewModels = newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.ToList() }).ToList();
+            var categoryNewsItemsViewModels = newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.OrderBy(ni=>ni.DateTime).ToList() }).ToList();
 
             return View(new PreviewModel { Newsitems = categoryNewsItemsViewModels, IsWeb = isWeb });
         }
