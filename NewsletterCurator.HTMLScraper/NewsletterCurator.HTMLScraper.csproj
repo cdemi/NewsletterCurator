@@ -6,13 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
-<<<<<<< HEAD
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.6" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.5" />
-=======
-    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.5" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
->>>>>>> origin/dependabot/nuget/Microsoft.Extensions.Logging-3.1.6
   </ItemGroup>
 
   <ItemGroup>
