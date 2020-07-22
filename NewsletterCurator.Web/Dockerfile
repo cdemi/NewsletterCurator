@@ -1,8 +1,8 @@
-﻿FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS publish
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS publish
 WORKDIR /src
 COPY ["NewsletterCurator.Web/NewsletterCurator.Web.csproj", "NewsletterCurator.Web/"]
 COPY ["NewsletterCurator.YouTubeScraper/NewsletterCurator.YouTubeScraper.csproj", "NewsletterCurator.YouTubeScraper/"]
