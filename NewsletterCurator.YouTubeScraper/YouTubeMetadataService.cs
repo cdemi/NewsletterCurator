@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -40,6 +41,25 @@ namespace NewsletterCurator.YouTubeScraper
 
             var videoListResponse = await videosListRequest.ExecuteAsync();
 
+            var images = new List<string>();
+
+            if (videoListResponse.Items.First().Snippet.Thumbnails.Maxres!=null)
+            {
+                images.Add(videoListResponse.Items.First().Snippet.Thumbnails.Maxres.Url);
+            }
+            if (videoListResponse.Items.First().Snippet.Thumbnails.High != null)
+            {
+                images.Add(videoListResponse.Items.First().Snippet.Thumbnails.High.Url);
+            }
+            if (videoListResponse.Items.First().Snippet.Thumbnails.Medium != null)
+            {
+                images.Add(videoListResponse.Items.First().Snippet.Thumbnails.Medium.Url);
+            }
+            if (videoListResponse.Items.First().Snippet.Thumbnails.Standard != null)
+            {
+                images.Add(videoListResponse.Items.First().Snippet.Thumbnails.Standard.Url);
+            }
+
             URLMetadata metadata = new URLMetadata()
             {
                 CanonicalURL = "https://youtu.be/" + videoID,
@@ -47,7 +67,7 @@ namespace NewsletterCurator.YouTubeScraper
                 Title = videoListResponse.Items.First().Snippet.Title,
                 Summary = videoListResponse.Items.First().Snippet.Description,
                 Tags = videoListResponse.Items.First().Snippet.Tags?.ToList(),
-                Images = new System.Collections.Generic.List<string> { videoListResponse.Items.First().Snippet.Thumbnails.Maxres.Url }
+                Images = images
             };
 
             return metadata;
