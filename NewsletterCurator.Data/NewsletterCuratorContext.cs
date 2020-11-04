@@ -97,6 +97,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#009688", HashTags = new string[] { "Hardware" }, Name = "Hardware", Priority = 5.5f },
                     new Category { ID = new Guid("a1e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#4caf50", HashTags = new string[] { "QA", "QualityAssurance" }, Name = "Quality Assurance", Priority = 5.8f },
                     new Category { ID = new Guid("91e0baf7-3c82-4866-b9ae-5a2e77ad88fa"), Color = "#57106e", HashTags = new string[] { "Business" }, Name = "Business", Priority = 5.85f },
+                    new Category { ID = new Guid("23e0baf7-3b82-4866-b8ae-5a2e77ad88fb"), Color = "#b53f44", HashTags = new string[] { "Agile", "Scrum" }, Name = "Agile", Priority = 5.84f },
                     new Category { ID = new Guid("12e0baf7-3b82-4866-b9ae-5a2e77ad88fb"), Color = "#683864", HashTags = new string[] { "Product", "ProductOwnership", "ProductManagement" }, Name = "Product", Priority = 5.9f },
                     new Category { ID = new Guid("84754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#8bc34a", HashTags = new string[] { "eSports" }, Name = "eSports", Priority = 8.5f },
                     new Category { ID = new Guid("44754987-6f3f-4b5e-a79d-a61b13a61647"), Color = "#ca9a07", HashTags = new string[] { "Gambling", "SportsBetting", "Casino" }, Name = "Gambling", Priority = 9 },
