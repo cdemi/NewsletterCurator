@@ -15,9 +15,9 @@ namespace NewsletterCurator.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
 
             modelBuilder.Entity("NewsletterCurator.Data.Category", b =>
                 {
@@ -164,6 +164,14 @@ namespace NewsletterCurator.Data.Migrations
                             HashTags = "Business",
                             Name = "Business",
                             Priority = 5.85f
+                        },
+                        new
+                        {
+                            ID = new Guid("23e0baf7-3b82-4866-b8ae-5a2e77ad88fb"),
+                            Color = "#b53f44",
+                            HashTags = "Agile,Scrum",
+                            Name = "Agile",
+                            Priority = 5.84f
                         },
                         new
                         {
@@ -457,6 +465,13 @@ namespace NewsletterCurator.Data.Migrations
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("NewsletterCurator.Data.Category", b =>
+                {
+                    b.Navigation("Newsitems");
                 });
 #pragma warning restore 612, 618
         }
