@@ -1,4 +1,4 @@
-name: 2.0.$(Build.BuildId)
+name: $(GitVersion.AssemblySemVer)
 
 trigger:
 - master
@@ -15,6 +15,12 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+    - task: gitversion/setup@0
+      displayName: Setup GitVersion
+      inputs:
+        versionSpec: '5.x'
+    - task: gitversion/execute@0
+      displayName: Determine Version
     - task: Docker@2
       displayName: Login to Dockerhub
       inputs:
@@ -27,11 +33,11 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/NewsletterCurator.Web/Dockerfile'
         repository: 'cdemi/NewsletterCurator'
         buildContext: '$(Build.SourcesDirectory)'
-        arguments: --build-arg VERSION=$(Build.BuildNumber)
+        arguments: --build-arg VERSION=$(GitVersion.AssemblySemVer)
         tags: |
             latest
-            $(Build.BuildNumber)
-            $(Build.BuildNumber)-linux
+            $(GitVersion.AssemblySemVer)
+            $(GitVersion.AssemblySemVer)-linux
             latest-linux
     - task: Docker@2
       displayName: Push a latest image
@@ -41,8 +47,8 @@ stages:
         repository: 'cdemi/NewsletterCurator'
         tags: |
             latest
-            $(Build.BuildNumber)
-            $(Build.BuildNumber)-linux
+            $(GitVersion.AssemblySemVer)
+            $(GitVersion.AssemblySemVer)-linux
             latest-linux
     - task: Docker@2
       displayName: Push an image
@@ -51,5 +57,5 @@ stages:
         command: push
         repository: 'cdemi/NewsletterCurator'
         tags: |
-            $(Build.BuildNumber)
-            $(Build.BuildNumber)-linux
+            $(GitVersion.AssemblySemVer)
+            $(GitVersion.AssemblySemVer)-linux
