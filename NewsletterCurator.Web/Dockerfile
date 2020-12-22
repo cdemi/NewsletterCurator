@@ -16,7 +16,7 @@ RUN dotnet restore "NewsletterCurator.Web/NewsletterCurator.Web.csproj"
 COPY . .
 WORKDIR "/src/NewsletterCurator.Web"
 ARG VERSION=1
-RUN dotnet publish "NewsletterCurator.Web.csproj" /p:Version=$VERSION -c Release -o /app/publish
+RUN dotnet publish "NewsletterCurator.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
