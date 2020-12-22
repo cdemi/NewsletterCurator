@@ -2,6 +2,8 @@
   <PropertyGroup>
     <Company>cdemi</Company>
     <Authors>cdemi</Authors>
+    <Version>$(Version)</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
     <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
   </PropertyGroup>
 </Project>
