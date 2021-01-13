@@ -1,4 +1,4 @@
-name: $(GitVersion.AssemblySemVer)
+name: $(GitVersion.SemVer)
 
 trigger:
 - master
@@ -36,8 +36,8 @@ stages:
         arguments: --build-arg VERSION=$(GitVersion.AssemblySemVer)
         tags: |
             latest
-            $(GitVersion.AssemblySemVer)
-            $(GitVersion.AssemblySemVer)-linux
+            $(GitVersion.SemVer)
+            $(GitVersion.SemVer)-linux
             latest-linux
     - task: Docker@2
       displayName: Push a latest image
@@ -47,8 +47,8 @@ stages:
         repository: 'cdemi/NewsletterCurator'
         tags: |
             latest
-            $(GitVersion.AssemblySemVer)
-            $(GitVersion.AssemblySemVer)-linux
+            $(GitVersion.SemVer)
+            $(GitVersion.SemVer)-linux
             latest-linux
     - task: Docker@2
       displayName: Push an image
@@ -57,5 +57,5 @@ stages:
         command: push
         repository: 'cdemi/NewsletterCurator'
         tags: |
-            $(GitVersion.AssemblySemVer)
-            $(GitVersion.AssemblySemVer)-linux
+            $(GitVersion.SemVer)
+            $(GitVersion.SemVer)-linux
