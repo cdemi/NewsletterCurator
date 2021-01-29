@@ -2,7 +2,7 @@
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS publish
+FROM mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim AS publish
 WORKDIR /src
 COPY ["NewsletterCurator.Web/NewsletterCurator.Web.csproj", "NewsletterCurator.Web/"]
 COPY ["NewsletterCurator.YouTubeScraper/NewsletterCurator.YouTubeScraper.csproj", "NewsletterCurator.YouTubeScraper/"]
