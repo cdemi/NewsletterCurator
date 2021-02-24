@@ -1,5 +1,5 @@
 ﻿@using System.Reflection;
-@model List<CategoryNewsItemsViewModel>
+@model HomeView
 @{
     ViewData["Title"] = "Home";
 }
@@ -13,7 +13,7 @@
             <button type="button" class="btn btn-primary select-all" autocomplete="off"></button>
         </div>
     </div>
-    @foreach (var categoryNewsItemsViewModel in Model)
+    @foreach (var categoryNewsItemsViewModel in Model.CategoryNewsItems)
     {
         <div class="mb-4 category">
             <h2>@categoryNewsItemsViewModel.Category.Name</h2>
@@ -48,4 +48,10 @@
         <input type="url" name="url" placeholder="URL" />
         <input type="submit" value="Submit" />
     </form>
+
+    <h2>Settings</h2>
+    @foreach (var setting in Model.Settings)
+    {
+        @setting.Key <input type="text" name="@setting.Key" value="@setting.Value" class="settingField"/> <br/>
+    }
 </div>

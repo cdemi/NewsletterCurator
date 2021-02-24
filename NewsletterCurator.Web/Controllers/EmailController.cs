@@ -46,6 +46,7 @@ namespace NewsletterCurator.Web.Controllers
             await emailService.SendAsync(emailSrc, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
 
             newsletterCuratorContext.Newsitems.RemoveRange(newsletterCuratorContext.Newsitems);
+            (await newsletterCuratorContext.Settings.SingleOrDefaultAsync(s => s.Key.Equals("CoverPicture"))).Value = "https://newsletters.cdemi.io/images/cover.png";
             await newsletterCuratorContext.SaveChangesAsync();
 
             return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags });
