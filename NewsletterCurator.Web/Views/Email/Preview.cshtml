@@ -1,4 +1,4 @@
-@using System.Reflection;
+﻿@using System.Reflection;
 @model PreviewModel
 @{
     Layout = null;
@@ -16,7 +16,7 @@
         <meta property="og:title" content="cdemi's Curated Newsletter for @DateTime.Now.ToString("dd MMMM yyyy")" />
         <meta property="og:site_name" content="newsletters.cdemi.io" />
         <meta property="og:description" content="This week's most important news articles about @(String.Join(", ",Model.Newsitems.SelectMany(c=> c.Category.HashTags.Select(h=>"#" + h)).ToArray()))" />
-        <meta property="og:image" content="https://newsletters.cdemi.io/images/cover.png" />
+        <meta property="og:image" content="@Model.CoverPicture" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="author" content="Christopher Demicoli">

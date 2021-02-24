@@ -46,6 +46,7 @@ namespace NewsletterCurator.Web.Controllers
             await emailService.SendAsync(emailSrc, await newsletterCuratorContext.Subscribers.Where(s => s.DateUnsubscribed == null && s.DateValidated != null).Select(s => s.Email).ToListAsync());
 
             newsletterCuratorContext.Newsitems.RemoveRange(newsletterCuratorContext.Newsitems);
+            (await newsletterCuratorContext.Settings.SingleOrDefaultAsync(s => s.Key.Equals("CoverPicture"))).Value = "https://newsletters.cdemi.io/images/cover.png";
             await newsletterCuratorContext.SaveChangesAsync();
 
             return RedirectToAction("Share", new { newsletterUrl = $"https://newsletters.cdemi.io/archives/{newsletterFilename}", hashTags });
@@ -76,7 +77,7 @@ namespace NewsletterCurator.Web.Controllers
         {
             var categoryNewsItemsViewModels = newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.OrderBy(ni=>ni.DateTime).ToList() }).ToList();
 
-            return View(new PreviewModel { Newsitems = categoryNewsItemsViewModels, IsWeb = isWeb });
+            return View(new PreviewModel { Newsitems = categoryNewsItemsViewModels, CoverPicture = newsletterCuratorContext.Settings.SingleOrDefault(k=>k.Key.Equals("CoverPicture")).Value, IsWeb = isWeb });
         }
     }
 }

@@ -18,9 +18,18 @@ namespace NewsletterCurator.Web.Controllers
 
         public IActionResult Index()
         {
-            var categoryNewsItemsViewModels = newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.OrderBy(ni=>ni.DateTime).ToList() }).ToList();
+            var categoryNewsItemsViewModels = newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.OrderBy(ni => ni.DateTime).ToList() }).ToList();
 
-            return View(categoryNewsItemsViewModels);
+            return View(new HomeView { CategoryNewsItems = categoryNewsItemsViewModels, Settings = newsletterCuratorContext.Settings.ToList() });
+        }
+
+        public async Task<IActionResult> UpdateSetting(string key, string value)
+        {
+            var setting = await newsletterCuratorContext.Settings.SingleOrDefaultAsync(s => s.Key.Equals(key));
+            setting.Value = value;
+            await newsletterCuratorContext.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

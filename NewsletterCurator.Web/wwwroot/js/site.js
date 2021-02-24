@@ -37,6 +37,13 @@
 
             });
 
+        $(".settingField").on("change", function () {
+            var that = $(this);
+            $.ajax({
+                url: 'Home/UpdateSetting?key=' + $(this).attr("name") + "&value=" + $(this).val(),
+            });
+        });
+
         $(window).on("load", function () {
             $('.media img')
                 .each(function (i, e) {
