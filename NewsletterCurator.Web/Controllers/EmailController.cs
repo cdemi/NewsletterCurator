@@ -76,7 +76,7 @@ namespace NewsletterCurator.Web.Controllers
         {
             var categoryNewsItemsViewModels = newsletterCuratorContext.NewsitemsByCategory().Select(c => new CategoryNewsItemsViewModel { Category = c.Key, Newsitems = c.OrderBy(ni=>ni.DateTime).ToList() }).ToList();
 
-            return View(new PreviewModel { Newsitems = categoryNewsItemsViewModels, IsWeb = isWeb });
+            return View(new PreviewModel { Newsitems = categoryNewsItemsViewModels, CoverPicture = newsletterCuratorContext.Settings.SingleOrDefault(k=>k.Key.Equals("CoverPicture")).Value, IsWeb = isWeb });
         }
     }
 }
