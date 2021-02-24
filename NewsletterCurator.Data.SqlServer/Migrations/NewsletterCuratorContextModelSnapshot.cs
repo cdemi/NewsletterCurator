@@ -15,9 +15,9 @@ namespace NewsletterCurator.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
+                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("NewsletterCurator.Data.Category", b =>
                 {
@@ -414,6 +414,26 @@ namespace NewsletterCurator.Data.Migrations
                             Summary = "Streaming systems have led to far richer approaches than the event-driven architectures of old. In the future, data will be as automated and self-service as infrastructure is today, in the form of data as a service.",
                             Title = "Event Driven 2.0: Data as a Service | Confluent",
                             URL = "https://www.confluent.io/blog/event-driven-2-0-data-service"
+                        });
+                });
+
+            modelBuilder.Entity("NewsletterCurator.Data.Setting", b =>
+                {
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Key");
+
+                    b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Key = "CoverPicture",
+                            Value = "https://newsletters.cdemi.io/images/cover.png"
                         });
                 });
 

@@ -93,7 +93,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("32e0baf7-4b80-4866-b9ae-3a2e77ad88fb"), Color = "#bc4dd1", HashTags = new string[] { "QuantumComputing", "Quantum" }, Name = "Quantum Computing", Priority = 9.5f },
                     new Category { ID = new Guid("12e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#03a9f4", HashTags = new string[] { "Space" }, Name = "Space", Priority = 10 },
                     new Category { ID = new Guid("40e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#00bcd4", HashTags = new string[] { "Security", "InfoSec" }, Name = "Security", Priority = 5 },
-                    new Category { ID = new Guid("30e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#b65050", HashTags = new string[] { "Privacy"}, Name = "Privacy", Priority = 5.1f },
+                    new Category { ID = new Guid("30e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#b65050", HashTags = new string[] { "Privacy" }, Name = "Privacy", Priority = 5.1f },
                     new Category { ID = new Guid("b3e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#009688", HashTags = new string[] { "Hardware" }, Name = "Hardware", Priority = 5.5f },
                     new Category { ID = new Guid("a1e0baf7-3b80-4866-b9ae-3a2e77ad88fb"), Color = "#4caf50", HashTags = new string[] { "QA", "QualityAssurance" }, Name = "Quality Assurance", Priority = 5.8f },
                     new Category { ID = new Guid("91e0baf7-3c82-4866-b9ae-5a2e77ad88fa"), Color = "#57106e", HashTags = new string[] { "Business" }, Name = "Business", Priority = 5.85f },
@@ -127,17 +127,25 @@ namespace NewsletterCurator.Data
                     new Subscriber { ID = new Guid("F16F302B-8266-4D45-978A-9E8456B593C4"), Email = "test2@test.test", DateSubscribed = new DateTimeOffset(new DateTime(2017, 11, 9)), DateValidated = new DateTimeOffset(new DateTime(2017, 11, 10)) }
                     );
             });
+
+            modelBuilder.Entity<Setting>(options =>
+            {
+                options.HasData(
+                    new Setting { Key = "CoverPicture", Value = "https://newsletters.cdemi.io/images/cover.png" }
+                    );
+            });
         }
 
         public IOrderedEnumerable<IGrouping<Category, Newsitem>> NewsitemsByCategory()
         {
-            return Newsitems.Include(n=>n.Category).Where(n => !n.IsAlreadySent).OrderByDescending(n => n.DateTime).AsEnumerable().GroupBy(n => n.Category).OrderBy(c => c.Key.Priority);
+            return Newsitems.Include(n => n.Category).Where(n => !n.IsAlreadySent).OrderByDescending(n => n.DateTime).AsEnumerable().GroupBy(n => n.Category).OrderBy(c => c.Key.Priority);
         }
 
 
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Newsitem> Newsitems { get; set; }
+        public DbSet<Setting> Settings { get; set; }
     }
 
 }
