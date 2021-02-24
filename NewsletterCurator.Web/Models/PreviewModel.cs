@@ -6,5 +6,6 @@ namespace NewsletterCurator.Web.Models
     {
         public List<CategoryNewsItemsViewModel> Newsitems { get; set; }
         public bool IsWeb { get; set; }
+        public string CoverPicture { get; set; }
     }
 }
