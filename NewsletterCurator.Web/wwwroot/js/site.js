@@ -40,7 +40,7 @@
         $(".settingField").on("change", function () {
             var that = $(this);
             $.ajax({
-                url: 'Home/UpdateSetting?key=' + $(this).attr("name") + "&value=" + $(this).val(),
+                url: $(this).data("saveurl") + '?key=' + $(this).attr("name") + "&value=" + $(this).val(),
             });
         });
 
