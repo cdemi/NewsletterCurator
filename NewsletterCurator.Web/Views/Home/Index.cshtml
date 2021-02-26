@@ -52,6 +52,6 @@
     <h2>Settings</h2>
     @foreach (var setting in Model.Settings)
     {
-        @setting.Key <input type="text" name="@setting.Key" value="@setting.Value" class="settingField"/> <br/>
+        @setting.Key <input type="text" name="@setting.Key" value="@setting.Value" data-saveurl="@Url.Action("UpdateSetting","Home")" class="settingField"/> <br/>
     }
 </div>
