@@ -54,7 +54,8 @@ namespace NewsletterCurator.Web
                 c.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{Configuration.GetValue<string>("GitHub:Username")}:{Configuration.GetValue<string>("GitHub:PersonalAccessToken")}")));
             });
 
-            services.AddHealthChecks();
+            services.AddHealthChecks()
+                .AddDbContextCheck<NewsletterCuratorContext>();
 
             services.AddHttpClient("httpClient", client =>
             {
