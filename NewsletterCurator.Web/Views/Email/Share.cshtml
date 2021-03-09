@@ -4,12 +4,26 @@
 }
 
 <h1>Share</h1>
-<textare>This week's most important articles about @(String.Join(", ", Model.HashTags.Take(Model.HashTags.Length - 1).Select(c => "#" + c).ToArray())) and #@Model.HashTags.Last()</textare>
+<textarea id="shareString">This week's most important articles about @(String.Join(", ", Model.HashTags.Take(Model.HashTags.Length - 1).Select(c => "#" + c).ToArray())) and #@Model.HashTags.Last()</textarea>
+<button onclick="copyText()">Copy text</button>
+
 <ul>
     <li>
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=@Model.URL">https://www.linkedin.com/shareArticle?mini=true&url=@Model.URL</a></li>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=@Model.URL" target="_blank">https://www.linkedin.com/shareArticle?mini=true&url=@Model.URL</a>
+    </li>
     <li>
-        <a href="https://twitter.com/intent/tweet?url=@Model.URL">https://twitter.com/intent/tweet?url=@Model.URL</a></li>
-        <li><a href="http://www.facebook.com/sharer.php?u=@Model.URL">http://www.facebook.com/sharer.php?u=@Model.URL</a>
+        <a href="https://twitter.com/intent/tweet?url=@Model.URL" target="_blank">https://twitter.com/intent/tweet?url=@Model.URL</a>
+    </li>
+    <li>
+        <a href="http://www.facebook.com/sharer.php?u=@Model.URL" target="_blank">http://www.facebook.com/sharer.php?u=@Model.URL</a>
     </li>
 </ul>
+
+<script>
+    function copyText() {
+        var copyText = document.getElementById("shareString");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        document.execCommand("copy");
+    }
+</script>
