@@ -2,10 +2,10 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsletterCurator.Data;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace NewsletterCurator.Data.Postgres.Migrations
 {
