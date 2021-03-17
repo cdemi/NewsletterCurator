@@ -105,6 +105,7 @@ namespace NewsletterCurator.Data
                     new Category { ID = new Guid("497FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff9800", HashTags = new string[] { "Tech" }, Name = "General Tech", Priority = 8 },
                     new Category { ID = new Guid("527FF497-33D2-724C-A1DB-5A722D94078F"), Color = "#0336ff", HashTags = new string[] { "Cloud" }, Name = "Cloud", Priority = 3.4f },
                     new Category { ID = new Guid("127FF497-11D2-724C-A1DB-5A722D94078F"), Color = "#2c90d7", HashTags = new string[] { "Kubernetes", "k8s" }, Name = "Kubernetes", Priority = 3.45f },
+                    new Category { ID = new Guid("138AF497-11D2-724C-A1DB-5A722D94078F"), Color = "#d82020", HashTags = new string[] { "OpenShift", "OKD" }, Name = "OpenShift", Priority = 3.46f },
                     new Category { ID = new Guid("127FF497-33D2-734C-A1DB-5A722A94078F"), Color = "#77b53f", HashTags = new string[] { "Serverless" }, Name = "Serverless", Priority = 3.6f },
                     new Category { ID = new Guid("527FF497-33D2-434C-A1DB-5A722D94078F"), Color = "#ff5722", HashTags = new string[] { "Infrastructure", "sysadmin" }, Name = "Infrastructure", Priority = 4 },
                     new Category { ID = new Guid("622FA497-32D2-434C-A1DB-5A722D94012F"), Color = "#6e179b", HashTags = new string[] { "IoT", "InternetOfThings" }, Name = "Internet of Things", Priority = 4.5f },

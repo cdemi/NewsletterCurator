@@ -16,7 +16,7 @@ namespace NewsletterCurator.Data.Postgres.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("NewsletterCurator.Data.Category", b =>
@@ -228,6 +228,14 @@ namespace NewsletterCurator.Data.Postgres.Migrations
                             HashTags = "Kubernetes,k8s",
                             Name = "Kubernetes",
                             Priority = 3.45f
+                        },
+                        new
+                        {
+                            ID = new Guid("138af497-11d2-724c-a1db-5a722d94078f"),
+                            Color = "#d82020",
+                            HashTags = "OpenShift,OKD",
+                            Name = "OpenShift",
+                            Priority = 3.46f
                         },
                         new
                         {
