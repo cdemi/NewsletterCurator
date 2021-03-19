@@ -112,7 +112,8 @@ namespace NewsletterCurator.HTMLScraper
                 {
                     var currentKeywords = newsKeyword.GetAttributeValue("content", null) ?? newsKeyword.GetAttributeValue("value", null);
 
-                    urlMetadata.Tags.AddRange(currentKeywords.Split(",").Select(t => t.Trim()));
+                    if (currentKeywords!=null)
+                        urlMetadata.Tags.AddRange(currentKeywords.Split(",").Select(t => t.Trim()));
                 }
             }
 
